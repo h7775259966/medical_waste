@@ -16,13 +16,6 @@ public interface CrudDao<T> {
     public T get(String id);
 
     /**
-     * 获取单条数据
-     * @param entity
-     * @return
-     */
-    public T get(T entity);
-
-    /**
      * 查询所有数据
      * @param
      * @return

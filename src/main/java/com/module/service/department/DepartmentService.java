@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 /**
  * 医院部门Service
  * @author zx
@@ -57,7 +59,10 @@ public class DepartmentService {
     public DepartmentPageResult add(Department department) {
         Department one = dao.get(department.getDepartmentId());
         if (one == null) {
-            department.setDepartmentId("123456");
+            one.setDepartmentId("123456");
+            one.setDepartmentName(department.getDepartmentName());
+            one.setRemark(department.getRemark());
+            one.setCreatDate(new Date());
            dao.insert(department);
             //成功了，所以返回内容里面是CommonCode.SUCCESS
             DepartmentPageResult departmentPageResult = new DepartmentPageResult(CommonCode.SUCCESS, department);
@@ -77,6 +82,7 @@ public class DepartmentService {
      */
     public Department findById(String id) {
         Department one = dao.get(id);
+        System.out.printf("findById查询到的one:"+one.toString());
         if (one != null) {
             return one;
         }
