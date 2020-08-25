@@ -1,7 +1,7 @@
 package com.module.response.department;
 
-import com.common.response.ResponseResult;
-import com.common.response.ResultCode;
+import com.common.Response.ResponseResult;
+import com.common.Response.ResultCode;
 import com.module.entity.department.Department;
 import lombok.Data;
 

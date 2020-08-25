@@ -1,4 +1,4 @@
-package com.common.response;
+package com.common.Response;
 
 /**
  * Created by Zhouxin on 2020/8/24;

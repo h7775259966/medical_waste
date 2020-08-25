@@ -1,7 +1,7 @@
 package com.module.response.department;
 
 
-import com.common.response.ResultCode;
+import com.common.Response.ResultCode;
 import lombok.ToString;
 
 /**

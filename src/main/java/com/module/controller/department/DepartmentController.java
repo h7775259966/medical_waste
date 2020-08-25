@@ -1,7 +1,7 @@
 package com.module.controller.department;
 
-import com.common.response.QueryResponseResult;
-import com.common.response.ResponseResult;
+import com.common.Response.QueryResponseResult;
+import com.common.Response.ResponseResult;
 import com.module.entity.department.Department;
 import com.module.request.department.DepartmentPageRequest;
 import com.module.response.department.DepartmentPageResult;
@@ -56,7 +56,7 @@ public class DepartmentController implements DepartmentControllerApi{
 	@Override
 	@GetMapping("/get/{id}")
 	public Department findById(@PathVariable("id") String id) {
-		System.out.println("---------get方法获取的id:"+id);
+
 		return departmentService.findById(id);
 	}
 

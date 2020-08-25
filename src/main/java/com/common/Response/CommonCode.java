@@ -1,4 +1,4 @@
-package com.common.response;
+package com.common.Response;
 
 import lombok.ToString;
 
