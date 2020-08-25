@@ -7,11 +7,12 @@ import lombok.Data;
 
 /**
  * Created by mrt on 2018/3/31.
+ * 将部门相关数据封装在这里，然后返回给前端
  */
 @Data
-public class DepartmentPageResult extends ResponseResult {
+public class DepartmentResult extends ResponseResult {
     Department department;
-    public DepartmentPageResult(ResultCode resultCode, Department department) {
+    public DepartmentResult(ResultCode resultCode, Department department) {
         super(resultCode);
         this.department = department;
     }

@@ -3,8 +3,8 @@ package com.module.controller.department;
 import com.common.Response.QueryResponseResult;
 import com.common.Response.ResponseResult;
 import com.module.entity.department.Department;
-import com.module.request.department.DepartmentPageRequest;
-import com.module.response.department.DepartmentPageResult;
+import com.module.request.department.DepartmentRequest;
+import com.module.response.department.DepartmentResult;
 import com.module.service.department.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,14 +25,14 @@ public class DepartmentController implements DepartmentControllerApi{
 	 * 分页同时自定义查询
 	 * @param page
 	 * @param size
-	 * @param departmentPageRequest
+	 * @param departmentRequest
 	 * @return
 	 */
 	@Override
 	@GetMapping("/list/{page}/{size}")
-	public QueryResponseResult findList(@PathVariable("page") int page, @PathVariable("size")int size, DepartmentPageRequest departmentPageRequest) {
+	public QueryResponseResult findList(@PathVariable("page") int page, @PathVariable("size")int size, DepartmentRequest departmentRequest) {
 
-		return departmentService.findList(page,size,departmentPageRequest);
+		return departmentService.findList(page,size, departmentRequest);
 	}
 
 
@@ -43,7 +43,7 @@ public class DepartmentController implements DepartmentControllerApi{
 	 */
 	@Override
 	@PostMapping("/add")
-	public DepartmentPageResult add(@RequestBody Department department) {
+	public DepartmentResult add(@RequestBody Department department) {
 
 		return departmentService.add(department);
 	}
@@ -55,7 +55,7 @@ public class DepartmentController implements DepartmentControllerApi{
 	 */
 	@Override
 	@GetMapping("/get/{id}")
-	public Department findById(@PathVariable("id") String id) {
+	public DepartmentResult findById(@PathVariable("id") String id) {
 
 		return departmentService.findById(id);
 	}
@@ -68,7 +68,7 @@ public class DepartmentController implements DepartmentControllerApi{
 	 */
 	@Override
 	@PutMapping("/edit/{id}")//这里使用put方法，http 方法中put表示更新
-	public DepartmentPageResult edit(@PathVariable("id") String id, @RequestBody Department department) {
+	public DepartmentResult edit(@PathVariable("id") String id, @RequestBody Department department) {
 
 		return departmentService.edit(id,department);
 	}

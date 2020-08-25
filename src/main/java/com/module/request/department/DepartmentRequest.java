@@ -8,7 +8,7 @@ import lombok.Data;
  * 将接口接收到的请求数据封装在这里
  */
 @Data
-public class DepartmentPageRequest {
+public class DepartmentRequest {
 
     @ApiModelProperty("部门id")
     private String departmentId;
@@ -17,6 +17,6 @@ public class DepartmentPageRequest {
     private String departmentName;
 
     @ApiModelProperty("部门备注")
-    private String remark;
+    private String remarks;
 
 }

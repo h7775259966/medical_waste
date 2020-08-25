@@ -7,13 +7,12 @@ import com.common.Response.ResponseResult;
 import com.common.Utils.IdGen;
 import com.module.dao.department.DepartmentDao;
 import com.module.entity.department.Department;
-import com.module.request.department.DepartmentPageRequest;
-import com.module.response.department.DepartmentPageResult;
+import com.module.request.department.DepartmentRequest;
+import com.module.response.department.DepartmentResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -28,10 +27,10 @@ public class DepartmentService {
 	@Autowired
 	private DepartmentDao departmentDao;
 
-    public QueryResponseResult findList(int page, int size, DepartmentPageRequest departmentPageRequest) {
+    public QueryResponseResult findList(int page, int size, DepartmentRequest departmentRequest) {
         //为防止后面报空指针，先进行查询条件的非空判断
-        if (departmentPageRequest == null) {
-            departmentPageRequest = new DepartmentPageRequest();
+        if (departmentRequest == null) {
+            departmentRequest = new DepartmentRequest();
         }
         //分页参数处理
         if (page <= 0) {
@@ -58,7 +57,7 @@ public class DepartmentService {
      * @param department
      * @return
      */
-    public DepartmentPageResult add(Department department) {
+    public DepartmentResult add(Department department) {
         Department one = departmentDao.get(department.getDepartmentId());
         if (one == null) {
             one.setDepartmentId(IdGen.uuid());
@@ -67,14 +66,14 @@ public class DepartmentService {
             one.setCreateDate(new Date());
             departmentDao.insert(department);
             //成功了，所以返回内容里面是CommonCode.SUCCESS
-            DepartmentPageResult departmentPageResult = new DepartmentPageResult(CommonCode.SUCCESS, department);
-            return departmentPageResult;
+            DepartmentResult departmentResult = new DepartmentResult(CommonCode.SUCCESS, department);
+            return departmentResult;
         }else{
             //测试捕获自定义异常
             //ExceptionCast.cast(CmsCode.CMS_ADDPAGE_EXISTSNAME);
         }
         //新增页面失败时，则返回的是CommonCode.FAIL
-        return new DepartmentPageResult(CommonCode.FAIL, null);
+        return new DepartmentResult(CommonCode.FAIL, null);
     }
 
     /**
@@ -82,20 +81,15 @@ public class DepartmentService {
      * @param id
      * @return
      */
-    public Department findById(String id) {
-        System.out.println("service的id:"+id);
-        System.out.println("测试IdGen.uuid()："+IdGen.uuid());
-        Department one = departmentDao.get(id);
-        System.out.printf("findById查询到的one:"+one.toString());
-        if (one != null) {
-            String Datestr2 = "yyyy-MM-dd HH:mm:ss";
-            SimpleDateFormat sdf2 = new SimpleDateFormat(Datestr2);
-            String creatDate = sdf2.format(one.getCreateDate());
-            System.out.println("查询获取的one.getCreatDate()："+one.getCreateDate());
-            System.out.println("转化的creatDate："+creatDate);
-            return one;
+    public DepartmentResult findById(String id) {
+        Department department = departmentDao.get(id);
+        if (department != null) {
+            //返回成功
+            DepartmentResult departmentResult = new DepartmentResult(CommonCode.SUCCESS, department);
+            return departmentResult;
         }
-        return null;
+        //返回失败
+        return new DepartmentResult(CommonCode.FAIL, null);
     }
 
 	/**
@@ -103,7 +97,7 @@ public class DepartmentService {
 	 * @param id
 	 * @return
 	 */
-	public DepartmentPageResult edit(String id, Department department) {
+	public DepartmentResult edit(String id, Department department) {
         Department one = departmentDao.get(id);
         if (one != null) {
             one.setDepartmentId(department.getDepartmentId());
@@ -112,12 +106,12 @@ public class DepartmentService {
             int save = departmentDao.update(one);
             if (save > 0) {
                 //返回成功
-                DepartmentPageResult departmentPageResult = new DepartmentPageResult(CommonCode.SUCCESS, department);
-                return departmentPageResult;
+                DepartmentResult departmentResult = new DepartmentResult(CommonCode.SUCCESS, department);
+                return departmentResult;
             }
         }
         //返回失败
-        return new DepartmentPageResult(CommonCode.FAIL, null);
+        return new DepartmentResult(CommonCode.FAIL, null);
 	}
 
 	/**
