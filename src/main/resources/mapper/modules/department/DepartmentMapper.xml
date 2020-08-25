@@ -45,8 +45,8 @@
 	<update id="update">
 		UPDATE t_department SET 	
 			remarks = #{remarks},
-			departmentname = #{departmentName},
-		WHERE departmentid = #{id}
+			departmentname = #{departmentName}
+		WHERE departmentid = #{departmentId}
 	</update>
 	
 	<!--物理删除-->

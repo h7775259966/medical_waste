@@ -3,9 +3,9 @@ package com.module.dao.department;
 import com.common.CrudDao.CrudDao;
 import com.module.entity.department.Department;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.context.annotation.Bean;
+import java.util.HashMap;
+import java.util.Map;
 
-import java.util.List;
 
 /**
  * 医院部门DAO接口

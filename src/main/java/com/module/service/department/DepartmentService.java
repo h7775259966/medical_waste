@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 医院部门Service
@@ -57,22 +59,23 @@ public class DepartmentService {
      * @param department
      * @return
      */
+    @Transactional
     public DepartmentResult add(Department department) {
-        Department one = departmentDao.get(department.getDepartmentId());
-        if (one == null) {
+        if (departmentDao.get(department.getDepartmentId()) == null) {
+            Department one = new Department();
             one.setDepartmentId(IdGen.uuid());
             one.setDepartmentName(department.getDepartmentName());
             one.setRemarks(department.getRemarks());
             one.setCreateDate(new Date());
-            departmentDao.insert(department);
-            //成功了，所以返回内容里面是CommonCode.SUCCESS
-            DepartmentResult departmentResult = new DepartmentResult(CommonCode.SUCCESS, department);
-            return departmentResult;
-        }else{
+            departmentDao.insert(one);
+            //返回成功
+            return new DepartmentResult(CommonCode.SUCCESS, one);
+        }
+        //else{
             //测试捕获自定义异常
             //ExceptionCast.cast(CmsCode.CMS_ADDPAGE_EXISTSNAME);
-        }
-        //新增页面失败时，则返回的是CommonCode.FAIL
+        //}
+        //返回失败
         return new DepartmentResult(CommonCode.FAIL, null);
     }
 
@@ -85,8 +88,7 @@ public class DepartmentService {
         Department department = departmentDao.get(id);
         if (department != null) {
             //返回成功
-            DepartmentResult departmentResult = new DepartmentResult(CommonCode.SUCCESS, department);
-            return departmentResult;
+            return new DepartmentResult(CommonCode.SUCCESS, department);
         }
         //返回失败
         return new DepartmentResult(CommonCode.FAIL, null);
@@ -97,17 +99,16 @@ public class DepartmentService {
 	 * @param id
 	 * @return
 	 */
+    @Transactional
 	public DepartmentResult edit(String id, Department department) {
-        Department one = departmentDao.get(id);
-        if (one != null) {
-            one.setDepartmentId(department.getDepartmentId());
+        if (departmentDao.get(id) != null) {
+            Department one = departmentDao.get(id);
             one.setDepartmentName(department.getDepartmentName());
             one.setRemarks(department.getRemarks());
-            int save = departmentDao.update(one);
-            if (save > 0) {
+            int update = departmentDao.update(one);
+            if (update > 0) {
                 //返回成功
-                DepartmentResult departmentResult = new DepartmentResult(CommonCode.SUCCESS, department);
-                return departmentResult;
+                return new DepartmentResult(CommonCode.SUCCESS, one);
             }
         }
         //返回失败
@@ -119,12 +120,19 @@ public class DepartmentService {
 	 * @param id
 	 * @return
 	 */
+    @Transactional
 	public ResponseResult delete(String id) {
-        Department one = departmentDao.get(id);
-        if (one != null) {
-            departmentDao.delete(one.getDepartmentId());
-            return new ResponseResult(CommonCode.SUCCESS);
+        if (departmentDao.get(id) != null) {
+            System.out.println("departmentDao.get(id) != null");
+            int delete = departmentDao.delete(id);
+            if (delete > 0) {
+                //返回成功
+                return new ResponseResult(CommonCode.SUCCESS);
+            }
+        }else{
+            System.out.println("departmentDao.get(id) == null");
         }
+        //返回失败
         return new ResponseResult(CommonCode.FAIL);
 	}
 

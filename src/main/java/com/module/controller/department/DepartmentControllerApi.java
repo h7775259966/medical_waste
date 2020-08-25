@@ -27,11 +27,14 @@ public interface DepartmentControllerApi {
     public DepartmentResult add(Department department);
 
     @ApiOperation("通过id查询部门")
+    @ApiImplicitParams({@ApiImplicitParam(name="id",value = "部门id",required=true,paramType="path",dataType="String") })
     public DepartmentResult findById(String id);
 
     @ApiOperation("通过id修改部门")
+    @ApiImplicitParams({@ApiImplicitParam(name="id",value = "部门id",required=true,paramType="path",dataType="String")})
     public DepartmentResult edit(String id, Department department);
 
     @ApiOperation("通过id删除部门")
+    @ApiImplicitParams({@ApiImplicitParam(name="id",value = "部门id",required=true,paramType="path",dataType="String") })
     public ResponseResult delete(String id);
 }
