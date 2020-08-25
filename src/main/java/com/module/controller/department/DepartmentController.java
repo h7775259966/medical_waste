@@ -56,7 +56,7 @@ public class DepartmentController implements DepartmentControllerApi{
 	@Override
 	@GetMapping("/get/{id}")
 	public Department findById(@PathVariable("id") String id) {
-
+		System.out.println("---------get方法获取的id:"+id);
 		return departmentService.findById(id);
 	}
 

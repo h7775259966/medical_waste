@@ -24,7 +24,7 @@ import java.util.Date;
 public class DepartmentService {
 
 	@Autowired
-	private DepartmentDao dao;
+	private DepartmentDao departmentDao;
 
     public QueryResponseResult findList(int page, int size, DepartmentPageRequest departmentPageRequest) {
         //为防止后面报空指针，先进行查询条件的非空判断
@@ -57,13 +57,13 @@ public class DepartmentService {
      * @return
      */
     public DepartmentPageResult add(Department department) {
-        Department one = dao.get(department.getDepartmentId());
+        Department one = departmentDao.get(department.getDepartmentId());
         if (one == null) {
-            one.setDepartmentId("123456");
+            one.setDepartmentId("987");
             one.setDepartmentName(department.getDepartmentName());
             one.setRemark(department.getRemark());
             one.setCreatDate(new Date());
-           dao.insert(department);
+            departmentDao.insert(department);
             //成功了，所以返回内容里面是CommonCode.SUCCESS
             DepartmentPageResult departmentPageResult = new DepartmentPageResult(CommonCode.SUCCESS, department);
             return departmentPageResult;
@@ -81,7 +81,8 @@ public class DepartmentService {
      * @return
      */
     public Department findById(String id) {
-        Department one = dao.get(id);
+        System.out.printf("service的id:"+id);
+        Department one = departmentDao.get(id);
         System.out.printf("findById查询到的one:"+one.toString());
         if (one != null) {
             return one;
@@ -95,12 +96,12 @@ public class DepartmentService {
 	 * @return
 	 */
 	public DepartmentPageResult edit(String id, Department department) {
-        Department one = dao.get(id);
+        Department one = departmentDao.get(id);
         if (one != null) {
             one.setDepartmentId(department.getDepartmentId());
             one.setDepartmentName(department.getDepartmentName());
             one.setRemark(department.getRemark());
-            int save = dao.update(one);
+            int save = departmentDao.update(one);
             if (save > 0) {
                 //返回成功
                 DepartmentPageResult departmentPageResult = new DepartmentPageResult(CommonCode.SUCCESS, department);
@@ -117,9 +118,9 @@ public class DepartmentService {
 	 * @return
 	 */
 	public ResponseResult delete(String id) {
-        Department one = dao.get(id);
+        Department one = departmentDao.get(id);
         if (one != null) {
-            dao.delete(one.getDepartmentId());
+            departmentDao.delete(one.getDepartmentId());
             return new ResponseResult(CommonCode.SUCCESS);
         }
         return new ResponseResult(CommonCode.FAIL);

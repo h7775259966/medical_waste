@@ -41,7 +41,6 @@ public interface CrudDao<T> {
      * @param id
      * @return
      */
-    @Deprecated
     public int delete(String id);
 
     /**
@@ -50,7 +49,6 @@ public interface CrudDao<T> {
      * @see public int delete(T entity)
      * @return
      */
-    @Deprecated
     public int deleteByLogic(String id);
 
 }
