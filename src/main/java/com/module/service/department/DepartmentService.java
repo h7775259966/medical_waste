@@ -5,10 +5,13 @@ import com.common.Response.QueryResponseResult;
 import com.common.Response.QueryResult;
 import com.common.Response.ResponseResult;
 import com.common.Utils.IdGen;
+import com.module.config.exception.ExceptionCast;
 import com.module.dao.department.DepartmentDao;
 import com.module.entity.department.Department;
 import com.module.request.department.DepartmentRequest;
+import com.module.response.department.DepartmentCode;
 import com.module.response.department.DepartmentResult;
+import com.sun.org.apache.bcel.internal.classfile.Code;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,11 +73,10 @@ public class DepartmentService {
             departmentDao.insert(one);
             //返回成功
             return new DepartmentResult(CommonCode.SUCCESS, one);
-        }
-        //else{
+        }else{
             //测试捕获自定义异常
-            //ExceptionCast.cast(CmsCode.CMS_ADDPAGE_EXISTSNAME);
-        //}
+            ExceptionCast.cast(DepartmentCode.CMS_ADDPAGE_EXISTSNAME);
+        }
         //返回失败
         return new DepartmentResult(CommonCode.FAIL, null);
     }
