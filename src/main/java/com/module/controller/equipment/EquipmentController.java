@@ -33,7 +33,7 @@ public class EquipmentController implements EquipmentControllerApi {
     }
 
     /**
-     * 通过id查询部门
+     * 通过id查询设备
      * @param id
      * @return
      */
@@ -47,7 +47,7 @@ public class EquipmentController implements EquipmentControllerApi {
 
 
     /**
-     * 添加部门
+     * 添加设备
      * @param equipment
      * @return
      */
@@ -59,7 +59,7 @@ public class EquipmentController implements EquipmentControllerApi {
     }
 
     /**
-     * 通过id修改部门
+     * 通过id修改设备
      * @param id
      * @param equipment
      * @return
@@ -72,7 +72,7 @@ public class EquipmentController implements EquipmentControllerApi {
     }
 
     /**
-     * 通过id删除部门
+     * 通过id删除设备
      * @param id
      * @return
      */

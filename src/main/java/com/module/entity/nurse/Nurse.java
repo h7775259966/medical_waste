@@ -5,7 +5,7 @@ import lombok.ToString;
 import java.util.Date;
 
 /**
- * 医院部门Entity
+ * 医院护士Entity
  * @author zx
  * @version 2020-08-24
  */
