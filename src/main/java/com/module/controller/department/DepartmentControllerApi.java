@@ -31,7 +31,6 @@ public interface DepartmentControllerApi {
     public DepartmentResult findById(String id);
 
     @ApiOperation("通过id修改部门")
-    @ApiImplicitParams({@ApiImplicitParam(name="id",value = "部门id",required=true,paramType="path",dataType="String")})
     public DepartmentResult edit(String id, Department department);
 
     @ApiOperation("通过id删除部门")
