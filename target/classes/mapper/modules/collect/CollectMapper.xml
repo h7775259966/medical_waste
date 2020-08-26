@@ -14,7 +14,7 @@
 	</sql>
 
 	<!--查询单条数据-->
-	<select id="get" resultType="Collect">
+	<select id="get" resultType="Nurse">
 		SELECT 
 			<include refid="collectColumns"/>
 		FROM t_collect a
@@ -22,7 +22,7 @@
 	</select>
 
 	<!--根据名称查询-->
-	<select id="getByName" resultType="Collect">
+	<select id="getByName" resultType="Nurse">
 		SELECT
 		<include refid="collectColumns"/>
 		FROM t_collect a
@@ -30,7 +30,7 @@
 	</select>
 
 	<!--查询所有-->
-	<select id="findList" resultType="Collect">
+	<select id="findList" resultType="Nurse">
 		SELECT 
 			<include refid="collectColumns"/>
 		FROM t_collect a
