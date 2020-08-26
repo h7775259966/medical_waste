@@ -5,10 +5,10 @@
 
     
 	<sql id="departmentColumns">
-		a.departmentid AS "departmentId",
-		a.createdate AS "createDate",
+		a.departmentId AS "departmentId",
+		a.createDate AS "createDate",
 		a.remarks AS "remarks",
-		a.departmentname AS "departmentName"
+		a.departmentName AS "departmentName"
 	</sql>
 
 	<!--查询单条数据-->
@@ -16,7 +16,7 @@
 		SELECT 
 			<include refid="departmentColumns"/>
 		FROM t_department a
-		WHERE a.departmentid = #{id}
+		WHERE a.departmentId = #{id}
 	</select>
 
 	<!--根据名称查询-->
@@ -24,7 +24,7 @@
 		SELECT
 		<include refid="departmentColumns"/>
 		FROM t_department a
-		WHERE a.departmentname = #{value}
+		WHERE a.departmentName = #{value}
 	</select>
 
 	<!--查询所有-->
@@ -37,10 +37,10 @@
 	<!--插入-->
 	<insert id="insert">
 		INSERT INTO t_department(
-			departmentid,
-			createdate,
+			departmentId,
+			createDate,
 			remarks,
-			departmentname
+			departmentName
 		) VALUES (
 			#{departmentId},
 			#{createDate},
@@ -53,14 +53,14 @@
 	<update id="update">
 		UPDATE t_department SET 	
 			remarks = #{remarks},
-			departmentname = #{departmentName}
-		WHERE departmentid = #{departmentId}
+			departmentName = #{departmentName}
+		WHERE departmentId = #{departmentId}
 	</update>
 	
 	<!--物理删除-->
 	<update id="delete">
 		DELETE FROM t_department
-		WHERE departmentid = #{id}
+		WHERE departmentId = #{id}
 	</update>
 
 </mapper>

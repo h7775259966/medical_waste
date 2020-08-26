@@ -130,7 +130,6 @@ public class DepartmentService {
     @Transactional
 	public ResponseResult delete(String id) {
         if (departmentDao.get(id) != null) {
-            System.out.println("departmentDao.get(id) != null");
             int delete = departmentDao.delete(id);
             if (delete > 0) {
                 //返回成功

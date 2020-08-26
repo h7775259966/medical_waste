@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.module.dao.equipment.EquipmentDao">
+    
+    <sql id="equipmentColumns">
+        a.equipmentName AS "equipmentName",
+		a.equipmentId AS "equipmentId",
+		a.equipmentNum AS "equipmentNum",
+		a.equipmentSIM AS "equipmentSIM",
+		a.equipmentFirm AS "equipmentFirm",
+		a.equipmentRemark AS "equipmentRemark",
+		a.equipmentStatus AS "equipmentStatus",
+		a.createDate AS "createDate"
+	</sql>
+
+    <!--查询单条数据-->
+    <select id="get" resultType="Equipment">
+        SELECT
+        <include refid="equipmentColumns"/>
+        FROM t_equipment a
+        WHERE a.equipmentId = #{equipmentId}
+    </select>
+
+	<!--根据名称查询-->
+	<select id="getByName" resultType="Equipment">
+		SELECT
+		<include refid="equipmentColumns"/>
+		FROM t_equipment a
+		WHERE a.equipmentName = #{value}
+	</select>
+
+    <!--查询所有-->
+    <select id="findList" resultType="Equipment">
+        SELECT
+        <include refid="equipmentColumns"/>
+        FROM t_equipment a
+    </select>
+
+    <!--插入-->
+    <insert id="insert">
+		INSERT INTO t_equipment(
+		    equipmentName,
+			equipmentId,
+			equipmentNum,
+			equipmentFirm,
+			equipmentSIM,
+			equipmentRemark,
+			equipmentStatus,
+			createDate
+		) VALUES (
+		    #{equipmentName},
+			#{equipmentId},
+			#{equipmentNum},
+			#{equipmentFirm},
+			#{equipmentSIM},
+			#{equipmentRemark},
+			#{equipmentStatus},
+			#{createDate}
+		)
+	</insert>
+
+    <!--修改-->
+    <update id="update">
+		UPDATE t_equipment SET 	
+			equipmentName = #{equipmentName},
+			equipmentId = #{equipmentId},
+			equipmentFirm = #{equipmentFirm},
+			equipmentSIM = #{equipmentSIM},
+			equipmentRemark = #{equipmentRemark}
+		WHERE equipmentId = #{equipmentId}
+	</update>
+
+    <!--物理删除-->
+    <update id="delete">
+		DELETE FROM t_equipment
+		WHERE equipmentId = #{equipmentId}
+	</update>
+
+</mapper>
