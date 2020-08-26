@@ -2,8 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6be49e31-1f6f-4416-a219-6ee5c519c9c9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/common/CrudDao/CrudDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/common/CrudDao/CrudDao.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/module/response/department/DepartmentCode.java" afterPath="$PROJECT_DIR$/src/main/java/com/module/response/department/DepartmentCode.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/module/controller/office/OfficeController.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/module/controller/office/OfficeControllerApi.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/module/dao/office/OfficeDao.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/module/entity/office/Office.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/module/request/office/OfficeRequest.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/module/response/office/OfficeCode.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/module/response/office/OfficeResult.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/module/service/office/OfficeService.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mapper/modules/office/OfficeMapper.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/module/controller/department/DepartmentControllerApi.java" afterPath="$PROJECT_DIR$/src/main/java/com/module/controller/department/DepartmentControllerApi.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/module/service/department/DepartmentService.java" afterPath="$PROJECT_DIR$/src/main/java/com/module/service/department/DepartmentService.java" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/modules/department/DepartmentMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapper/modules/department/DepartmentMapper.xml" />
     </list>
@@ -17,22 +26,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DepartmentController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/module/controller/department/DepartmentController.java">
+      <file leaf-file-name="OfficeService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/module/service/office/OfficeService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="59" column="46" lean-forward="true" selection-start-line="59" selection-start-column="46" selection-end-line="59" selection-end-column="46" />
+            <state relative-caret-position="87">
+              <caret line="132" column="7" lean-forward="true" selection-start-line="132" selection-start-column="7" selection-end-line="132" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DepartmentService.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/module/service/department/DepartmentService.java">
+      <file leaf-file-name="DepartmentMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/modules/department/DepartmentMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-901">
-              <caret line="77" column="25" lean-forward="true" selection-start-line="77" selection-start-column="25" selection-end-line="77" selection-end-column="25" />
-              <folding />
+            <state relative-caret-position="866">
+              <caret line="65" column="9" lean-forward="true" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
+              <folding>
+                <marker date="1598411426484" expanded="true" signature="450:550" ph="SELECT FROM t_department" />
+                <marker date="1598411426484" expanded="true" signature="629:732" ph="SELECT FROM t_department" />
+                <marker date="1598411426484" expanded="true" signature="808:877" ph="SELECT FROM t_department" />
+                <marker date="1598411426484" expanded="true" signature="925:1103" ph="INSERT INTO t_department... " />
+                <marker date="1598411426484" expanded="true" signature="1151:1278" ph="UPDATE t_department... " />
+                <marker date="1598411426484" expanded="true" signature="1329:1382" ph="DELETE FROM t_department... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OfficeMapper.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/modules/office/OfficeMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="3" column="46" lean-forward="false" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
+              <folding>
+                <marker date="1598413176692" expanded="true" signature="454:542" ph="SELECT FROM t_office" />
+                <marker date="1598413176692" expanded="true" signature="617:708" ph="SELECT FROM t_office" />
+                <marker date="1598413176692" expanded="true" signature="780:841" ph="SELECT FROM t_office" />
+                <marker date="1598413176692" expanded="true" signature="889:1084" ph="INSERT INTO t_office... " />
+                <marker date="1598413176692" expanded="true" signature="1132:1272" ph="UPDATE t_office... " />
+                <marker date="1598413176692" expanded="true" signature="1151:1272" ph="UPDATE t_office... " />
+                <marker date="1598413176692" expanded="true" signature="1323:1368" ph="DELETE FROM t_office... " />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -57,7 +91,11 @@
       <find>DepartmentRequest</find>
       <find>update</find>
       <find>delete</find>
+      <find>部门</find>
     </findStrings>
+    <replaceStrings>
+      <replace>科室</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -70,16 +108,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/module/mapper/userMapper/UserMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/module/mapper/UserMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/common/BaseEntity/BaseEntity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/common/DataEntity/DataEntity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/module/controller/User/MybatisController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/module/mapper/User/UserMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/config/Swagger2Configuration.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/common/CrudService/CrudService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/module/dao/User/department/DepartmentDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/module/entity/User/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/common/CrudEntity/CrudEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/common/utils/StringUtils.java" />
@@ -112,15 +140,25 @@
         <option value="$PROJECT_DIR$/src/main/java/com/module/SpringbootMybatisApplication.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/module/controller/department/DepartmentController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/module/controller/department/DepartmentControllerApi.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/module/dao/department/DepartmentDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/module/config/exception/CustomException.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/module/config/exception/ExceptionCast.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/module/config/exception/ExceptionCatch.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/modules/department/DepartmentMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/common/CrudDao/CrudDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/module/service/department/DepartmentService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/module/response/department/DepartmentCode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/module/dao/office/OfficeDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/module/response/office/OfficeCode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/module/response/office/DepartmentResult.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/module/entity/office/Office.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/modules/department/DepartmentMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/module/response/office/OfficeResult.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/module/controller/department/DepartmentControllerApi.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/module/controller/office/OfficeControllerApi.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/module/request/office/OfficeRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/modules/office/OfficeMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/module/service/department/DepartmentService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/module/service/office/OfficeService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/module/controller/office/OfficeController.java" />
       </list>
     </option>
   </component>
@@ -168,7 +206,7 @@
   <component name="MavenRunner">
     <option name="vmOptions" value="-DarchetypeCatalog=internal" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1268" />
@@ -324,7 +362,50 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="module" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="medical_waste" type="b2602c69:ProjectViewProjectNode" />
+              <item name="medical_waste" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="module" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="office" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="medical_waste" type="b2602c69:ProjectViewProjectNode" />
+              <item name="medical_waste" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="module" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="medical_waste" type="b2602c69:ProjectViewProjectNode" />
+              <item name="medical_waste" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="module" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="department" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="medical_waste" type="b2602c69:ProjectViewProjectNode" />
+              <item name="medical_waste" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="module" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="office" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="medical_waste" type="b2602c69:ProjectViewProjectNode" />
@@ -341,6 +422,28 @@
               <item name="medical_waste" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="module" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="department" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="medical_waste" type="b2602c69:ProjectViewProjectNode" />
+              <item name="medical_waste" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="module" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="office" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="medical_waste" type="b2602c69:ProjectViewProjectNode" />
+              <item name="medical_waste" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -349,7 +452,25 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="medical_waste" type="b2602c69:ProjectViewProjectNode" />
+              <item name="medical_waste" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
               <item name="department" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="medical_waste" type="b2602c69:ProjectViewProjectNode" />
+              <item name="medical_waste" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="office" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -379,14 +500,18 @@
       <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.module.mapper.userMapper" />
+      <recent name="com.module.request.office" />
+      <recent name="com.module.controller.office" />
+      <recent name="com.module.service.office" />
+      <recent name="com.module.response.office" />
+      <recent name="com.module.dao.office" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\PUSH_Git3\medical_waste\src\main\resources\mapper\modules\office" />
       <recent name="F:\PUSH_Git3\medical_waste\src\main\java\com\common\Utils" />
       <recent name="D:\IdeaWorkspace\medical_waste\src\main\java\com\module\response" />
       <recent name="D:\IdeaWorkspace\medical_waste\src\main\java\com\common\utils" />
       <recent name="D:\IdeaWorkspace\medical_waste\src\main\java\com\module\dao\User" />
-      <recent name="D:\IdeaWorkspace\medical_waste\src\main\java\com\config" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -603,7 +728,7 @@
       <workItem from="1598321448169" duration="22477000" />
       <workItem from="1598360086123" duration="3374000" />
       <workItem from="1598404620670" duration="508000" />
-      <workItem from="1598405153011" duration="3405000" />
+      <workItem from="1598405153011" duration="8927000" />
     </task>
     <servers />
   </component>
@@ -616,10 +741,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58886000" />
+    <option name="totallyTimeSpent" value="64408000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13265306" sideWeight="0.5030257" order="7" side_tool="true" content_ui="tabs" />
@@ -641,7 +767,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993197" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24508321" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2965204" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -700,32 +826,9 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/controller/User/UserController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/controller/User/UserController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/entity/User/User.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/controller/User/UserController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/entity/User/User.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/controller/User/UserController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/controller/User/UserController.java" />
-    <entry file="file://$PROJECT_DIR$/medical_waste.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="17" column="48" lean-forward="false" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/mapper/userMapper/UserMapper.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/common/DataEntity/DataEntity.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/common/BaseEntity/BaseEntity.java" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/config/Swagger2Configuration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="20" column="80" lean-forward="false" selection-start-line="20" selection-start-column="80" selection-end-line="20" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/common/CrudService/CrudService.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/module/dao/User/department/DepartmentDao.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/common/CrudEntity/CrudEntity.java" />
@@ -794,14 +897,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/common/Response/ResponseResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/common/Response/ResultCode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="239">
@@ -820,29 +915,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/response/department/DepartmentResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/controller/department/DepartmentControllerApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="28" column="29" lean-forward="true" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/request/department/DepartmentRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="21" column="1" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -871,42 +943,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/entity/department/Department.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="18" column="33" lean-forward="false" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/common/Response/CommonCode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/common/CrudDao/CrudDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
           <caret line="22" column="37" lean-forward="true" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/modules/department/DepartmentMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="26" column="41" lean-forward="true" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
-          <folding>
-            <marker date="1598408260816" expanded="true" signature="450:550" ph="SELECT FROM t_department" />
-            <marker date="1598408260816" expanded="true" signature="629:732" ph="SELECT FROM t_department" />
-            <marker date="1598408260816" expanded="true" signature="808:877" ph="SELECT FROM t_department" />
-            <marker date="1598408260816" expanded="true" signature="925:1103" ph="INSERT INTO t_department... " />
-            <marker date="1598408260816" expanded="true" signature="1151:1278" ph="UPDATE t_department... " />
-            <marker date="1598408260816" expanded="true" signature="1329:1382" ph="DELETE FROM t_department... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -918,27 +959,182 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/controller/department/DepartmentController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/config/Swagger2Configuration.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="59" column="46" lean-forward="true" selection-start-line="59" selection-start-column="46" selection-end-line="59" selection-end-column="46" />
+        <state relative-caret-position="228">
+          <caret line="20" column="80" lean-forward="false" selection-start-line="20" selection-start-column="80" selection-end-line="20" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/common/Response/CommonCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="32" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/module/response/department/DepartmentCode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="17" column="10" lean-forward="true" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
+        <state relative-caret-position="171">
+          <caret line="12" column="3" lean-forward="true" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/response/office/OfficeResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/response/department/DepartmentResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="14" column="11" lean-forward="false" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/common/Response/ResponseResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/controller/department/DepartmentControllerApi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/request/department/DepartmentRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="21" column="1" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/request/office/OfficeRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/entity/department/Department.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/dao/office/OfficeDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="13" column="46" lean-forward="false" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/controller/department/DepartmentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="84" column="35" lean-forward="true" selection-start-line="84" selection-start-column="35" selection-end-line="84" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/module/service/department/DepartmentService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-901">
-          <caret line="77" column="25" lean-forward="true" selection-start-line="77" selection-start-column="25" selection-end-line="77" selection-end-column="25" />
+        <state relative-caret-position="144">
+          <caret line="131" column="44" lean-forward="true" selection-start-line="131" selection-start-column="44" selection-end-line="131" selection-end-column="44" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/entity/office/Office.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/response/office/OfficeCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="15" column="44" lean-forward="true" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/controller/office/OfficeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1634">
+          <caret line="86" column="1" lean-forward="true" selection-start-line="86" selection-start-column="1" selection-end-line="86" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/controller/office/OfficeControllerApi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="35" column="29" lean-forward="true" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/module/service/office/OfficeService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="132" column="7" lean-forward="true" selection-start-line="132" selection-start-column="7" selection-end-line="132" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/modules/department/DepartmentMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="866">
+          <caret line="65" column="9" lean-forward="true" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
+          <folding>
+            <marker date="1598411426484" expanded="true" signature="450:550" ph="SELECT FROM t_department" />
+            <marker date="1598411426484" expanded="true" signature="629:732" ph="SELECT FROM t_department" />
+            <marker date="1598411426484" expanded="true" signature="808:877" ph="SELECT FROM t_department" />
+            <marker date="1598411426484" expanded="true" signature="925:1103" ph="INSERT INTO t_department... " />
+            <marker date="1598411426484" expanded="true" signature="1151:1278" ph="UPDATE t_department... " />
+            <marker date="1598411426484" expanded="true" signature="1329:1382" ph="DELETE FROM t_department... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/modules/office/OfficeMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="46" lean-forward="false" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
+          <folding>
+            <marker date="1598413176692" expanded="true" signature="454:542" ph="SELECT FROM t_office" />
+            <marker date="1598413176692" expanded="true" signature="617:708" ph="SELECT FROM t_office" />
+            <marker date="1598413176692" expanded="true" signature="780:841" ph="SELECT FROM t_office" />
+            <marker date="1598413176692" expanded="true" signature="889:1084" ph="INSERT INTO t_office... " />
+            <marker date="1598413176692" expanded="true" signature="1132:1272" ph="UPDATE t_office... " />
+            <marker date="1598413176692" expanded="true" signature="1151:1272" ph="UPDATE t_office... " />
+            <marker date="1598413176692" expanded="true" signature="1323:1368" ph="DELETE FROM t_office... " />
+          </folding>
         </state>
       </provider>
     </entry>
