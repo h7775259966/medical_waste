@@ -19,6 +19,14 @@
 		WHERE a.departmentid = #{id}
 	</select>
 
+	<!--根据名称查询-->
+	<select id="getByName" resultType="Department">
+		SELECT
+		<include refid="departmentColumns"/>
+		FROM t_department a
+		WHERE a.departmentname = #{value}
+	</select>
+
 	<!--查询所有-->
 	<select id="findList" resultType="Department">
 		SELECT 

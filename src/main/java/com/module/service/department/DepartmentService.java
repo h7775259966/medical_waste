@@ -64,7 +64,7 @@ public class DepartmentService {
      */
     @Transactional
     public DepartmentResult add(Department department) {
-        if (departmentDao.get(department.getDepartmentId()) == null) {
+        if (departmentDao.getByName(department.getDepartmentName()) == null) {
             Department one = new Department();
             one.setDepartmentId(IdGen.uuid());
             one.setDepartmentName(department.getDepartmentName());

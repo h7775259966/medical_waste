@@ -16,6 +16,13 @@ public interface CrudDao<T> {
     public T get(String id);
 
     /**
+     * 根据名称查询
+     * @param value
+     * @return
+     */
+    public T getByName(String value);
+
+    /**
      * 查询所有数据
      * @param
      * @return
