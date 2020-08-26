@@ -33,7 +33,7 @@
 	<select id="findList" resultType="Collect">
 		SELECT 
 			<include refid="collectColumns"/>
-		FROM t_collect a
+		FROM t_collect a ORDER BY a.createDate DESC
 	</select>
 
 	<!--插入-->

@@ -31,7 +31,7 @@
 	<select id="findList" resultType="Department">
 		SELECT 
 			<include refid="departmentColumns"/>
-		FROM t_department a
+		FROM t_department a	ORDER BY a.createDate DESC
 	</select>
 
 	<!--插入-->

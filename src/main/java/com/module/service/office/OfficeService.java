@@ -5,15 +5,12 @@ import com.common.Response.QueryResponseResult;
 import com.common.Response.QueryResult;
 import com.common.Response.ResponseResult;
 import com.common.Utils.IdGen;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.module.config.exception.ExceptionCast;
-import com.module.dao.department.DepartmentDao;
 import com.module.dao.office.OfficeDao;
-import com.module.entity.department.Department;
 import com.module.entity.office.Office;
-import com.module.request.department.DepartmentRequest;
 import com.module.request.office.OfficeRequest;
-import com.module.response.department.DepartmentCode;
-import com.module.response.department.DepartmentResult;
 import com.module.response.office.OfficeCode;
 import com.module.response.office.OfficeResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 医院科室Service
@@ -47,13 +45,23 @@ public class OfficeService {
         if (size <= 0) {
             size = 10;
         }
-        //分页加自定义查询处理
+        //分页处理
+        PageHelper.startPage(page,size);
+        //注意：如果officeRequest内参数不为空，则进行带值查询
+        //officeDao.findList()为没有任何查询条件的分页查询
+        List<Office> list = officeDao.findList();
+        PageInfo<Office> pageInfo = new PageInfo<Office>(list);
 
+        /*System.out.println("总数量：" + pageInfo.getTotal());
+        System.out.println("当前页查询记录：" + pageInfo.getList().size());
+        System.out.println("当前页码：" + pageInfo.getPageNum());
+        System.out.println("每页显示数量：" + pageInfo.getPageSize());
+        System.out.println("总页：" + pageInfo.getPages());*/
 
         //封装结果
         QueryResult queryResult = new QueryResult();
-        //queryResult.setList();//数据列表
-        //queryResult.setTotal();//数据总记录数
+        queryResult.setList(list);//数据列表
+        queryResult.setTotal(pageInfo.getTotal());//数据总记录数
         QueryResponseResult queryResponseResult = new QueryResponseResult(CommonCode.SUCCESS, queryResult);
         return queryResponseResult;
 

@@ -13,7 +13,7 @@ import io.swagger.annotations.ApiOperation;
 /**
  * Created by Zhouxin on 2020/8/24;
  */
-@Api(value="department接口",description = "提供部门的增、删、改、查")
+@Api(value="department接口",description = "部门")
 public interface DepartmentControllerApi {
 
     @ApiOperation("分页查询部门列表")

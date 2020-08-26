@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
-@Api(value="equipment接口",description = "提供设备的增、删、改、查")
+@Api(value="equipment接口",description = "设备")
 public interface EquipmentControllerApi {
 
     @ApiOperation("分页查询设备列表")

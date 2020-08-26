@@ -13,7 +13,7 @@ import io.swagger.annotations.ApiOperation;
 /**
  * Created by Zhouxin on 2020/8/24;
  */
-@Api(value="nurse接口",description = "提供护士的增、删、改、查")
+@Api(value="nurse接口",description = "护士")
 public interface NurseControllerApi {
 
     @ApiOperation("分页查询护士列表")

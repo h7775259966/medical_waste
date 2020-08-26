@@ -13,7 +13,7 @@ import io.swagger.annotations.ApiOperation;
 /**
  * Created by Zhouxin on 2020/8/26;
  */
-@Api(value="office接口",description = "提供科室的增、删、改、查")
+@Api(value="office接口",description = "科室")
 public interface OfficeControllerApi {
 
     @ApiOperation("分页查询科室列表")

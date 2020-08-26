@@ -32,7 +32,7 @@
 	<select id="findList" resultType="Office">
 		SELECT 
 			<include refid="officeColumns"/>
-		FROM t_office a
+		FROM t_office a ORDER BY a.createDate DESC
 	</select>
 
 	<!--插入-->

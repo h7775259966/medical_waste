@@ -13,7 +13,7 @@ import io.swagger.annotations.ApiOperation;
 /**
  * Created by Zhouxin on 2020/8/24;
  */
-@Api(value="collect接口",description = "提供收集人的增、删、改、查")
+@Api(value="collect接口",description = "收集人")
 public interface CollectControllerApi {
 
     @ApiOperation("分页查询收集人列表")

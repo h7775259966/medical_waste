@@ -34,7 +34,7 @@
 	<select id="findList" resultType="Nurse">
 		SELECT 
 			<include refid="nurseColumns"/>
-		FROM t_nurse a
+		FROM t_nurse a ORDER BY a.createDate DESC
 	</select>
 
 	<!--插入-->

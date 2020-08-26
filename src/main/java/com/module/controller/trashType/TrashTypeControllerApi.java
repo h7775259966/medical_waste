@@ -12,7 +12,7 @@ import io.swagger.annotations.ApiOperation;
 /**
  * Created by Zhouxin on 2020/8/26;
  */
-@Api(value="trashType接口",description = "提供医废类型的增、删、改、查")
+@Api(value="trashType接口",description = "医废类型")
 public interface TrashTypeControllerApi {
 
     @ApiOperation("添加医废类型")

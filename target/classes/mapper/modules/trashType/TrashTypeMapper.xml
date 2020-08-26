@@ -31,7 +31,7 @@
 	<select id="findList" resultType="TrashType">
 		SELECT 
 			<include refid="trashTypeColumns"/>
-		FROM t_trash_type a
+		FROM t_trash_type a ORDER BY a.createDate DESC
 	</select>
 
 	<!--插入-->
