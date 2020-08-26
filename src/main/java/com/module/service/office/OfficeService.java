@@ -107,12 +107,12 @@ public class OfficeService {
 	 * @return
 	 */
     @Transactional
-	public OfficeResult edit(String id, Office Office) {
+	public OfficeResult edit(String id, Office office) {
         if (officeDao.get(id) != null) {
             Office one = officeDao.get(id);
-            one.setDepartmentId(Office.getDepartmentId());
-            one.setOfficeName(Office.getOfficeName());
-            one.setRemarks(Office.getRemarks());
+            one.setDepartmentId(office.getDepartmentId());
+            one.setOfficeName(office.getOfficeName());
+            one.setRemarks(office.getRemarks());
             int update = officeDao.update(one);
             if (update > 0) {
                 //返回成功
