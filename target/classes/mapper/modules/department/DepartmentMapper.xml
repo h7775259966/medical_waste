@@ -42,7 +42,7 @@
 	</insert>
 
 	<!--修改-->
-	<update id="update" parameterType="java.util.Map">
+	<update id="update">
 		UPDATE t_department SET 	
 			remarks = #{remarks},
 			departmentname = #{departmentName}

@@ -70,15 +70,17 @@ public class DepartmentService {
             one.setDepartmentName(department.getDepartmentName());
             one.setRemarks(department.getRemarks());
             one.setCreateDate(new Date());
-            departmentDao.insert(one);
-            //返回成功
-            return new DepartmentResult(CommonCode.SUCCESS, one);
-        }else{
-            //测试捕获自定义异常
-            ExceptionCast.cast(DepartmentCode.CMS_ADDPAGE_EXISTSNAME);
+            int insert = departmentDao.insert(one);
+            if (insert > 0) {
+                //返回成功
+                return new DepartmentResult(CommonCode.SUCCESS, one);
+            } else {
+                //自定义异常处理
+                ExceptionCast.cast(DepartmentCode.CMS_INSERT_FALSE);
+            }
         }
         //返回失败
-        return new DepartmentResult(CommonCode.FAIL, null);
+        return new DepartmentResult(DepartmentCode.CMS_NAME_REPETITION, null);
     }
 
     /**
@@ -87,13 +89,13 @@ public class DepartmentService {
      * @return
      */
     public DepartmentResult findById(String id) {
-        Department department = departmentDao.get(id);
-        if (department != null) {
+        if (departmentDao.get(id) != null) {
+            Department department = departmentDao.get(id);
             //返回成功
             return new DepartmentResult(CommonCode.SUCCESS, department);
         }
         //返回失败
-        return new DepartmentResult(CommonCode.FAIL, null);
+        return new DepartmentResult(DepartmentCode.CMS_GET_ISNULL, null);
     }
 
 	/**
@@ -111,10 +113,13 @@ public class DepartmentService {
             if (update > 0) {
                 //返回成功
                 return new DepartmentResult(CommonCode.SUCCESS, one);
+            } else {
+                //自定义异常处理
+                ExceptionCast.cast(DepartmentCode.CMS_UPDATE_FALSE);
             }
         }
         //返回失败
-        return new DepartmentResult(CommonCode.FAIL, null);
+        return new DepartmentResult(DepartmentCode.CMS_GET_ISNULL, null);
 	}
 
 	/**
@@ -130,12 +135,13 @@ public class DepartmentService {
             if (delete > 0) {
                 //返回成功
                 return new ResponseResult(CommonCode.SUCCESS);
+            } else {
+                //自定义异常处理
+                ExceptionCast.cast(DepartmentCode.CMS_DELETE_FALSE);
             }
-        }else{
-            System.out.println("departmentDao.get(id) == null");
         }
         //返回失败
-        return new ResponseResult(CommonCode.FAIL);
+        return new DepartmentResult(DepartmentCode.CMS_GET_ISNULL, null);
 	}
 
 }

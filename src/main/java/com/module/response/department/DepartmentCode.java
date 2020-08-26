@@ -9,13 +9,14 @@ import lombok.ToString;
  */
 @ToString
 public enum DepartmentCode implements ResultCode {
-    CMS_ADDPAGE_EXISTSNAME(false,24001,"部门已存在,无法新增！"),
-    CMS_GENERATEHTML_DATAURLISNULL(false,24002,"从页面信息中找不到获取数据的url！"),
-    CMS_GENERATEHTML_DATAISNULL(false,24003,"根据页面的数据url获取不到数据！"),
-    CMS_GENERATEHTML_TEMPLATEISNULL(false,24004,"页面模板为空！"),
-    CMS_GENERATEHTML_HTMLISNULL(false,24005,"生成的静态html为空！"),
+    CMS_INSERT_FALSE(false,24001,"新增部门失败！"),
+    CMS_GET_ISNULL(false,24002,"根据部门id查询的数据不存在！"),
+    CMS_NAME_REPETITION(false,24003,"部门名称已存在,无法新增！"),
+    CMS_UPDATE_FALSE(false,24004,"修改部门失败！"),
+    CMS_DELETE_FALSE(false,24005,"删除部门失败！"),
     CMS_GENERATEHTML_SAVEHTMLERROR(false,24005,"保存静态html出错！"),
     CMS_COURSE_PERVIEWISNULL(false,24007,"预览页面为空！");
+
     //操作代码
     boolean success;
     //操作代码
