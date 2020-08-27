@@ -5,8 +5,8 @@
 
 	<groupId>com.itheima</groupId>
 	<artifactId>medical_waste</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<version>0.0.1</version>
+	<packaging>war</packaging>
 
 	<name>medical_waste</name>
 	<description>Demo project for Spring Boot</description>
@@ -91,6 +91,13 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>3.16</version>
 		</dependency>
+
+		<!-- 同于打包部署时去除内嵌tomcat -->
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.boot</groupId>-->
+			<!--<artifactId>spring-boot-starter-tomcat</artifactId>-->
+			<!--<scope>provided</scope>-->
+		<!--</dependency>-->
 	</dependencies>
 
 	<build>
