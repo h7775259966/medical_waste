@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/notice/")
+@RequestMapping("/notice")
 public class NoticeController implements NoticeControllerApi {
 
     @Autowired
