@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
-@Api(value="notice接口",description = "提供公告的增、删、改、查")
+@Api(value="notice接口",description = "公告")
 public interface NoticeControllerApi {
 
     @ApiOperation("分页查询公告列表")

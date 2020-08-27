@@ -78,6 +78,15 @@ public class HospitalService {
             Hospital one = new Hospital();
             one.setHospitalId(IdGen.uuid());
             one.setHospitalName(hospital.getHospitalName());
+            one.setHospitalNumber(hospital.getHospitalNumber());
+            one.setAverageTrash(hospital.getAverageTrash());
+            one.setBedNumber(hospital.getBedNumber());
+            one.setGrade(hospital.getGrade());
+            one.setHospitalContent(hospital.getHospitalContent());
+            one.setOfficeNumber(hospital.getOfficeNumber());
+            one.setPrincipal(hospital.getPrincipal());
+            one.setProcessingMode(hospital.getProcessingMode());
+            one.setPicture(hospital.getPicture());
             one.setRemarks(hospital.getRemarks());
             one.setCreateDate(new Date());
             int insert = hospitalDao.insert(one);
@@ -118,7 +127,17 @@ public class HospitalService {
         if (hospitalDao.get(id) != null) {
             Hospital one = hospitalDao.get(id);
             one.setHospitalName(hospital.getHospitalName());
+            one.setHospitalNumber(hospital.getHospitalNumber());
+            one.setAverageTrash(hospital.getAverageTrash());
+            one.setBedNumber(hospital.getBedNumber());
+            one.setGrade(hospital.getGrade());
+            one.setHospitalContent(hospital.getHospitalContent());
+            one.setOfficeNumber(hospital.getOfficeNumber());
+            one.setPrincipal(hospital.getPrincipal());
+            one.setProcessingMode(hospital.getProcessingMode());
+            one.setPicture(hospital.getPicture());
             one.setRemarks(hospital.getRemarks());
+            one.setCreateDate(new Date());
             int update = hospitalDao.update(one);
             if (update > 0) {
                 //返回成功
