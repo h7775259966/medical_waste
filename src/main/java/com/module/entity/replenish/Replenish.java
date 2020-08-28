@@ -23,8 +23,8 @@ public class Replenish {
     private String trashId;        //医废类型id
     private String replenishNumber;        //医废数量
     private String replenishWeight;        //医废重量
-    private String checkStatusprivate;        //补录审核状态
-    private String warehouseStatusprivate;        //出入库状态
+    private String checkStatus;        //补录审核状态
+    private String warehouseStatus;        //出入库状态
     private Date replenishTime;                //补录时间
     private Date collectTime;                //收集时间
     private Date createDate;                //创建时间

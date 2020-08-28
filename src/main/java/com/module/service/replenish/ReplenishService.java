@@ -76,8 +76,8 @@ public class ReplenishService {
     public ReplenishResult add(Replenish replenish) {
             Replenish one = new Replenish();
             one.setReplenishId(IdGen.uuid());
-            one.setCheckStatusprivate(replenish.getCheckStatusprivate());
-            one.setWarehouseStatusprivate(replenish.getWarehouseStatusprivate());
+            one.setCheckStatus(replenish.getCheckStatus());
+            one.setWarehouseStatus(replenish.getWarehouseStatus());
             one.setUserId(replenish.getUserId());
             one.setCollectId(replenish.getCollectId());
             one.setNurseId(replenish.getNurseId());
@@ -125,8 +125,8 @@ public class ReplenishService {
 	public ReplenishResult edit(String id, Replenish replenish) {
         if (replenishDao.get(id) != null) {
             Replenish one = replenishDao.get(id);
-            one.setCheckStatusprivate(replenish.getCheckStatusprivate());
-            one.setWarehouseStatusprivate(replenish.getWarehouseStatusprivate());
+            one.setCheckStatus(replenish.getCheckStatus());
+            one.setWarehouseStatus(replenish.getWarehouseStatus());
             one.setUserId(replenish.getUserId());
             one.setCollectId(replenish.getCollectId());
             one.setNurseId(replenish.getNurseId());
