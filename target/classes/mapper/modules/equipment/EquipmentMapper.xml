@@ -29,7 +29,7 @@
 		SELECT
 		<include refid="equipmentColumns"/>
 		FROM t_equipment a
-		WHERE a.equipmentName = #{value}
+		WHERE a.equipmentName = #{Plan}
 	</select>
 
     <!--查询所有-->
