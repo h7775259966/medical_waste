@@ -18,7 +18,7 @@
 	<select id="get" resultType="ReplenishCheck">
 		SELECT 
 			<include refid="replenishCheckColumns"/>
-		FROM t_replenishCheck a
+		FROM t_replenish_check a
 		WHERE a.replenishCheckId = #{id}
 	</select>
 
@@ -26,12 +26,12 @@
 	<select id="findList" resultType="ReplenishCheck">
 		SELECT 
 			<include refid="replenishCheckColumns"/>
-		FROM t_replenishCheck a	ORDER BY a.createDate DESC
+		FROM t_replenish_check a	ORDER BY a.createDate DESC
 	</select>
 
 	<!--插入-->
 	<insert id="insert">
-		INSERT INTO t_replenishCheck(
+		INSERT INTO t_replenish_check(
 			replenishCheckId,
 			replenishId,
 			replenishCheckCause,
@@ -52,7 +52,7 @@
 
 	<!--修改-->
 	<update id="update">
-		UPDATE t_replenishCheck SET
+		UPDATE t_replenish_check SET
 			replenishId = #{replenishId},
 			replenishCheckCause = #{replenishCheckCause},
 			replenishCheckSuggest = #{replenishCheckSuggest},
@@ -63,7 +63,7 @@
 	
 	<!--物理删除-->
 	<update id="delete">
-		DELETE FROM t_replenishCheck
+		DELETE FROM t_replenish_check
 		WHERE replenishCheckId = #{id}
 	</update>
 
