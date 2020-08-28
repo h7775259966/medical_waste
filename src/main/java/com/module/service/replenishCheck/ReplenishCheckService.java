@@ -91,7 +91,7 @@ public class ReplenishCheckService {
                 ExceptionCast.cast(ReplenishCheckCode.CMS_INSERT_FALSE);
             }
         //返回失败
-        return new ReplenishCheckResult(ReplenishCheckCode.CMS_NAME_REPETITION, null);
+        return new ReplenishCheckResult(ReplenishCheckCode.CMS_INSERT_FALSE, null);
     }
 
     /**
