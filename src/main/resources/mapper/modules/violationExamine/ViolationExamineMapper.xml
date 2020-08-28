@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.dao.violationExamine.ViolationExamineDao">
+
+
+    <sql id="planColumns">
+		a.violationExamineId AS "violationExamineId",
+		a.createDate AS "createDate",
+		a.hospitalId AS "hospitalId",
+		a.writeTime AS "writeTime",
+		a.way AS "way",
+		a.content AS "content",
+		a.status AS "status",
+		a.photograph AS "photograph",
+		a.abarbeitungTime AS "abarbeitungTime",
+		a.violationTime AS "violationTime"
+	</sql>
+
+    <!--查询单条数据-->
+    <select id="get" resultType="ViolationExamine">
+        SELECT
+        <include refid="planColumns"/>
+        FROM t_violation_examine a
+        WHERE a.violationExamineId = #{id}
+    </select>
+
+    <!--查询所有-->
+    <select id="findList" resultType="ViolationExamine">
+        SELECT
+        <include refid="planColumns"/>
+        FROM t_violation_examine a
+    </select>
+
+    <!--插入-->
+    <insert id="insert">
+		INSERT INTO t_violation_examine(
+			violationExamineId,
+			createDate,
+			writeTime,
+			way,
+			content,
+			status,
+			photograph,
+			abarbeitungTime,
+			violationTime
+		) VALUES (
+			#{violationExamineId},
+			#{createDate},
+			#{writeTime},
+			#{way},
+			#{content},
+			#{status},
+			#{photograph},
+			#{abarbeitungTime},
+			#{violationTime}
+		)
+	</insert>
+
+    <!--修改-->
+    <update id="update">
+		UPDATE t_violation_examine SET
+			violationExamineId = #{violationExamineId},
+			createDate = #{createDate},
+			writeTime = #{writeTime},
+			way = #{way},
+			content = #{content},
+			status = #{status},
+			photograph = #{photograph},
+			abarbeitungTime = #{abarbeitungTime},
+			violationTime = #{violationTime}
+		WHERE violationExamineId = #{violationExamineId}
+	</update>
+
+    <!--物理删除-->
+    <update id="delete">
+		DELETE FROM t_violation_examine
+		WHERE violationExamineId = #{id}
+	</update>
+
+</mapper>
