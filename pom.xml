@@ -92,6 +92,12 @@
 			<version>3.16</version>
 		</dependency>
 
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.3</version>
+		</dependency>
+
 		<!-- 同于打包部署时去除内嵌tomcat -->
 		<!--<dependency>-->
 			<!--<groupId>org.springframework.boot</groupId>-->

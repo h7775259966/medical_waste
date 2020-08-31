@@ -9,9 +9,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.module.config.exception.ExceptionCast;
 import com.module.dao.notice.NoticeDao;
-import com.module.entity.equipment.Equipment;
 import com.module.entity.notice.Notice;
-import com.module.request.equipment.EquipmentRequest;
 import com.module.request.notice.NoticeRequest;
 import com.module.response.notice.NoticeCode;
 import com.module.response.notice.NoticeResult;
@@ -65,9 +63,46 @@ public class NoticeService {
 
     }
 
+    public QueryResponseResult search(int page, int size, NoticeRequest noticeRequest) {
+        //为防止后面报空指针，先进行查询条件的非空判断
+        if (noticeRequest == null) {
+            noticeRequest = new NoticeRequest();
+        }
+        //分页参数处理
+        if (page <= 0) {
+            page = 1;
+        }
+        page = page - 1;
+        if (size <= 0) {
+            size = 10;
+        }
+        //分页处理
+        PageHelper.startPage(page,size);
+        //注意：如果equipmentRequest内参数不为空，则进行带值查询
+        //departmentDao.findList()为没有任何查询条件的分页查询
+        List<Notice> list = noticeDao.search(noticeRequest.getStartTime(),noticeRequest.getEndTime(),noticeRequest.getStatus());
+        PageInfo<Notice> pageInfo = new PageInfo<Notice>(list);
+
+        /*System.out.println("总数量：" + pageInfo.getTotal());
+        System.out.println("当前页查询记录：" + pageInfo.getList().size());
+        System.out.println("当前页码：" + pageInfo.getPageNum());
+        System.out.println("每页显示数量：" + pageInfo.getPageSize());
+        System.out.println("总页：" + pageInfo.getPages());*/
+
+        //封装结果`
+        QueryResult queryResult = new QueryResult();
+        queryResult.setList(list);//数据列表
+        queryResult.setTotal(pageInfo.getTotal());//数据总记录数
+        QueryResponseResult queryResponseResult = new QueryResponseResult(CommonCode.SUCCESS, queryResult);
+        return queryResponseResult;
+
+    }
+
+
+
 
     /**
-     * 添加公告
+     * 添加医废收集
      * @param notice
      * @return
      */
@@ -99,7 +134,7 @@ public class NoticeService {
 
 
     /**
-     * 通过ID查询公告
+     * 通过ID查询医废收集
      * @param id
      * @return
      */
@@ -117,7 +152,7 @@ public class NoticeService {
 
 
     /**
-     * 通过id修改公告
+     * 通过id修改医废收集
      * @param id
      * @return
      */
@@ -147,7 +182,7 @@ public class NoticeService {
     }
 
     /**
-     * 通过id删除公告
+     * 通过id删除医废收集
      * @param id
      * @return
      */

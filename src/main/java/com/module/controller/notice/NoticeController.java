@@ -44,6 +44,11 @@ public class NoticeController implements NoticeControllerApi {
         return noticeService.findById(id);
     }
 
+    @Override
+    @GetMapping("/search/{page}/{size}")
+    public QueryResponseResult search(@PathVariable("page") int page, @PathVariable("size")int size, NoticeRequest noticeRequest) {
+        return noticeService.search(page,size, noticeRequest);
+    }
 
 
     /**

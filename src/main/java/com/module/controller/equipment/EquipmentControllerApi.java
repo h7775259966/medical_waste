@@ -24,8 +24,10 @@ public interface EquipmentControllerApi {
     @ApiOperation("添加设备")
     public EquipmentResult add(Equipment equipment);
 
+
     @ApiOperation("通过id查询设备")
     public EquipmentResult findById(String id);
+
 
     @ApiOperation("通过id修改设备")
     public EquipmentResult edit(String id, Equipment equipment);

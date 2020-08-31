@@ -1,5 +1,9 @@
 package com.common.CrudDao;
 
+import com.module.entity.notice.Notice;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -58,4 +62,6 @@ public interface CrudDao<T> {
      */
     public int deleteByLogic(String id);
 
+
+    List<T> search(@Param("startTime")Date startTime, @Param("endTime")Date endTime,@Param("status")String status );
 }
