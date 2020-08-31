@@ -49,7 +49,7 @@ public class HospitalService {
         PageHelper.startPage(page,size);
         //注意：如果hospitalRequest内参数不为空，则进行带值查询
         //hospitalDao.findList()为没有任何查询条件的分页查询
-        List<Hospital> list = hospitalDao.findList();
+        List<Hospital> list = hospitalDao.findListByRequest(hospitalRequest);
         PageInfo<Hospital> pageInfo = new PageInfo<Hospital>(list);
 
         /*System.out.println("总数量：" + pageInfo.getTotal());

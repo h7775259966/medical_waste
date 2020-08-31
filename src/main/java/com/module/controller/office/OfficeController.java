@@ -35,6 +35,17 @@ public class OfficeController implements OfficeControllerApi{
 		return officeService.findList(page,size, officeRequest);
 	}
 
+	/**
+	 * 查询所有科室
+	 * @param
+	 * @return
+	 */
+	@Override
+	@GetMapping("/all")
+	public QueryResponseResult all() {
+
+		return officeService.all();
+	}
 
 	/**
 	 * 添加科室

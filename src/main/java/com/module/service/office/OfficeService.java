@@ -49,7 +49,7 @@ public class OfficeService {
         PageHelper.startPage(page,size);
         //注意：如果officeRequest内参数不为空，则进行带值查询
         //officeDao.findList()为没有任何查询条件的分页查询
-        List<Office> list = officeDao.findList();
+        List<Office> list = officeDao.findListByRequest(officeRequest);
         PageInfo<Office> pageInfo = new PageInfo<Office>(list);
 
         /*System.out.println("总数量：" + pageInfo.getTotal());
@@ -64,7 +64,20 @@ public class OfficeService {
         queryResult.setTotal(pageInfo.getTotal());//数据总记录数
         QueryResponseResult queryResponseResult = new QueryResponseResult(CommonCode.SUCCESS, queryResult);
         return queryResponseResult;
+    }
 
+    /**
+     * 查询所有科室
+     * @return
+     */
+    public QueryResponseResult all() {
+        List<Office> list = officeDao.findList();
+        PageInfo<Office> pageInfo = new PageInfo<Office>(list);
+        QueryResult queryResult = new QueryResult();
+        queryResult.setList(list);//数据列表
+        queryResult.setTotal(pageInfo.getTotal());//数据总记录数
+        QueryResponseResult queryResponseResult = new QueryResponseResult(CommonCode.SUCCESS, queryResult);
+        return queryResponseResult;
     }
 
     /**

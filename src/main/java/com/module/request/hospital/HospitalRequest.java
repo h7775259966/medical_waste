@@ -10,9 +10,6 @@ import lombok.Data;
 @Data
 public class HospitalRequest {
 
-    @ApiModelProperty("医院id")
-    private String hospitalId;
-
     @ApiModelProperty("医院名称")
     private String hospitalName;
 
