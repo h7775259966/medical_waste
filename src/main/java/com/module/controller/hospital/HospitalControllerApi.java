@@ -23,6 +23,9 @@ public interface HospitalControllerApi {
             @ApiImplicitParam(name="size",value = "每页记录 数",required=true,paramType="path",dataType="int") })
     public QueryResponseResult findList(int page, int size, HospitalRequest hospitalRequest) ;
 
+    @ApiOperation("查询所有医院")
+    public QueryResponseResult all();
+
     @ApiOperation("添加医院")
     public HospitalResult add(Hospital hospital);
 

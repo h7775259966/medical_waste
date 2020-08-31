@@ -16,7 +16,20 @@
 		SELECT 
 			<include refid="departmentColumns"/>
 		FROM t_department a
-		WHERE a.departmentId = #{id}
+		WHERE a.departmentId = #{id} ORDER BY a.createDate DESC
+	</select>
+
+	<!--通过查询条件查询所有数据-->
+	<select id="findListByRequest" resultType="Department">
+		SELECT
+		<include refid="departmentColumns"/>
+		FROM t_department a
+		<where>
+			<if test="departmentName != null and departmentName != ''">
+				AND a.departmentName like concat('%',#{departmentName},'%')
+			</if>
+		</where>
+		ORDER BY a.createDate DESC
 	</select>
 
 	<!--根据名称查询-->

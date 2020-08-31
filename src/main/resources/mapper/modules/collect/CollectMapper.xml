@@ -21,6 +21,25 @@
 		WHERE a.collectId = #{id}
 	</select>
 
+	<!--通过查询条件查询所有数据-->
+	<select id="findListByRequest" resultType="Collect">
+		SELECT
+		<include refid="collectColumns"/>
+		FROM t_collect a
+		<where>
+			<if test="collectName != null and collectName != ''">
+				AND a.collectName like concat('%',#{collectName},'%')
+			</if>
+			<if test="collectCode != null and collectCode != ''">
+				AND a.collectCode = #{collectCode}
+			</if>
+			<if test="hospitalId != null and hospitalId != ''">
+				AND a.hospitalId = #{hospitalId}
+			</if>
+		</where>
+		ORDER BY a.createDate DESC
+	</select>
+
 	<!--根据名称查询-->
 	<select id="getByName" resultType="Collect">
 		SELECT

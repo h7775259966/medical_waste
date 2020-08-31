@@ -37,6 +37,18 @@ public class HospitalController implements HospitalControllerApi{
 
 
 	/**
+	 * 查询所有医院
+	 * @param
+	 * @return
+	 */
+	@Override
+	@GetMapping("/all")
+	public QueryResponseResult all() {
+
+		return hospitalService.all();
+	}
+
+	/**
 	 * 添加医院
 	 * @param hospital
 	 * @return

@@ -10,13 +10,10 @@ import lombok.Data;
 @Data
 public class OfficeRequest {
 
-    @ApiModelProperty("科室id")
-    private String officeId;
+    @ApiModelProperty("所属部门id")
+    private String departmentId;
 
     @ApiModelProperty("科室名称")
     private String officeName;
-
-    @ApiModelProperty("科室备注")
-    private String remarks;
 
 }

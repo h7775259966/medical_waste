@@ -47,24 +47,28 @@ public class HospitalService {
         }
         //分页处理
         PageHelper.startPage(page,size);
-        //注意：如果hospitalRequest内参数不为空，则进行带值查询
-        //hospitalDao.findList()为没有任何查询条件的分页查询
-        List<Hospital> list = hospitalDao.findList();
+        List<Hospital> list = hospitalDao.findListByRequest(hospitalRequest);
         PageInfo<Hospital> pageInfo = new PageInfo<Hospital>(list);
-
-        /*System.out.println("总数量：" + pageInfo.getTotal());
-        System.out.println("当前页查询记录：" + pageInfo.getList().size());
-        System.out.println("当前页码：" + pageInfo.getPageNum());
-        System.out.println("每页显示数量：" + pageInfo.getPageSize());
-        System.out.println("总页：" + pageInfo.getPages());*/
-
-        //封装结果
         QueryResult queryResult = new QueryResult();
         queryResult.setList(list);//数据列表
         queryResult.setTotal(pageInfo.getTotal());//数据总记录数
         QueryResponseResult queryResponseResult = new QueryResponseResult(CommonCode.SUCCESS, queryResult);
         return queryResponseResult;
 
+    }
+
+    /**
+     * 查询所有医院
+     * @return
+     */
+    public QueryResponseResult all() {
+        List<Hospital> list = hospitalDao.findList();
+        PageInfo<Hospital> pageInfo = new PageInfo<Hospital>(list);
+        QueryResult queryResult = new QueryResult();
+        queryResult.setList(list);//数据列表
+        queryResult.setTotal(pageInfo.getTotal());//数据总记录数
+        QueryResponseResult queryResponseResult = new QueryResponseResult(CommonCode.SUCCESS, queryResult);
+        return queryResponseResult;
     }
 
     /**

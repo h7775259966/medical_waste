@@ -2,7 +2,10 @@ package com.module.dao.hospital;
 
 import com.common.CrudDao.CrudDao;
 import com.module.entity.hospital.Hospital;
+import com.module.request.hospital.HospitalRequest;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 
 /**
@@ -12,5 +15,12 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface HospitalDao extends CrudDao<Hospital>{
+
+    /**
+     * 通过查询条件查询所有数据
+     * @param hospitalRequest
+     * @return
+     */
+    public List<Hospital> findListByRequest(HospitalRequest hospitalRequest);
 
 }

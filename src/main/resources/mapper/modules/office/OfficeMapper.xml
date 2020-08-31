@@ -20,6 +20,22 @@
 		WHERE a.officeId = #{id}
 	</select>
 
+	<!--通过查询条件查询所有数据-->
+	<select id="findListByRequest" resultType="Office">
+		SELECT
+		<include refid="officeColumns"/>
+		FROM t_office a
+		<where>
+			<if test="departmentId != null and departmentId != ''">
+				AND a.departmentId = #{departmentId}
+			</if>
+			<if test="officeName != null and officeName != ''">
+				AND a.officeName like concat('%',#{officeName},'%')
+			</if>
+		</where>
+		ORDER BY a.createDate DESC
+	</select>
+
 	<!--根据名称查询-->
 	<select id="getByName" resultType="Office">
 		SELECT

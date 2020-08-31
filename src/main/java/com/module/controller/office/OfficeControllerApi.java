@@ -23,6 +23,9 @@ public interface OfficeControllerApi {
             @ApiImplicitParam(name="size",value = "每页记录 数",required=true,paramType="path",dataType="int") })
     public QueryResponseResult findList(int page, int size, OfficeRequest officeRequest) ;
 
+    @ApiOperation("查询所有科室")
+    public QueryResponseResult all();
+
     @ApiOperation("添加科室")
     public OfficeResult add(Office office);
 

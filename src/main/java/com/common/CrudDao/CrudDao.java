@@ -33,6 +33,7 @@ public interface CrudDao<T> {
      */
     public List<T> findList();
 
+
     /**
      * 插入数据
      * @param entity

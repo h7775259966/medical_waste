@@ -43,6 +43,22 @@
 		FROM t_hospital a	ORDER BY a.createDate DESC
 	</select>
 
+	<!--通过查询条件查询所有数据-->
+	<select id="findListByRequest" resultType="hospital">
+		SELECT
+		<include refid="hospitalColumns"/>
+		FROM t_hospital a
+		<where>
+			<if test="hospitalName != null and hospitalName != ''">
+				AND a.hospitalName like concat('%',#{hospitalName},'%')
+			</if>
+			<if test="hospitalNumber != null and hospitalNumber != ''">
+				AND a.hospitalNumber =#{hospitalNumber}
+			</if>
+		</where>
+		ORDER BY a.createDate DESC
+	</select>
+
 	<!--插入-->
 	<insert id="insert">
 		INSERT INTO t_hospital(

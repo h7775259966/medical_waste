@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -47,11 +48,8 @@ public class WarnPushService {
         }
         //分页处理
         PageHelper.startPage(page,size);
-        //注意：如果warnPushRequest内参数不为空，则进行带值查询
-        //warnPushDao.findList()为没有任何查询条件的分页查询
-        List<WarnPush> list = warnPushDao.findList();
+        List<WarnPush> list = warnPushDao.findListByRequest(warnPushRequest);
         PageInfo<WarnPush> pageInfo = new PageInfo<WarnPush>(list);
-
         /*System.out.println("总数量：" + pageInfo.getTotal());
         System.out.println("当前页查询记录：" + pageInfo.getList().size());
         System.out.println("当前页码：" + pageInfo.getPageNum());

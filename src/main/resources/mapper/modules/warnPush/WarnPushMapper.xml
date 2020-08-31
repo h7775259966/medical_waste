@@ -22,6 +22,25 @@
 		WHERE a.pushId = #{id}
 	</select>
 
+	<!--通过查询条件查询所有数据-->
+	<select id="findListByRequest" resultType="warnPush">
+		SELECT
+		<include refid="warnPushColumns"/>
+		FROM t_warn_push a
+		<where>
+		<if test="warnTypeId != null and warnTypeId != ''">
+			  AND a.warnTypeId = #{warnTypeId}
+		</if>
+		<if test="startTime != null and startTime != ''">
+			  AND a.pushTime &gt;=#{startTime}
+		</if>
+		<if test="endTime != null and endTime != ''">
+			AND a.pushTime &lt;=#{endTime}
+		</if>
+		</where>
+		ORDER BY a.createDate DESC
+	</select>
+
 	<!--查询所有-->
 	<select id="findList" resultType="warnPush">
 		SELECT 

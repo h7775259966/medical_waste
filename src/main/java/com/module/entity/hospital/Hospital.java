@@ -15,7 +15,7 @@ import java.util.Date;
 @ToString
 public class Hospital {
 
-    private String hospitalId;        // 部门id
+    private String hospitalId;        // 医院id
     private String hospitalName;        // 部门名称
     private String hospitalNumber;      //医院编号
     private String grade;       //医院等级

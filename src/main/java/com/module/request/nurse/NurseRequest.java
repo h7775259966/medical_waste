@@ -10,13 +10,16 @@ import lombok.Data;
 @Data
 public class NurseRequest {
 
-    @ApiModelProperty("护士id")
-    private String nurseId;
+    @ApiModelProperty("护士名称")
+    private String nurseName;
 
-    @ApiModelProperty("部门id")
+    @ApiModelProperty("护士条形码")
+    private String nurseCode;
+
+    @ApiModelProperty("所属部门id")
     private String departmentId;
 
-    @ApiModelProperty("科室id")
+    @ApiModelProperty("所属科室id")
     private String officeId;
 
 }

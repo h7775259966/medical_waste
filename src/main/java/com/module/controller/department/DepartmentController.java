@@ -35,6 +35,17 @@ public class DepartmentController implements DepartmentControllerApi{
 		return departmentService.findList(page,size, departmentRequest);
 	}
 
+	/**
+	 * 查询所有部门
+	 * @param
+	 * @return
+	 */
+	@Override
+	@GetMapping("/all")
+	public QueryResponseResult all() {
+
+		return departmentService.all();
+	}
 
 	/**
 	 * 添加部门
