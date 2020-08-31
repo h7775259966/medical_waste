@@ -10,13 +10,13 @@ import lombok.Data;
 @Data
 public class CollectRequest {
 
-    @ApiModelProperty("收集人id")
-    private String collectId;
-
     @ApiModelProperty("收集人名称")
     private String collectName;
 
     @ApiModelProperty("收集人条形码")
     private String collectCode;
+
+    @ApiModelProperty("所属医院id")
+    private String hospitalId;
 
 }

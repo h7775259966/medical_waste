@@ -47,18 +47,8 @@ public class CollectService {
         }
         //分页处理
         PageHelper.startPage(page,size);
-        //注意：如果collectRequest内参数不为空，则进行带值查询
-        //collectDao.findList()为没有任何查询条件的分页查询
-        List<Collect> list = collectDao.findList();
+        List<Collect> list = collectDao.findListByRequest(collectRequest);
         PageInfo<Collect> pageInfo = new PageInfo<Collect>(list);
-
-        /*System.out.println("总数量：" + pageInfo.getTotal());
-        System.out.println("当前页查询记录：" + pageInfo.getList().size());
-        System.out.println("当前页码：" + pageInfo.getPageNum());
-        System.out.println("每页显示数量：" + pageInfo.getPageSize());
-        System.out.println("总页：" + pageInfo.getPages());*/
-
-        //封装结果
         QueryResult queryResult = new QueryResult();
         queryResult.setList(list);//数据列表
         queryResult.setTotal(pageInfo.getTotal());//数据总记录数

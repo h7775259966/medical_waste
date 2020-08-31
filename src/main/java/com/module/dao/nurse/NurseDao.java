@@ -2,7 +2,10 @@ package com.module.dao.nurse;
 
 import com.common.CrudDao.CrudDao;
 import com.module.entity.nurse.Nurse;
+import com.module.request.nurse.NurseRequest;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 
 /**
@@ -13,4 +16,10 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface NurseDao extends CrudDao<Nurse>{
 
+    /**
+     * 通过查询条件查询所有数据
+     * @param nurseRequest
+     * @return
+     */
+    public List<Nurse> findListByRequest(NurseRequest nurseRequest);
 }
