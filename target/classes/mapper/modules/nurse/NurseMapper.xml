@@ -22,6 +22,28 @@
 		WHERE a.nurseId = #{id}
 	</select>
 
+	<!--通过查询条件查询所有数据-->
+	<select id="findListByRequest" resultType="Nurse">
+		SELECT
+		<include refid="nurseColumns"/>
+		FROM t_nurse a
+		<where>
+			<if test="nurseName != null and nurseName != ''">
+				AND a.nurseName like concat('%',#{nurseName},'%')
+			</if>
+			<if test="nurseCode != null and nurseCode != ''">
+				AND a.nurseCode = #{nurseCode}
+			</if>
+			<if test="departmentId != null and departmentId != ''">
+				AND a.departmentId = #{departmentId}
+			</if>
+			<if test="officeId != null and officeId != ''">
+				AND a.officeId = #{officeId}
+			</if>
+		</where>
+		ORDER BY a.createDate DESC
+	</select>
+
 	<!--根据名称查询-->
 	<select id="getByName" resultType="Nurse">
 		SELECT

@@ -1,4 +1,4 @@
-package com.module.request.trashCollect;
+package com.module.request.trashPut;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
@@ -14,7 +14,9 @@ import java.util.Date;
 
 @Data
 @ToString
-public class TrashCollectRequest {
+public class TrashPutRequest {
+
+
 
     @ApiModelProperty("部门")
     private String department;
@@ -40,6 +42,4 @@ public class TrashCollectRequest {
     //   @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
     private Date endTime;
 
-    @ApiModelProperty("回收趟次")
-    private String collectNumber;
 }

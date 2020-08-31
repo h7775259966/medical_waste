@@ -1,4 +1,4 @@
-package com.module.controller.trashCollectController;
+package com.module.controller.trashCollect;
 
 import com.common.Response.QueryResponseResult;
 import com.common.Response.ResponseResult;
@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
 /**
- * Created by Zhouxin on 2020/8/24;
+ * Created huangbotao on 2020/8/31;
  */
 @Api(value="trashCollect接口",description = "医废收集")
 public interface TrashCollectControllerApi {

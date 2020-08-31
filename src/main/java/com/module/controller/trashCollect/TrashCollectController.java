@@ -1,4 +1,4 @@
-package com.module.controller.trashCollectController;
+package com.module.controller.trashCollect;
 
 import com.common.Response.QueryResponseResult;
 import com.common.Response.ResponseResult;
@@ -33,7 +33,7 @@ public class TrashCollectController implements TrashCollectControllerApi {
     }
 
     /**
-     * 通过id查询公告
+     * 通过id查询医废收集
      * @param id
      * @return
      */
@@ -46,7 +46,7 @@ public class TrashCollectController implements TrashCollectControllerApi {
 
 
     /**
-     * 添加公告
+     * 添加医废收集
      * @param trashCollect
      * @return
      */
@@ -58,7 +58,7 @@ public class TrashCollectController implements TrashCollectControllerApi {
     }
 
     /**
-     * 通过id修改公告
+     * 通过id修改医废收集
      * @param id
      * @param trashCollect
      * @return
@@ -71,7 +71,7 @@ public class TrashCollectController implements TrashCollectControllerApi {
     }
 
     /**
-     * 通过id删除公告
+     * 通过id删除医废收集
      * @param id
      * @return
      */
