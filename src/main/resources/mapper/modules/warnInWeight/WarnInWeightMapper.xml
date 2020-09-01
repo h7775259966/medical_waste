@@ -1,70 +1,67 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.module.dao.warnLose.WarnLoseDao">
+<mapper namespace="com.module.dao.warnInWeight.WarnInWeightDao">
 
     
-	<sql id="warnLoseColumns">
-		a.warnLoseId AS "warnLoseId",
+	<sql id="WarnInWeightColumns">
+		a.warnInWeightId AS "warnInWeightId",
 		a.departmentId AS "departmentId",
 		a.officeId AS "officeId",
 		a.code AS "code",
-		a.status AS "status",
-		a.collectNumber AS "collectNumber",
+		a.inWeight AS "inWeight",
+		a.collectWeight AS "collectWeight",
 		a.trashId AS "trashId",
-		a.weight AS "weight",
+		a.inPerson AS "inPerson",
 		a.collectId AS "collectId",
-		a.collectTime AS "collectTime",
-		a.putInTime AS "putInTime",
+		a.inTime AS "inTime",
 		a.warnTime AS "warnTime",
 		a.createDate AS "createDate",
 		a.remarks AS "remarks"
 	</sql>
 
 	<!--查询单条数据-->
-	<select id="get" resultType="warnLose">
+	<select id="get" resultType="WarnInWeight">
 		SELECT
-			<include refid="warnLoseColumns"/>
-		FROM t_warn_lose a
-		WHERE a.warnLoseId = #{id}
+			<include refid="WarnInWeightColumns"/>
+		FROM t_warn_inWeight a
+		WHERE a.warnInWeightId = #{id}
 	</select>
 
 	<!--查询所有-->
-	<select id="findList" resultType="warnLose">
-		SELECT 
-			<include refid="warnLoseColumns"/>
-		FROM t_warn_lose a	ORDER BY a.createDate DESC
+	<select id="findList" resultType="WarnInWeight">
+		SELECT
+			<include refid="WarnInWeightColumns"/>
+		FROM t_warn_inWeight a	ORDER BY a.createDate DESC
 	</select>
 
 	<!--插入-->
 	<insert id="insert">
-		INSERT INTO t_warn_lose(
-			warnLoseId,
+		INSERT INTO t_warn_inWeight(
+			warnInWeightId,
 			departmentId,
 			officeId,
 			code,
-			status,
-			collectNumber,
+			inWeight,
+			collectWeight,
 			trashId,
-			weight,
+			inPerson,
 			collectId,
-			collectTime,
-			putInTime,
+			inTime,
 			warnTime,
 			createDate,
 			remarks
 		) VALUES (
-			#{warnLoseId},
+			#{warnInWeightId},
 			#{departmentId},
 			#{officeId},
 			#{code},
-			#{status},
-			#{collectNumber},
+			#{inWeight},
+			#{collectWeight},
 			#{trashId},
-			#{weight},
+			#{inPerson},
 			#{collectId},
-			#{collectTime},
-			#{putInTime},
+			#{inTime},
 			#{warnTime},
 			#{createDate},
 			#{remarks}
@@ -73,26 +70,25 @@
 
 	<!--修改-->
 	<update id="update">
-		UPDATE t_warn_lose SET
+		UPDATE t_warn_inWeight SET
 			departmentId = #{departmentId},
 			officeId = #{officeId},
 			code = #{code},
-			status = #{status},
-			collectNumber = #{collectNumber},
+			inWeight = #{inWeight},
+			collectWeight = #{collectWeight},
 			trashId = #{trashId},
-			weight = #{weight},
+			inPerson = #{inPerson},
 			collectId = #{collectId},
-			collectTime = #{collectTime},
-			putInTime = #{putInTime},
+			inTime = #{inTime},
 			warnTime = #{warnTime},
 			remarks = #{remarks}
-		WHERE warnLoseId = #{warnLoseId}
+		WHERE warnInWeightId = #{warnInWeightId}
 	</update>
 	
 	<!--物理删除-->
 	<update id="delete">
-		DELETE FROM t_warn_lose
-		WHERE warnLoseId = #{id}
+		DELETE FROM t_warn_inWeight
+		WHERE warnInWeightId = #{id}
 	</update>
 
 </mapper>
