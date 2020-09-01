@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.dao.nurse.NurseDao">
+
+    
+	<sql id="nurseColumns">
+		a.nurseId AS "nurseId",
+		a.createDate AS "createDate",
+		a.remarks AS "remarks",
+		a.nurseName AS "nurseName",
+		a.nurseCode AS "nurseCode",
+		a.departmentId AS "departmentId",
+		a.officeId AS "officeId"
+	</sql>
+
+	<!--查询单条数据-->
+	<select id="get" resultType="Nurse">
+		SELECT 
+			<include refid="nurseColumns"/>
+		FROM t_nurse a
+		WHERE a.nurseId = #{id}
+	</select>
+
+	<!--通过查询条件查询所有数据-->
+	<select id="findListByRequest" resultType="Nurse">
+		SELECT
+		<include refid="nurseColumns"/>
+		FROM t_nurse a
+		<where>
+			<if test="nurseName != null and nurseName != ''">
+				AND a.nurseName like concat('%',#{nurseName},'%')
+			</if>
+			<if test="nurseCode != null and nurseCode != ''">
+				AND a.nurseCode = #{nurseCode}
+			</if>
+			<if test="departmentId != null and departmentId != ''">
+				AND a.departmentId = #{departmentId}
+			</if>
+			<if test="officeId != null and officeId != ''">
+				AND a.officeId = #{officeId}
+			</if>
+		</where>
+		ORDER BY a.createDate DESC
+	</select>
+
+	<!--根据名称查询-->
+	<select id="getByName" resultType="Nurse">
+		SELECT
+		<include refid="nurseColumns"/>
+		FROM t_nurse a
+		WHERE a.nurseName = #{value}
+	</select>
+
+	<!--查询所有-->
+	<select id="findList" resultType="Nurse">
+		SELECT 
+			<include refid="nurseColumns"/>
+		FROM t_nurse a ORDER BY a.createDate DESC
+	</select>
+
+	<!--插入-->
+	<insert id="insert">
+		INSERT INTO t_nurse(
+			nurseId,
+			createDate,
+			remarks,
+			nurseName,
+			nurseCode,
+			departmentId,
+			officeId
+		) VALUES (
+			#{nurseId},
+			#{createDate},
+			#{remarks},
+			#{nurseName},
+			#{nurseCode},
+			#{departmentId},
+			#{officeId}
+		)
+	</insert>
+
+	<!--修改-->
+	<update id="update">
+		UPDATE t_nurse SET 	
+			remarks = #{remarks},
+			nurseName = #{nurseName},
+			nurseCode =	#{nurseCode},
+			departmentId = #{departmentId},
+			officeId = #{officeId}
+		WHERE nurseId = #{nurseId}
+	</update>
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM t_nurse
+		WHERE nurseId = #{id}
+	</update>
+
+</mapper>

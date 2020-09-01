@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.dao.trashOut.TrashOutDao">
+
+
+    <sql id="trashOutColumns">
+		a.trashOutId AS "trashOutId",
+		a.createDate AS "createDate",
+		a.collectTime AS "collectTime",
+		a.status AS "status",
+		a.collectWeight AS "collectWeight",
+		a.putWeight AS "putWeight",
+		a.outWeight AS "outWeight",
+		a.outDetail AS "outDetail"
+	</sql>
+
+    <!--查询单条数据-->
+    <select id="get" resultType="TrashOut">
+        SELECT
+        <include refid="trashOutColumns"/>
+        FROM t_trash_out a
+        WHERE a.trashOutId = #{id}
+    </select>
+
+    <!--根据名称查询-->
+    <select id="getByName" resultType="TrashOut">
+        SELECT
+        <include refid="trashOutColumns"/>
+        FROM t_trash_out a
+        WHERE a.trashOutName = #{value}
+    </select>
+
+    <!--查询所有-->
+    <select id="findList" resultType="TrashOut">
+        SELECT
+        <include refid="trashOutColumns"/>
+        FROM t_trash_out a ORDER BY a.createDate DESC
+    </select>
+
+
+	<!--条件查询1-->
+	<select id="search" resultType="TrashOut">
+		SELECT
+		<include refid="trashOutColumns"/>
+		FROM t_trash_out a
+		<where>
+			<if test="status != null and status != ''">
+				AND a.status = #{status}
+			</if>
+			<if test="startTime!=null">
+				<![CDATA[   and DATE_FORMAT(a.collectTime, '%Y-%m-%d %H:%i:%s') >=  DATE_FORMAT(#{startTime}, '%Y-%m-%d %H:%i:%s')   ]]>
+			</if>
+			<if test="endTime!=null">
+				<![CDATA[  and DATE_FORMAT(a.collectTime, '%Y-%m-%d %H:%i:%s') <= DATE_FORMAT(#{endTime}, '%Y-%m-%d %H:%i:%s')    ]]>
+			</if>
+		</where>
+	</select>
+
+
+    <!--插入-->
+    <insert id="insert">
+		INSERT INTO t_trash_out(
+			trashOutId,
+			createDate,
+			collectTime,
+			status,
+			collectWeight,
+			putWeight,
+			outWeight,
+			outDetail
+		) VALUES (
+			#{trashOutId},
+			#{createDate},
+			#{collectTime},
+			#{status},
+			#{collectWeight},
+			#{putWeight},
+			#{outWeight},
+			#{outDetail}
+		)
+	</insert>
+
+    <!--修改-->
+    <update id="update">
+		UPDATE t_trash_out SET
+			trashOutId = #{trashOutId},
+			createDate = #{createDate},
+			collectTime = #{collectTime},
+			status = #{status},
+			collectWeight = #{collectWeight},
+			putWeight = #{putWeight},
+			outWeight = #{outWeight},
+			outDetail = #{outDetail}
+		WHERE trashOutId = #{trashOutId}
+	</update>
+
+    <!--物理删除-->
+    <update id="delete">
+		DELETE FROM t_trash_out
+		WHERE trashOutId = #{id}
+	</update>
+
+</mapper>
