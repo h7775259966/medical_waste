@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.module.dao.user.UserDao">
+    <select id="login">
+       select u.username,u.password from user u where u.username=#{username}
+    </select>
+
+    <sql id="userColumns">
+		a.userId AS "userId",
+		a.createDate AS "createDate",
+		a.userName AS "userName",
+		a.password AS "password",
+		a.userJurisdiction AS "userJurisdiction",
+		a.remark AS "remark"
+	</sql>
+
+    <!--查询单条数据-->
+    <select id="get" resultType="User">
+        SELECT
+        <include refid="userColumns"/>
+        FROM t_user a
+        WHERE a.userId = #{id}
+    </select>
+
+    <!--通过查询条件查询所有数据-->
+    <select id="findList" resultType="User">
+        SELECT
+        <include refid="userColumns"/>
+        FROM t_user a
+
+        ORDER BY a.createDate DESC
+    </select>
+
+    <!--根据名称查询-->
+    <select id="getByName" resultType="User">
+        SELECT
+        <include refid="userColumns"/>
+        FROM t_user a
+        WHERE a.userName = #{value}
+    </select>
+
+
+    <!--插入-->
+    <insert id="insert">
+		INSERT INTO t_user(
+			userId,
+			createDate,
+			userName,
+			password,
+			userJurisdiction,
+			remark
+		) VALUES (
+			#{userId},
+			#{createDate},
+			#{userName},
+			#{password},
+			#{userJurisdiction},
+			#{remark}
+		)
+	</insert>
+
+    <!--修改-->
+    <update id="update">
+		UPDATE t_user SET 	
+			userId = #{userId},
+			createDate = #{createDate},
+			userName =	#{userName},
+			password = #{password},
+			userJurisdiction = #{userJurisdiction},
+			remark = #{remark}
+		WHERE userId = #{userId}
+	</update>
+
+    <!--物理删除-->
+    <update id="delete">
+		DELETE FROM t_user
+		WHERE userId = #{id}
+	</update>
+
+</mapper>
