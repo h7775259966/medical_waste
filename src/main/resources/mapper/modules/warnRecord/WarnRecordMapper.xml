@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.dao.warnRecord.WarnRecordDao">
+
+    
+	<sql id="warnRecordColumns">
+		a.warnRecordId AS "warnRecordId",     
+		a.warnTypeId AS "warnTypeId",     
+		a.warnPlace AS "warnPlace",      
+		a.warnContent AS "warnContent",      
+		a.code AS "code",      
+		a.warnTime AS "warnTime",      
+		a.createDate AS "createDate",
+    	a.remarks AS "remarks"
+	</sql>
+
+	<!--查询单条数据-->
+	<select id="get" resultType="warnRecord">
+		SELECT 
+			<include refid="warnRecordColumns"/>
+		FROM t_warn_record a
+		WHERE a.warnRecordId = #{id}
+	</select>
+	
+	<!--查询所有-->
+	<select id="findList" resultType="warnRecord">
+		SELECT 
+			<include refid="warnRecordColumns"/>
+		FROM t_warn_record a	ORDER BY a.createDate DESC
+	</select>
+
+	<!--插入-->
+	<insert id="insert">
+		INSERT INTO t_warn_record(
+			warnRecordId,
+			warnTypeId,
+			warnPlace,
+			warnContent,
+			code,
+			warnTime,
+			createDate,
+			remarks
+		) VALUES (
+			#{warnRecordId},
+			#{warnTypeId},
+			#{warnPlace},
+			#{warnContent},
+			#{code},
+			#{warnTime},
+			#{createDate},
+			#{remarks}
+		)
+	</insert>
+
+	<!--修改-->
+	<update id="update">
+		UPDATE t_warn_record SET 	
+			warnTypeId = #{warnTypeId},
+    		warnPlace = #{warnPlace},
+			warnContent = #{warnContent},
+   		 	code = #{code},
+    		warnTime = #{warnTime},
+    		remarks = #{remarks}
+		WHERE warnRecordId = #{warnRecordId}
+	</update>
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM t_warn_record
+		WHERE warnRecordId = #{id}
+	</update>
+
+</mapper>
