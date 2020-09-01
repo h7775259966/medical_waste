@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.dao.warn.warnViolation.WarnViolationDao">
+
+    
+	<sql id="warnViolationColumns">
+		a.warnViolationId AS "warnViolationId",
+		a.departmentId AS "departmentId",
+		a.officeId AS "officeId",
+		a.code AS "code",
+		a.status AS "status",
+		a.collectNumber AS "collectNumber",
+		a.trashId AS "trashId",
+		a.weight AS "weight",
+		a.collectId AS "collectId",
+		a.collectTime AS "collectTime",
+		a.putInTime AS "putInTime",
+		a.warnTime AS "warnTime",
+		a.createDate AS "createDate",
+		a.remarks AS "remarks"
+	</sql>
+
+	<!--查询单条数据-->
+	<select id="get" resultType="warnViolation">
+		SELECT
+			<include refid="warnViolationColumns"/>
+		FROM t_warn_violation a
+		WHERE a.warnViolationId = #{id}
+	</select>
+
+	<!--查询所有-->
+	<select id="findList" resultType="warnViolation">
+		SELECT 
+			<include refid="warnViolationColumns"/>
+		FROM t_warn_violation a	ORDER BY a.createDate DESC
+	</select>
+
+	<!--插入-->
+	<insert id="insert">
+		INSERT INTO t_warn_violation(
+			warnViolationId,
+			departmentId,
+			officeId,
+			code,
+			status,
+			collectNumber,
+			trashId,
+			weight,
+			collectId,
+			collectTime,
+			putInTime,
+			warnTime,
+			createDate,
+			remarks
+		) VALUES (
+			#{warnViolationId},
+			#{departmentId},
+			#{officeId},
+			#{code},
+			#{status},
+			#{collectNumber},
+			#{trashId},
+			#{weight},
+			#{collectId},
+			#{collectTime},
+			#{putInTime},
+			#{warnTime},
+			#{createDate},
+			#{remarks}
+		)
+	</insert>
+
+	<!--修改-->
+	<update id="update">
+		UPDATE t_warn_violation SET
+			departmentId = #{departmentId},
+			officeId = #{officeId},
+			code = #{code},
+			status = #{status},
+			collectNumber = #{collectNumber},
+			trashId = #{trashId},
+			weight = #{weight},
+			collectId = #{collectId},
+			collectTime = #{collectTime},
+			putInTime = #{putInTime},
+			warnTime = #{warnTime},
+			remarks = #{remarks}
+		WHERE warnViolationId = #{warnViolationId}
+	</update>
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM t_warn_violation
+		WHERE warnViolationId = #{id}
+	</update>
+
+</mapper>
