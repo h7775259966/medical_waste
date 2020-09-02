@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.dao.hospital.office.OfficeDao">
+
+    
+	<sql id="officeColumns">
+		a.officeId AS "officeId",
+		a.departmentId AS "departmentId",
+		a.createDate AS "createDate",
+		a.remarks AS "remarks",
+		a.officeName AS "officeName"
+	</sql>
+
+	<!--查询单条数据-->
+	<select id="get" resultType="Office">
+		SELECT 
+			<include refid="officeColumns"/>
+		FROM t_office a
+		WHERE a.officeId = #{id}
+	</select>
+
+	<!--通过查询条件查询所有数据-->
+	<select id="findListByRequest" resultType="Office">
+		SELECT
+		<include refid="officeColumns"/>
+		FROM t_office a
+		<where>
+			<if test="departmentId != null and departmentId != ''">
+				AND a.departmentId = #{departmentId}
+			</if>
+			<if test="officeName != null and officeName != ''">
+				AND a.officeName like concat('%',#{officeName},'%')
+			</if>
+		</where>
+		ORDER BY a.createDate DESC
+	</select>
+
+	<!--根据名称查询-->
+	<select id="getByName" resultType="Office">
+		SELECT
+		<include refid="officeColumns"/>
+		FROM t_office a
+		WHERE a.officeName = #{value}
+	</select>
+
+	<!--查询所有-->
+	<select id="findList" resultType="Office">
+		SELECT 
+			<include refid="officeColumns"/>
+		FROM t_office a ORDER BY a.createDate DESC
+	</select>
+
+	<!--插入-->
+	<insert id="insert">
+		INSERT INTO t_office(
+			officeId,
+			departmentId,
+			createDate,
+			remarks,
+			officeName
+		) VALUES (
+			#{officeId},
+			#{departmentId},
+			#{createDate},
+			#{remarks},
+			#{officeName}
+		)
+	</insert>
+
+	<!--修改-->
+	<update id="update">
+		UPDATE t_office SET
+			remarks = #{remarks},
+			officeName = #{officeName},
+			departmentId = #{departmentId}
+		WHERE officeId = #{officeId}
+	</update>
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM t_office
+		WHERE officeId = #{id}
+	</update>
+
+</mapper>

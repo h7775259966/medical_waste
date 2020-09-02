@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.dao.trash.trashType.TrashTypeDao">
+
+
+	<sql id="trashTypeColumns">
+		a.trashId AS "trashId",
+		a.trashType AS "trashType",
+		a.createDate AS "createDate",
+		a.remarks AS "remarks"
+	</sql>
+
+	<!--查询单条数据-->
+	<select id="get" resultType="TrashType">
+		SELECT 
+			<include refid="trashTypeColumns"/>
+		FROM t_trash_type a
+		WHERE a.trashId = #{id}
+	</select>
+
+	<!--根据名称查询-->
+	<select id="getByName" resultType="TrashType">
+		SELECT
+		<include refid="trashTypeColumns"/>
+		FROM t_trash_type a
+		WHERE a.trashType = #{value}
+	</select>
+
+	<!--查询所有-->
+	<select id="findList" resultType="TrashType">
+		SELECT 
+			<include refid="trashTypeColumns"/>
+		FROM t_trash_type a ORDER BY a.createDate DESC
+	</select>
+
+	<!--插入-->
+	<insert id="insert">
+		INSERT INTO t_trash_type(
+			trashId,
+			trashType,
+			createDate,
+			remarks
+		) VALUES (
+			#{trashId},
+			#{trashType},
+			#{createDate},
+			#{remarks}
+		)
+	</insert>
+
+	<!--修改-->
+	<update id="update">
+		UPDATE t_trash_type SET
+			remarks = #{remarks},
+			trashType = #{trashType}
+		WHERE trashId = #{trashId}
+	</update>
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM t_trash_type
+		WHERE trashId = #{id}
+	</update>
+
+</mapper>

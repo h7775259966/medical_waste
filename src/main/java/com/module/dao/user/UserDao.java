@@ -1,7 +1,6 @@
 package com.module.dao.user;
 
 import com.common.CrudDao.CrudDao;
-import com.module.entity.trashType.TrashType;
 import com.module.entity.user.User;
 import org.apache.ibatis.annotations.Mapper;
 

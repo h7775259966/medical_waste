@@ -1,7 +1,6 @@
 package com.module.dao.plan;
 
 import com.common.CrudDao.CrudDao;
-import com.module.entity.office.Office;
 import com.module.entity.plan.Plan;
 import org.apache.ibatis.annotations.Mapper;
 

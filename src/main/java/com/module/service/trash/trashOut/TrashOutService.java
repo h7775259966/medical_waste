@@ -1,0 +1,195 @@
+package com.module.service.trash.trashOut;
+
+import com.common.Response.CommonCode;
+import com.common.Response.QueryResponseResult;
+import com.common.Response.QueryResult;
+import com.common.Response.ResponseResult;
+import com.common.Utils.IdGen;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.module.config.exception.ExceptionCast;
+import com.module.dao.trash.trashOut.TrashOutDao;
+import com.module.entity.trash.trashOut.TrashOut;
+import com.module.request.trash.trashOut.TrashOutRequest;
+import com.module.response.trash.trashOut.TrashOutCode;
+import com.module.response.trash.trashOut.TrashOutResult;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+/**
+ * Created by huangbotao on 2020/8/31;
+ */
+@Service
+@Transactional(readOnly = true)
+public class TrashOutService {
+
+    @Autowired
+    private TrashOutDao trashOutDao;
+
+
+    public QueryResponseResult findList(int page, int size, TrashOutRequest trashOutRequest) {
+        //为防止后面报空指针，先进行查询条件的非空判断
+        if (trashOutRequest == null) {
+            trashOutRequest = new TrashOutRequest();
+        }
+        //分页参数处理
+        if (page <= 0) {
+            page = 1;
+        }
+        page = page - 1;
+        if (size <= 0) {
+            size = 10;
+        }
+        //分页处理
+        PageHelper.startPage(page,size);
+        //注意：如果equipmentRequest内参数不为空，则进行带值查询
+        //departmentDao.findList()为没有任何查询条件的分页查询
+        List<TrashOut> list = trashOutDao.findList();
+        PageInfo<TrashOut> pageInfo = new PageInfo<TrashOut>(list);
+
+        /*System.out.println("总数量：" + pageInfo.getTotal());
+        System.out.println("当前页查询记录：" + pageInfo.getList().size());
+        System.out.println("当前页码：" + pageInfo.getPageNum());
+        System.out.println("每页显示数量：" + pageInfo.getPageSize());
+        System.out.println("总页：" + pageInfo.getPages());*/
+
+        //封装结果
+        QueryResult queryResult = new QueryResult();
+        queryResult.setList(list);//数据列表
+        queryResult.setTotal(pageInfo.getTotal());//数据总记录数
+        QueryResponseResult queryResponseResult = new QueryResponseResult(CommonCode.SUCCESS, queryResult);
+        return queryResponseResult;
+
+    }
+
+    public QueryResponseResult search(int page, int size, TrashOutRequest trashOutRequest) {
+        //为防止后面报空指针，先进行查询条件的非空判断
+        if (trashOutRequest == null) {
+            trashOutRequest = new TrashOutRequest();
+        }
+        //分页参数处理
+        if (page <= 0) {
+            page = 1;
+        }
+        page = page - 1;
+        if (size <= 0) {
+            size = 10;
+        }
+        //分页处理
+        PageHelper.startPage(page,size);
+
+        List<TrashOut> list = trashOutDao.search(trashOutRequest);
+        PageInfo<TrashOut> pageInfo = new PageInfo<TrashOut>(list);
+
+        //封装结果
+        QueryResult queryResult = new QueryResult();
+        queryResult.setList(list);//数据列表
+        queryResult.setTotal(pageInfo.getTotal());//数据总记录数
+        QueryResponseResult queryResponseResult = new QueryResponseResult(CommonCode.SUCCESS, queryResult);
+        return queryResponseResult;
+
+    }
+
+
+
+    /**
+     * 添加出库操作
+     * @param trashOut
+     * @return
+     */
+    @Transactional
+    public TrashOutResult add(TrashOut trashOut) {
+            TrashOut one = new TrashOut();
+            one.setTrashOutId(IdGen.uuid());
+            one.setCreateDate(trashOut.getCreateDate());
+            one.setCollectTime(trashOut.getCollectTime());
+            one.setStatus(trashOut.getStatus());
+            one.setCollectWeight(trashOut.getCollectWeight());
+            one.setPutWeight(trashOut.getPutWeight());
+            one.setOutDetail(trashOut.getOutDetail());
+            int insert = trashOutDao.insert(one);
+            if (insert > 0) {
+                //返回成功
+                return new TrashOutResult(CommonCode.SUCCESS, one);
+            } else {
+                //自定义异常处理
+                ExceptionCast.cast(TrashOutCode.CMS_INSERT_FALSE);
+            }
+
+        //返回失败
+        return new TrashOutResult(TrashOutCode.CMS_NAME_REPETITION, null);
+    }
+
+
+    /**
+     * 通过ID查询出库操作
+     * @param id
+     * @return
+     */
+    @Transactional
+    public TrashOutResult findById(String id) {
+        if (trashOutDao.get(id) != null) {
+            TrashOut trashOut = trashOutDao.get(id);
+            //返回成功
+            return new TrashOutResult(CommonCode.SUCCESS, trashOut);
+        }
+        //返回失败
+        return new TrashOutResult(TrashOutCode.CMS_GET_ISNULL, null);
+    }
+
+
+
+    /**
+     * 通过id修改出库操作
+     * @param id
+     * @return
+     */
+    @Transactional
+    public TrashOutResult edit(String id, TrashOut trashOut) {
+        if (trashOutDao.get(id) != null) {
+            TrashOut one = trashOutDao.get(id);
+            one.setCreateDate(trashOut.getCreateDate());
+            one.setCreateDate(trashOut.getCreateDate());
+            one.setCollectTime(trashOut.getCollectTime());
+            one.setStatus(trashOut.getStatus());
+            one.setCollectWeight(trashOut.getCollectWeight());
+            one.setPutWeight(trashOut.getPutWeight());
+            one.setOutDetail(trashOut.getOutDetail());
+            int update = trashOutDao.update(one);
+            if (update > 0) {
+                //返回成功
+                return new TrashOutResult(CommonCode.SUCCESS, one);
+            } else {
+                //自定义异常处理
+                ExceptionCast.cast(TrashOutCode.CMS_UPDATE_FALSE);
+            }
+        }
+        //返回失败
+        return new TrashOutResult(TrashOutCode.CMS_GET_ISNULL, null);
+    }
+
+    /**
+     * 通过id删除出库操作
+     * @param id
+     * @return
+     */
+    @Transactional
+    public ResponseResult delete(String id) {
+        if (trashOutDao.get(id) != null) {
+            int delete = trashOutDao.delete(id);
+            if (delete > 0) {
+                //返回成功
+                return new ResponseResult(CommonCode.SUCCESS);
+            } else {
+                //自定义异常处理
+                ExceptionCast.cast(TrashOutCode.CMS_DELETE_FALSE);
+            }
+        }
+        //返回失败
+        return new TrashOutResult(TrashOutCode.CMS_GET_ISNULL, null);
+    }
+}
+
