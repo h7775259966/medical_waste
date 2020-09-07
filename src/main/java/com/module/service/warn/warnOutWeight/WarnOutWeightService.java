@@ -41,7 +41,6 @@ public class WarnOutWeightService {
         if (page <= 0) {
             page = 1;
         }
-        page = page - 1;
         if (size <= 0) {
             size = 10;
         }
