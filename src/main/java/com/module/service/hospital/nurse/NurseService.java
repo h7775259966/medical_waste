@@ -8,8 +8,12 @@ import com.common.Utils.IdGen;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.module.config.exception.ExceptionCast;
+import com.module.dao.hospital.department.DepartmentDao;
 import com.module.dao.hospital.nurse.NurseDao;
+import com.module.dao.hospital.office.OfficeDao;
+import com.module.entity.hospital.department.Department;
 import com.module.entity.hospital.nurse.Nurse;
+import com.module.entity.hospital.office.Office;
 import com.module.request.hospital.nurse.NurseRequest;
 import com.module.response.hospital.nurse.NurseCode;
 import com.module.response.hospital.nurse.NurseResult;
@@ -32,6 +36,12 @@ public class NurseService {
 	@Autowired
 	private NurseDao nurseDao;
 
+    @Autowired
+    private DepartmentDao departmentDao;
+
+    @Autowired
+    private OfficeDao officeDao;
+
     public QueryResponseResult findList(int page, int size, NurseRequest nurseRequest) {
         //为防止后面报空指针，先进行查询条件的非空判断
         if (nurseRequest == null) {
@@ -47,6 +57,24 @@ public class NurseService {
         //分页处理
         PageHelper.startPage(page,size);
         List<Nurse> list = nurseDao.findListByRequest(nurseRequest);
+        //通过部门id和科室id获取部门科室名称后一起传给前端进行展示
+        if(list.size()>0){
+            for (int i = 0; i <list.size(); i++) {
+                Nurse nurse = list.get(i);
+                if (departmentDao.get(nurse.getDepartmentId()) != null) {
+                    Department department = departmentDao.get(nurse.getDepartmentId());
+                    nurse.setDepartmentName(department.getDepartmentName());
+                }else{
+                    nurse.setDepartmentName("");
+                }
+                if (officeDao.get(nurse.getOfficeId()) != null) {
+                    Office office = officeDao.get(nurse.getOfficeId());
+                    nurse.setOfficeName(office.getOfficeName());
+                }else{
+                    nurse.setOfficeName("");
+                }
+            }
+        }
         PageInfo<Nurse> pageInfo = new PageInfo<Nurse>(list);
         QueryResult queryResult = new QueryResult();
         queryResult.setList(list);//数据列表

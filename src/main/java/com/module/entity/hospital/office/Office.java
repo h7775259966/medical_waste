@@ -20,5 +20,6 @@ public class Office {
 	private String officeName;		//科室名称
     private Date createDate;		//创建时间
     private String remarks;		//备注
+    private String DepartmentName;      //所属部门名称DepartmentName字段仅在前端展示数据时使用
 
 }

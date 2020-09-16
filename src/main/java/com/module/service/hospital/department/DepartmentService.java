@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 医院部门Service
+ * 部门Service
  * @author zx
  * @version 2020-08-24
  */

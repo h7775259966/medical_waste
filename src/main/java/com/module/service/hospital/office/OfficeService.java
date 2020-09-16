@@ -8,7 +8,9 @@ import com.common.Utils.IdGen;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.module.config.exception.ExceptionCast;
+import com.module.dao.hospital.department.DepartmentDao;
 import com.module.dao.hospital.office.OfficeDao;
+import com.module.entity.hospital.department.Department;
 import com.module.entity.hospital.office.Office;
 import com.module.request.hospital.office.OfficeRequest;
 import com.module.response.hospital.office.OfficeCode;
@@ -32,6 +34,9 @@ public class OfficeService {
 	@Autowired
 	private OfficeDao officeDao;
 
+    @Autowired
+    private DepartmentDao departmentDao;
+
     public QueryResponseResult findList(int page, int size, OfficeRequest officeRequest) {
         //为防止后面报空指针，先进行查询条件的非空判断
         if (officeRequest == null) {
@@ -49,13 +54,19 @@ public class OfficeService {
         //注意：如果officeRequest内参数不为空，则进行带值查询
         //officeDao.findList()为没有任何查询条件的分页查询
         List<Office> list = officeDao.findListByRequest(officeRequest);
+        //通过部门id获取部门名称后一起传给前端进行展示
+        if(list.size()>0){
+            for (int i = 0; i <list.size(); i++) {
+                Office office = list.get(i);
+                if (departmentDao.get(office.getDepartmentId()) != null) {
+                    Department department = departmentDao.get(office.getDepartmentId());
+                    office.setDepartmentName(department.getDepartmentName());
+                }else{
+                    office.setDepartmentName("");
+                }
+            }
+        }
         PageInfo<Office> pageInfo = new PageInfo<Office>(list);
-
-        /*System.out.println("总数量：" + pageInfo.getTotal());
-        System.out.println("当前页查询记录：" + pageInfo.getList().size());
-        System.out.println("当前页码：" + pageInfo.getPageNum());
-        System.out.println("每页显示数量：" + pageInfo.getPageSize());
-        System.out.println("总页：" + pageInfo.getPages());*/
 
         //封装结果
         QueryResult queryResult = new QueryResult();
