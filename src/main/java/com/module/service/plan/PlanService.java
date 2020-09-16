@@ -82,7 +82,8 @@ public class PlanService {
             one.setContent(plan.getContent());
             one.setFinishNumber(plan.getFinishNumber());
             one.setUnfinishNumber(plan.getUnfinishNumber());
-            one.setStatus(plan.getRemark());
+            one.setStatus(plan.getStatus());
+            one.setRemark(plan.getRemark());
             int insert = planDao.insert(one);
             if (insert > 0) {
                 //返回成功
@@ -127,7 +128,8 @@ public class PlanService {
             one.setContent(plan.getContent());
             one.setFinishNumber(plan.getFinishNumber());
             one.setUnfinishNumber(plan.getUnfinishNumber());
-            one.setStatus(plan.getRemark());
+            one.setStatus(plan.getStatus());
+            one.setRemark(plan.getRemark());
             int update = planDao.update(one);
             if (update > 0) {
                 //返回成功
