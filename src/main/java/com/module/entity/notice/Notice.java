@@ -1,6 +1,12 @@
 package com.module.entity.notice;
 
 
+/**
+ * 公告Entity
+ * @author hbt
+ * @version 2020-09-06
+ */
+
 import lombok.Data;
 
 import java.util.Date;

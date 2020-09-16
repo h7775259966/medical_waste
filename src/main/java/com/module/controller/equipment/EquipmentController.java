@@ -10,6 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
+
+/**
+ * 设备Controller
+ * @author hbt
+ * @version 2020-09-03
+ */
+
+
 @RestController
 @RequestMapping("/equipment")
 public class EquipmentController implements EquipmentControllerApi {

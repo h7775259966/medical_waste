@@ -5,6 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 /**
+ * 计划Entity
  * Created by huangbotao on 2020/8/27;
  */
 

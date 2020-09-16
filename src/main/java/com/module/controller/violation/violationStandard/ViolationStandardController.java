@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
+ * 违规标准Controller
  * Created by huangbotao on 2020/8/27;
  */
 @RestController
@@ -35,7 +36,7 @@ public class ViolationStandardController implements ViolationStandardControllerA
 
 
     /**
-     * 添加计划
+     * 添加违规标准
      * @param violationStandard
      * @return
      */
@@ -47,7 +48,7 @@ public class ViolationStandardController implements ViolationStandardControllerA
     }
 
     /**
-     * 通过id查询计划
+     * 通过id查询违规标准
      * @param id
      * @return
      */
@@ -59,7 +60,7 @@ public class ViolationStandardController implements ViolationStandardControllerA
     }
 
     /**
-     * 通过id修改计划
+     * 通过id修改违规标准
      * @param id
      * @param violationStandard
      * @return
@@ -72,7 +73,7 @@ public class ViolationStandardController implements ViolationStandardControllerA
     }
 
     /**
-     * 通过id删除计划
+     * 通过id删除违规标准
      * @param id
      * @return
      */

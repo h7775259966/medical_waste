@@ -5,6 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 /**
+ * 违规检查Entity
  * Created by huangbotao on 2020/8/28;
  */
 

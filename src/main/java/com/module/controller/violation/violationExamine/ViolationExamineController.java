@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
+ * 违规检查Controller
  * Created by huangbotao on 2020/8/28;
  */
 @RestController
@@ -35,7 +36,7 @@ public class ViolationExamineController implements ViolationExamineControllerApi
 
 
     /**
-     * 添加计划
+     * 添加违规检查
      * @param violationExamine
      * @return
      */
@@ -47,7 +48,7 @@ public class ViolationExamineController implements ViolationExamineControllerApi
     }
 
     /**
-     * 通过id查询计划
+     * 通过id查询违规检查
      * @param id
      * @return
      */
@@ -59,7 +60,7 @@ public class ViolationExamineController implements ViolationExamineControllerApi
     }
 
     /**
-     * 通过id修改计划
+     * 通过id修改违规检查
      * @param id
      * @param violationExamine
      * @return
@@ -72,7 +73,7 @@ public class ViolationExamineController implements ViolationExamineControllerApi
     }
 
     /**
-     * 通过id删除计划
+     * 通过id删除违规检查
      * @param id
      * @return
      */

@@ -23,6 +23,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * 用户Service
  * Created by huangbotao on 2020/9/1;
  */
 
@@ -68,7 +69,7 @@ public class UserService {
     }
 
     /**
-     * 添加护士
+     * 添加用户
      * @param user
      * @return
      */
@@ -94,7 +95,7 @@ public class UserService {
     }
 
     /**
-     * 通过ID查询护士
+     * 通过ID查询用户
      * @param id
      * @return
      */
@@ -109,7 +110,7 @@ public class UserService {
     }
 
     /**
-     * 通过id修改护士
+     * 通过id修改用户
      * @param id
      * @return
      */
@@ -136,7 +137,7 @@ public class UserService {
     }
 
     /**
-     * 通过id删除护士
+     * 通过id删除用户
      * @param id
      * @return
      */

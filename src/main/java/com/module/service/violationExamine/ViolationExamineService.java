@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * 违规检查Service
  * Created by huangbotao on 2020/8/28;
  */
 @Service

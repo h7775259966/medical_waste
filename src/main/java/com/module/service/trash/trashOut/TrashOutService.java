@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
+ * 医废出库Service
  * Created by huangbotao on 2020/8/31;
  */
 @Service

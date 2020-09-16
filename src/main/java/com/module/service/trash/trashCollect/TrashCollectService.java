@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
+ * 医废收集Service
  * Created by huangbotao on 2020/8/31;
  */
 @Service
@@ -69,7 +70,7 @@ public class TrashCollectService {
 
 
     /**
-     * 添加公告
+     * 添加医废收集
      * @param trashCollect
      * @return
      */
@@ -102,7 +103,7 @@ public class TrashCollectService {
 
 
     /**
-     * 通过ID查询公告
+     * 通过ID查询医废收集
      * @param id
      * @return
      */
@@ -120,7 +121,7 @@ public class TrashCollectService {
 
 
     /**
-     * 通过id修改公告
+     * 通过id修改医废收集
      * @param id
      * @return
      */
@@ -152,7 +153,7 @@ public class TrashCollectService {
     }
 
     /**
-     * 通过id删除公告
+     * 通过id删除医废收集
      * @param id
      * @return
      */

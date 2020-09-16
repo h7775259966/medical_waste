@@ -20,6 +20,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 
+
+/**
+ * 公告Service
+ * @author hbt
+ * @version 2020-09-03
+ */
+
 @Service
 @Transactional(readOnly = true)
 public class NoticeService {

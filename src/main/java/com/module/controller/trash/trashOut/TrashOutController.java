@@ -10,6 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
+/**
+ * 医废出库Controller
+ * @author hbt
+ * @version 2020-09-03
+ */
+
 @RestController
 @RequestMapping("/trashOut")
 public class TrashOutController implements TrashOutControllerApi {

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
+ * 医废入库Controller
  * Created by huangbotao on 2020/8/31;
  */
 @RestController
@@ -35,7 +36,7 @@ public class TrashPutController implements TrashPutControllerApi {
     }
 
     /**
-     * 通过id查询医废收集
+     * 通过id查询医废入库
      * @param id
      * @return
      */
@@ -48,7 +49,7 @@ public class TrashPutController implements TrashPutControllerApi {
 
 
     /**
-     * 添加医废收集
+     * 添加医废入库
      * @param trashPut
      * @return
      */
@@ -60,7 +61,7 @@ public class TrashPutController implements TrashPutControllerApi {
     }
 
     /**
-     * 通过id修改医废收集
+     * 通过id修改医废入库
      * @param id
      * @param trashPut
      * @return
@@ -73,7 +74,7 @@ public class TrashPutController implements TrashPutControllerApi {
     }
 
     /**
-     * 通过id删除医废收集
+     * 通过id删除医废入库
      * @param id
      * @return
      */

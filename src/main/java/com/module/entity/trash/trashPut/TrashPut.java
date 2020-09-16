@@ -5,6 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 /**
+ * 医废入库Entity
  * Created by huangbotao on 2020/8/31;
  */
 @Data

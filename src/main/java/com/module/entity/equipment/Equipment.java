@@ -3,6 +3,14 @@ package com.module.entity.equipment;
 import lombok.Data;
 import lombok.ToString;
 
+
+/**
+ * 设备Entity
+ * @author huangbotao
+ * @version 2020-09-03
+ */
+
+
 import java.util.Date;
 
 @Data

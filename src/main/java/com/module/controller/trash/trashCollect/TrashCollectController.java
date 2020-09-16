@@ -10,6 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
+/**
+ * 医废收集Controller
+ * @author hbt
+ * @version 2020-09-06
+ */
+
 @RestController
 @RequestMapping("/trashCollect")
 public class TrashCollectController implements TrashCollectControllerApi {

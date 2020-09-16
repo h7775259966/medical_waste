@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
+ * 用户Controller
  * Created by huangbotao on 2020/9/1;
  */
 
@@ -45,7 +46,7 @@ public class UserController implements UserControllerApi{
 
 
     /**
-     * 添加护士
+     * 添加用户
      * @param user
      * @return
      */
@@ -57,7 +58,7 @@ public class UserController implements UserControllerApi{
     }
 
     /**
-     * 通过id查询护士
+     * 通过id查询用户
      * @param id
      * @return
      */
@@ -69,7 +70,7 @@ public class UserController implements UserControllerApi{
     }
 
     /**
-     * 通过id修改护士
+     * 通过id修改用户
      * @param id
      * @param user
      * @return
@@ -82,7 +83,7 @@ public class UserController implements UserControllerApi{
     }
 
     /**
-     * 通过id删除护士
+     * 通过id删除用户
      * @param id
      * @return
      */
