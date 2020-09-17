@@ -108,6 +108,12 @@ public class PlanService {
             int insert = planDao.insert(one);
             if (insert > 0) {
                 //返回成功
+                if (hospitalDao.get(one.getHospitalId()) != null) {
+                    Hospital hospital = hospitalDao.get(one.getHospitalId());
+                    one.setHospitalName(hospital.getHospitalName());
+                }else{
+                    one.setHospitalName("");
+                }
                 return new PlanResult(CommonCode.SUCCESS, one);
             } else {
                 //自定义异常处理
@@ -127,6 +133,12 @@ public class PlanService {
     public PlanResult findById(String id) {
         if (planDao.get(id) != null) {
             Plan plan = planDao.get(id);
+            if (hospitalDao.get(plan.getHospitalId()) != null) {
+                Hospital hospital = hospitalDao.get(plan.getHospitalId());
+                plan.setHospitalName(hospital.getHospitalName());
+            }else{
+                plan.setHospitalName("");
+            }
             //返回成功
             return new PlanResult(CommonCode.SUCCESS, plan);
         }
@@ -155,6 +167,12 @@ public class PlanService {
             one.setRemark(plan.getRemark());
             int update = planDao.update(one);
             if (update > 0) {
+                if (hospitalDao.get(one.getHospitalId()) != null) {
+                    Hospital hospital = hospitalDao.get(one.getHospitalId());
+                    one.setHospitalName(hospital.getHospitalName());
+                }else{
+                    one.setHospitalName("");
+                }
                 //返回成功
                 return new PlanResult(CommonCode.SUCCESS, one);
             } else {

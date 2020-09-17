@@ -1,10 +1,12 @@
 package com.module.response.violation.violationExamine;
 
 import com.common.Response.ResultCode;
+import lombok.ToString;
 
 /**
  * Created by huangbotao on 2020/8/28;
  */
+@ToString
 public enum ViolationExamineCode implements ResultCode {
     CMS_INSERT_FALSE(false, 24001, "新增科室失败！"),
     CMS_GET_ISNULL(false, 24002, "操作失败,科室id不存在！"),
