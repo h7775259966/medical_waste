@@ -106,12 +106,6 @@ public class HospitalController implements HospitalControllerApi{
 		return hospitalService.delete(id);
 	}
 
-
-	@GetMapping(value = "/file")
-	public String file() {
-		return "file";
-	}
-
 	/**
 	 *上传图片
 	 */

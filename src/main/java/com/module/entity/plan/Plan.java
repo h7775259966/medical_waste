@@ -23,6 +23,6 @@ public class Plan {
     private Integer unfinishNumber;//未完成数
     private String status;         //状态
     private String remark;         //备注
-    private String hospitalName;   //所属科室名称hospitalName字段仅在前端展示数据时使用
+    private String hospitalName;   //所属医院名称hospitalName字段仅在前端展示数据时使用
 
 }

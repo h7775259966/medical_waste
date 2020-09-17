@@ -43,9 +43,6 @@ public interface HospitalControllerApi {
     @ApiImplicitParams({@ApiImplicitParam(name="id",value = "医院id",required=true,paramType="path",dataType="String") })
     public ResponseResult delete(String id);
 
-    @ApiOperation("图片文件")
-    public String file();
-
     @ApiOperation("通过图片上传")
     public QueryResponseResult fileUpload(MultipartFile file, Model model, HttpServletRequest request);
 }
