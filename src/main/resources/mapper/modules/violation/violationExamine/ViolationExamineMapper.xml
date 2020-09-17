@@ -37,6 +37,7 @@
 		INSERT INTO t_violation_examine(
 			violationExamineId,
 			createDate,
+			hospitalId,
 			writeTime,
 			way,
 			content,
@@ -47,6 +48,7 @@
 		) VALUES (
 			#{violationExamineId},
 			#{createDate},
+			#{hospitalId},
 			#{writeTime},
 			#{way},
 			#{content},
@@ -62,6 +64,7 @@
 		UPDATE t_violation_examine SET
 			violationExamineId = #{violationExamineId},
 			createDate = #{createDate},
+			hospitalId = #{hospitalId},
 			writeTime = #{writeTime},
 			way = #{way},
 			content = #{content},

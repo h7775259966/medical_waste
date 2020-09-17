@@ -80,6 +80,7 @@ public class TrashCollectService {
             one.setTrashCollectId(IdGen.uuid());
             one.setCreateDate(trashCollect.getCreateDate());
             one.setOfficeId(trashCollect.getOfficeId());
+            one.setDepartmentId(trashCollect.getDepartmentId());
             one.setCode(trashCollect.getCode());
             one.setTrashId(trashCollect.getTrashId());
             one.setPackets(trashCollect.getPackets());
@@ -131,6 +132,7 @@ public class TrashCollectService {
             TrashCollect one = trashCollectDao.get(id);
             one.setCreateDate(trashCollect.getCreateDate());
             one.setOfficeId(trashCollect.getOfficeId());
+            one.setDepartmentId(trashCollect.getDepartmentId());
             one.setCode(trashCollect.getCode());
             one.setTrashId(trashCollect.getTrashId());
             one.setPackets(trashCollect.getPackets());

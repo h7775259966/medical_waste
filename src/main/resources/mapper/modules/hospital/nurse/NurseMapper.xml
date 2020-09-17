@@ -14,12 +14,6 @@
 		a.officeId AS "officeId"
 	</sql>
 
-	<sql id="nurseIn">
-
-
-	</sql>
-
-
 	<!--查询单条数据-->
 	<select id="get" resultType="Nurse">
 		SELECT 

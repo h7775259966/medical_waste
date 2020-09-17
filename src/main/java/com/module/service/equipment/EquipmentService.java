@@ -81,9 +81,12 @@ public class EquipmentService {
             Equipment one = new Equipment();
             one.setEquipmentName(equipment.getEquipmentName());
             one.setEquipmentId(IdGen.uuid());
+            one.setEquipmentNum(equipment.getEquipmentNum());
             one.setEquipmentSIM(equipment.getEquipmentSIM());
             one.setEquipmentFirm(equipment.getEquipmentFirm());
             one.setEquipmentRemark(equipment.getEquipmentRemark());
+            one.setEquipmentStatus(equipment.getEquipmentStatus());
+            one.setCreateDate(equipment.getCreateDate());
             int insert = equipmentDao.insert(one);
             if (insert > 0) {
                 //返回成功
@@ -126,9 +129,12 @@ public class EquipmentService {
         if (equipmentDao.get(id) != null) {
             Equipment one = equipmentDao.get(id);
             one.setEquipmentName(equipment.getEquipmentName());
+            one.setEquipmentNum(equipment.getEquipmentNum());
             one.setEquipmentSIM(equipment.getEquipmentSIM());
             one.setEquipmentFirm(equipment.getEquipmentFirm());
             one.setEquipmentRemark(equipment.getEquipmentRemark());
+            one.setEquipmentStatus(equipment.getEquipmentStatus());
+            one.setCreateDate(equipment.getCreateDate());
             int update = equipmentDao.update(one);
             if (update > 0) {
                 //返回成功

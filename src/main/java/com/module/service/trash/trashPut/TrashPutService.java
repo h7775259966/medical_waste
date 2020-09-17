@@ -80,6 +80,7 @@ public class TrashPutService {
             one.setTrashPutId(IdGen.uuid());
             one.setCreateDate(trashPut.getCreateDate());
             one.setOfficeId(trashPut.getOfficeId());
+            one.setDepartmentId(trashPut.getDepartmentId());
             one.setCode(trashPut.getCode());
             one.setTrashId(trashPut.getTrashId());
             one.setPackets(trashPut.getPackets());
@@ -89,6 +90,7 @@ public class TrashPutService {
             one.setCaseNum(trashPut.getCaseNum());
             one.setWeight(trashPut.getWeight());
             one.setWeightNumber(trashPut.getWeightNumber());
+            one.setPutInTime(trashPut.getPutInTime());
             one.setCollectMethods(trashPut.getCollectMethods());
             int insert = trashPutDao.insert(one);
             if (insert > 0) {
@@ -133,6 +135,7 @@ public class TrashPutService {
             TrashPut one = trashPutDao.get(id);
             one.setCreateDate(trashPut.getCreateDate());
             one.setOfficeId(trashPut.getOfficeId());
+            one.setDepartmentId(trashPut.getDepartmentId());
             one.setCode(trashPut.getCode());
             one.setTrashId(trashPut.getTrashId());
             one.setPackets(trashPut.getPackets());
@@ -142,6 +145,7 @@ public class TrashPutService {
             one.setCaseNum(trashPut.getCaseNum());
             one.setWeight(trashPut.getWeight());
             one.setWeightNumber(trashPut.getWeightNumber());
+            one.setPutInTime(trashPut.getPutInTime());
             one.setCollectMethods(trashPut.getCollectMethods());
             int update = trashPutDao.update(one);
             if (update > 0) {

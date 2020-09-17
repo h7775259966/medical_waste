@@ -9,6 +9,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Created by Zhouxin on 2020/8/24;
@@ -39,4 +42,10 @@ public interface HospitalControllerApi {
     @ApiOperation("通过id删除医院")
     @ApiImplicitParams({@ApiImplicitParam(name="id",value = "医院id",required=true,paramType="path",dataType="String") })
     public ResponseResult delete(String id);
+
+    @ApiOperation("图片文件")
+    public String file();
+
+    @ApiOperation("通过图片上传")
+    public QueryResponseResult fileUpload(MultipartFile file, Model model, HttpServletRequest request);
 }

@@ -1,6 +1,8 @@
 package com.module.controller.hospital.hospital;
 
+import com.common.Response.CommonCode;
 import com.common.Response.QueryResponseResult;
+import com.common.Response.QueryResult;
 import com.common.Response.ResponseResult;
 import com.module.entity.hospital.hospital.Hospital;
 import com.module.request.hospital.hospital.HospitalRequest;
@@ -105,16 +107,16 @@ public class HospitalController implements HospitalControllerApi{
 	}
 
 
-	/**
-	 *上传图片
-	 */
 	@GetMapping(value = "/file")
 	public String file() {
 		return "file";
 	}
 
+	/**
+	 *上传图片
+	 */
 	@PostMapping(value = "/fileUpload")
-	public String fileUpload(@RequestParam(value = "file") MultipartFile file, Model model, HttpServletRequest request) {
+	public QueryResponseResult fileUpload(@RequestParam(value = "file") MultipartFile file, Model model, HttpServletRequest request) {
 		if (file.isEmpty()) {
 			System.out.println("文件为空空");
 		}
@@ -134,7 +136,9 @@ public class HospitalController implements HospitalControllerApi{
 		String filename = "/picture/" + fileName;
 		model.addAttribute("filename", filename);
 		//返回成功
-		return "file";
-
+		//return "file";
+		QueryResult queryResult = new QueryResult();
+		QueryResponseResult queryResponseResult = new QueryResponseResult(CommonCode.SUCCESS, queryResult);
+		return queryResponseResult;
 	}
 }

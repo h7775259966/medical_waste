@@ -109,6 +109,7 @@ public class TrashOutService {
             one.setStatus(trashOut.getStatus());
             one.setCollectWeight(trashOut.getCollectWeight());
             one.setPutWeight(trashOut.getPutWeight());
+            one.setOutWeight(trashOut.getOutWeight());
             one.setOutDetail(trashOut.getOutDetail());
             int insert = trashOutDao.insert(one);
             if (insert > 0) {
@@ -152,11 +153,11 @@ public class TrashOutService {
         if (trashOutDao.get(id) != null) {
             TrashOut one = trashOutDao.get(id);
             one.setCreateDate(trashOut.getCreateDate());
-            one.setCreateDate(trashOut.getCreateDate());
             one.setCollectTime(trashOut.getCollectTime());
             one.setStatus(trashOut.getStatus());
             one.setCollectWeight(trashOut.getCollectWeight());
             one.setPutWeight(trashOut.getPutWeight());
+            one.setOutWeight(trashOut.getOutWeight());
             one.setOutDetail(trashOut.getOutDetail());
             int update = trashOutDao.update(one);
             if (update > 0) {

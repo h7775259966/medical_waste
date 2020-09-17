@@ -46,11 +46,6 @@
 		SELECT
 		<include refid="equipmentColumns"/>
 		FROM t_equipment a
-		WHERE
-
-
-
-
 	</select>
 
     <!--插入-->

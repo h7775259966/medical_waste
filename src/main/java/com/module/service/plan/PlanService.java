@@ -8,7 +8,12 @@ import com.common.Utils.IdGen;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.module.config.exception.ExceptionCast;
+import com.module.dao.hospital.hospital.HospitalDao;
 import com.module.dao.plan.PlanDao;
+import com.module.entity.hospital.department.Department;
+import com.module.entity.hospital.hospital.Hospital;
+import com.module.entity.hospital.nurse.Nurse;
+import com.module.entity.hospital.office.Office;
 import com.module.entity.plan.Plan;
 import com.module.request.plan.PlanRequest;
 import com.module.response.plan.PlanCode;
@@ -31,6 +36,9 @@ public class PlanService {
     @Autowired
     private PlanDao planDao;
 
+    @Autowired
+    private HospitalDao hospitalDao;
+
     public QueryResponseResult findList(int page, int size, PlanRequest planRequest) {
         //为防止后面报空指针，先进行查询条件的非空判断
         if (planRequest == null) {
@@ -48,6 +56,18 @@ public class PlanService {
         //注意：如果planRequest内参数不为空，则进行带值查询
         //planDao.findList()为没有任何查询条件的分页查询
         List<Plan> list = planDao.findList();
+        if(list.size()>0){
+            for (int i = 0; i <list.size(); i++) {
+                Plan plan = list.get(i);
+                if (hospitalDao.get(plan.getHospitalId()) != null) {
+                    Hospital hospital = hospitalDao.get(plan.getHospitalId());
+                    plan.setHospitalName(hospital.getHospitalName());
+                }else{
+                    plan.setHospitalName("");
+                }
+
+            }
+        }
         PageInfo<Plan> pageInfo = new PageInfo<Plan>(list);
 
         /*System.out.println("总数量：" + pageInfo.getTotal());
@@ -80,6 +100,7 @@ public class PlanService {
             one.setWriteTime(plan.getWriteTime());
             one.setWriteUnit(plan.getWriteUnit());
             one.setContent(plan.getContent());
+            one.setHospitalId(plan.getHospitalId());
             one.setFinishNumber(plan.getFinishNumber());
             one.setUnfinishNumber(plan.getUnfinishNumber());
             one.setStatus(plan.getStatus());
@@ -102,6 +123,7 @@ public class PlanService {
      * @param id
      * @return
      */
+    @Transactional
     public PlanResult findById(String id) {
         if (planDao.get(id) != null) {
             Plan plan = planDao.get(id);
@@ -126,6 +148,7 @@ public class PlanService {
             one.setWriteTime(plan.getWriteTime());
             one.setWriteUnit(plan.getWriteUnit());
             one.setContent(plan.getContent());
+            one.setHospitalId(plan.getHospitalId());
             one.setFinishNumber(plan.getFinishNumber());
             one.setUnfinishNumber(plan.getUnfinishNumber());
             one.setStatus(plan.getStatus());

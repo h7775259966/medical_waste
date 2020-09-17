@@ -23,7 +23,7 @@
         SELECT
         <include refid="planColumns"/>
         FROM t_plan a
-        WHERE a.planId = #{id}
+        WHERE a.planId = #{planId}
     </select>
 
     <!--根据名称查询-->
@@ -89,7 +89,7 @@
     <!--物理删除-->
     <update id="delete">
 		DELETE FROM t_plan
-		WHERE planId = #{id}
+		WHERE planId = #{planId}
 	</update>
 
 </mapper>
