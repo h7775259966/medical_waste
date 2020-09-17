@@ -101,6 +101,18 @@ public class NurseService {
             one.setCreateDate(new Date());
             int insert = nurseDao.insert(one);
             if (insert > 0) {
+                if (departmentDao.get(one.getDepartmentId()) != null) {
+                    Department department = departmentDao.get(one.getDepartmentId());
+                    one.setDepartmentName(department.getDepartmentName());
+                }else{
+                    one.setDepartmentName("");
+                }
+                if (officeDao.get(one.getOfficeId()) != null) {
+                    Office office = officeDao.get(one.getOfficeId());
+                    one.setOfficeName(office.getOfficeName());
+                }else{
+                    one.setOfficeName("");
+                }
                 //返回成功
                 return new NurseResult(CommonCode.SUCCESS, one);
             } else {
@@ -119,6 +131,18 @@ public class NurseService {
     public NurseResult findById(String id) {
         if (nurseDao.get(id) != null) {
             Nurse nurse = nurseDao.get(id);
+            if (departmentDao.get(nurse.getDepartmentId()) != null) {
+                Department department = departmentDao.get(nurse.getDepartmentId());
+                nurse.setDepartmentName(department.getDepartmentName());
+            }else{
+                nurse.setDepartmentName("");
+            }
+            if (officeDao.get(nurse.getOfficeId()) != null) {
+                Office office = officeDao.get(nurse.getOfficeId());
+                nurse.setOfficeName(office.getOfficeName());
+            }else{
+                nurse.setOfficeName("");
+            }
             //返回成功
             return new NurseResult(CommonCode.SUCCESS, nurse);
         }
@@ -142,6 +166,18 @@ public class NurseService {
             one.setOfficeId(nurse.getOfficeId());
             int update = nurseDao.update(one);
             if (update > 0) {
+                if (departmentDao.get(one.getDepartmentId()) != null) {
+                    Department department = departmentDao.get(one.getDepartmentId());
+                    one.setDepartmentName(department.getDepartmentName());
+                }else{
+                    one.setDepartmentName("");
+                }
+                if (officeDao.get(one.getOfficeId()) != null) {
+                    Office office = officeDao.get(one.getOfficeId());
+                    one.setOfficeName(office.getOfficeName());
+                }else{
+                    one.setOfficeName("");
+                }
                 //返回成功
                 return new NurseResult(CommonCode.SUCCESS, one);
             } else {

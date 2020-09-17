@@ -9,7 +9,11 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.module.config.exception.ExceptionCast;
 import com.module.dao.collect.CollectDao;
+import com.module.dao.hospital.hospital.HospitalDao;
 import com.module.entity.collect.Collect;
+import com.module.entity.hospital.department.Department;
+import com.module.entity.hospital.hospital.Hospital;
+import com.module.entity.hospital.office.Office;
 import com.module.request.collect.CollectRequest;
 import com.module.response.collect.CollectCode;
 import com.module.response.collect.CollectResult;
@@ -32,6 +36,9 @@ public class CollectService {
 	@Autowired
 	private CollectDao collectDao;
 
+    @Autowired
+    private HospitalDao hospitalDao;
+
     public QueryResponseResult findList(int page, int size, CollectRequest collectRequest) {
         //为防止后面报空指针，先进行查询条件的非空判断
         if (collectRequest == null) {
@@ -47,6 +54,18 @@ public class CollectService {
         //分页处理
         PageHelper.startPage(page,size);
         List<Collect> list = collectDao.findListByRequest(collectRequest);
+        //通过医院id获取医院名称后一起传给前端进行展示
+        if(list.size()>0){
+            for (int i = 0; i <list.size(); i++) {
+                Collect collect = list.get(i);
+                if (hospitalDao.get(collect.getHospitalId()) != null) {
+                    Hospital hospital = hospitalDao.get(collect.getHospitalId());
+                    collect.setHospitalName(hospital.getHospitalName());
+                }else{
+                    collect.setHospitalName("");
+                }
+            }
+        }
         PageInfo<Collect> pageInfo = new PageInfo<Collect>(list);
         QueryResult queryResult = new QueryResult();
         queryResult.setList(list);//数据列表
@@ -72,6 +91,12 @@ public class CollectService {
             one.setCreateDate(new Date());
             int insert = collectDao.insert(one);
             if (insert > 0) {
+                if (hospitalDao.get(one.getHospitalId()) != null) {
+                    Hospital hospital = hospitalDao.get(one.getHospitalId());
+                    one.setHospitalName(hospital.getHospitalName());
+                }else{
+                    one.setHospitalName("");
+                }
                 //返回成功
                 return new CollectResult(CommonCode.SUCCESS, one);
             } else {
@@ -90,6 +115,12 @@ public class CollectService {
     public CollectResult findById(String id) {
         if (collectDao.get(id) != null) {
             Collect collect = collectDao.get(id);
+            if (hospitalDao.get(collect.getHospitalId()) != null) {
+                Hospital hospital = hospitalDao.get(collect.getHospitalId());
+                collect.setHospitalName(hospital.getHospitalName());
+            }else{
+                collect.setHospitalName("");
+            }
             //返回成功
             return new CollectResult(CommonCode.SUCCESS, collect);
         }
@@ -112,6 +143,12 @@ public class CollectService {
             one.setHospitalId(collect.getHospitalId());
             int update = collectDao.update(one);
             if (update > 0) {
+                if (hospitalDao.get(one.getHospitalId()) != null) {
+                    Hospital hospital = hospitalDao.get(one.getHospitalId());
+                    one.setHospitalName(hospital.getHospitalName());
+                }else{
+                    one.setHospitalName("");
+                }
                 //返回成功
                 return new CollectResult(CommonCode.SUCCESS, one);
             } else {

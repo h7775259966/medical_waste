@@ -21,5 +21,5 @@ public class Collect {
     private String hospitalId;        //所属医院id
     private Date createDate;        //创建时间
     private String remarks;            //备注
-
+    private String hospitalName;        //医院名称hospitalName字段仅在前端展示数据时使用
 }

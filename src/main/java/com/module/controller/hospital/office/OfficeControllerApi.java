@@ -39,4 +39,8 @@ public interface OfficeControllerApi {
     @ApiOperation("通过id删除科室")
     @ApiImplicitParams({@ApiImplicitParam(name="id",value = "科室id",required=true,paramType="path",dataType="String") })
     public ResponseResult delete(String id);
+
+    @ApiOperation("通过部门id查询所属科室")
+    @ApiImplicitParams({@ApiImplicitParam(name="departmentId",value = "部门id",required=true,paramType="path",dataType="String") })
+    public QueryResponseResult findByDepartmentId(String departmentId);
 }

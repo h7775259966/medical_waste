@@ -36,6 +36,15 @@
 		ORDER BY a.createDate DESC
 	</select>
 
+	<!--通过部门id查询所属科室-->
+	<select id="findByDepartmentId" resultType="Office">
+		SELECT
+		<include refid="officeColumns"/>
+		FROM t_office a
+		where a.departmentId = #{departmentId}
+		ORDER BY a.createDate DESC
+	</select>
+
 	<!--根据名称查询-->
 	<select id="getByName" resultType="Office">
 		SELECT

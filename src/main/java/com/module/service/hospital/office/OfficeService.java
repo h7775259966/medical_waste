@@ -82,6 +82,18 @@ public class OfficeService {
      */
     public QueryResponseResult all() {
         List<Office> list = officeDao.findList();
+        //通过部门id获取部门名称后一起传给前端进行展示
+        if(list.size()>0){
+            for (int i = 0; i <list.size(); i++) {
+                Office office = list.get(i);
+                if (departmentDao.get(office.getDepartmentId()) != null) {
+                    Department department = departmentDao.get(office.getDepartmentId());
+                    office.setDepartmentName(department.getDepartmentName());
+                }else{
+                    office.setDepartmentName("");
+                }
+            }
+        }
         PageInfo<Office> pageInfo = new PageInfo<Office>(list);
         QueryResult queryResult = new QueryResult();
         queryResult.setList(list);//数据列表
@@ -106,6 +118,12 @@ public class OfficeService {
             one.setCreateDate(new Date());
             int insert = officeDao.insert(one);
             if (insert > 0) {
+                if (departmentDao.get(one.getDepartmentId()) != null) {
+                    Department department = departmentDao.get(one.getDepartmentId());
+                    one.setDepartmentName(department.getDepartmentName());
+                }else{
+                    one.setDepartmentName("");
+                }
                 //返回成功
                 return new OfficeResult(CommonCode.SUCCESS, one);
             } else {
@@ -125,6 +143,12 @@ public class OfficeService {
     public OfficeResult findById(String id) {
         if (officeDao.get(id) != null) {
             Office office = officeDao.get(id);
+            if (departmentDao.get(office.getDepartmentId()) != null) {
+                Department department = departmentDao.get(office.getDepartmentId());
+                office.setDepartmentName(department.getDepartmentName());
+            }else{
+                office.setDepartmentName("");
+            }
             //返回成功
             return new OfficeResult(CommonCode.SUCCESS, office);
         }
@@ -146,6 +170,12 @@ public class OfficeService {
             one.setRemarks(office.getRemarks());
             int update = officeDao.update(one);
             if (update > 0) {
+                if (departmentDao.get(one.getDepartmentId()) != null) {
+                    Department department = departmentDao.get(one.getDepartmentId());
+                    one.setDepartmentName(department.getDepartmentName());
+                }else{
+                    one.setDepartmentName("");
+                }
                 //返回成功
                 return new OfficeResult(CommonCode.SUCCESS, one);
             } else {
@@ -178,4 +208,30 @@ public class OfficeService {
         return new OfficeResult(OfficeCode.CMS_GET_ISNULL, null);
 	}
 
+
+    /**
+     * 通过部门id查询所属科室
+     * @return
+     */
+    public QueryResponseResult findByDepartmentId(String departmentId) {
+        List<Office> list = officeDao.findByDepartmentId(departmentId);
+        //通过部门id获取部门名称后一起传给前端进行展示
+        if(list.size()>0){
+            for (int i = 0; i <list.size(); i++) {
+                Office office = list.get(i);
+                if (departmentDao.get(office.getDepartmentId()) != null) {
+                    Department department = departmentDao.get(office.getDepartmentId());
+                    office.setDepartmentName(department.getDepartmentName());
+                }else{
+                    office.setDepartmentName("");
+                }
+            }
+        }
+        PageInfo<Office> pageInfo = new PageInfo<Office>(list);
+        QueryResult queryResult = new QueryResult();
+        queryResult.setList(list);//数据列表
+        queryResult.setTotal(pageInfo.getTotal());//数据总记录数
+        QueryResponseResult queryResponseResult = new QueryResponseResult(CommonCode.SUCCESS, queryResult);
+        return queryResponseResult;
+    }
 }
