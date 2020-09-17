@@ -95,4 +95,16 @@ public class OfficeController implements OfficeControllerApi{
 
 		return officeService.delete(id);
 	}
+
+	/**
+	 * 通过部门id查询所属科室
+	 * @param departmentId
+	 * @return
+	 */
+	@Override
+	@GetMapping("/findByDepartmentId/{departmentId}")
+	public QueryResponseResult findByDepartmentId(@PathVariable("departmentId") String departmentId) {
+
+		return officeService.findByDepartmentId(departmentId);
+	}
 }

@@ -208,4 +208,30 @@ public class OfficeService {
         return new OfficeResult(OfficeCode.CMS_GET_ISNULL, null);
 	}
 
+
+    /**
+     * 通过部门id查询所属科室
+     * @return
+     */
+    public QueryResponseResult findByDepartmentId(String departmentId) {
+        List<Office> list = officeDao.findByDepartmentId(departmentId);
+        //通过部门id获取部门名称后一起传给前端进行展示
+        if(list.size()>0){
+            for (int i = 0; i <list.size(); i++) {
+                Office office = list.get(i);
+                if (departmentDao.get(office.getDepartmentId()) != null) {
+                    Department department = departmentDao.get(office.getDepartmentId());
+                    office.setDepartmentName(department.getDepartmentName());
+                }else{
+                    office.setDepartmentName("");
+                }
+            }
+        }
+        PageInfo<Office> pageInfo = new PageInfo<Office>(list);
+        QueryResult queryResult = new QueryResult();
+        queryResult.setList(list);//数据列表
+        queryResult.setTotal(pageInfo.getTotal());//数据总记录数
+        QueryResponseResult queryResponseResult = new QueryResponseResult(CommonCode.SUCCESS, queryResult);
+        return queryResponseResult;
+    }
 }

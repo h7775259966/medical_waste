@@ -22,4 +22,12 @@ public interface OfficeDao extends CrudDao<Office>{
      * @returno
      */
     public List<Office> findListByRequest(OfficeRequest officeRequest);
+
+    /**
+     * 通过部门id查询所属科室
+     * @param departmentId
+     * @returno
+     */
+    public List<Office> findByDepartmentId(String departmentId);
+
 }
