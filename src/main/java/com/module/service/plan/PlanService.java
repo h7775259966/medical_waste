@@ -80,6 +80,7 @@ public class PlanService {
             one.setWriteTime(plan.getWriteTime());
             one.setWriteUnit(plan.getWriteUnit());
             one.setContent(plan.getContent());
+            one.setHospitalId(plan.getHospitalId());
             one.setFinishNumber(plan.getFinishNumber());
             one.setUnfinishNumber(plan.getUnfinishNumber());
             one.setStatus(plan.getStatus());

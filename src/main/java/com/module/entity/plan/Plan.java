@@ -18,7 +18,7 @@ public class Plan {
     private Date writeTime;      //发布时间
     private String writeUnit;    //发布单位
     private String content;      //上报内容
-    private Integer hospitalId;   //上报医院
+    private String hospitalId;   //上报医院
     private Integer finishNumber;  //完成数
     private Integer unfinishNumber;//未完成数
     private String status;         //状态
