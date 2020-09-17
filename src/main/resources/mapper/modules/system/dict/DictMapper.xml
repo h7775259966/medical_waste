@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.dao.system.dict.DictDao">
+
+    
+	<sql id="dictColumns">
+		a.id AS "id",
+		a.dictApi AS "dictApi",
+		a.dictLabel AS "dictLabel",
+		a.dictValue AS "dictValue",
+		a.createDate AS "createDate",
+		a.remarks AS "remarks"
+	</sql>
+
+	<!--查询单条数据-->
+	<select id="get" resultType="Dict">
+		SELECT 
+			<include refid="dictColumns"/>
+		FROM sys_dict a
+		WHERE a.id = #{id}
+	</select>
+
+	<!--通过查询条件查询所有数据-->
+	<select id="findListByRequest" resultType="Dict">
+		SELECT
+		<include refid="dictColumns"/>
+		FROM sys_dict a
+		<where>
+			<if test="dictApi != null and dictApi != ''">
+				AND a.dictApi = #{dictApi}
+			</if>
+		</where>
+		ORDER BY a.createDate DESC
+	</select>
+
+	<!--通过api查询所有字典数据-->
+	<select id="findByDictApi" resultType="Dict">
+		SELECT
+		<include refid="dictColumns"/>
+		FROM sys_dict a
+		where a.dictApi = #{dictApi}
+		ORDER BY a.createDate DESC
+	</select>
+
+	<!--查询所有-->
+	<select id="findList" resultType="Dict">
+		SELECT 
+			<include refid="dictColumns"/>
+		FROM sys_dict a ORDER BY a.createDate DESC
+	</select>
+
+	<!--插入-->
+	<insert id="insert">
+		INSERT INTO sys_dict(
+			id,
+			dictApi,
+			dictLabel,
+			dictValue,
+			createDate,
+			remarks
+		) VALUES (
+			#{id},
+			#{dictApi},
+			#{dictLabel},
+			#{dictValue},
+			#{createDate},
+			#{remarks}
+		)
+	</insert>
+
+	<!--修改-->
+	<update id="update">
+		UPDATE sys_dict SET
+			dictApi = #{dictApi},
+			dictLabel = #{dictLabel},
+			dictValue = #{dictValue},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM sys_dict
+		WHERE id = #{id}
+	</update>
+
+</mapper>
