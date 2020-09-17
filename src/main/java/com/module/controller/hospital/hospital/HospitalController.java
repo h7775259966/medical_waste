@@ -110,9 +110,9 @@ public class HospitalController implements HospitalControllerApi{
 	 *上传图片
 	 */
 	@PostMapping(value = "/fileUpload")
-	public QueryResponseResult fileUpload(@RequestParam(value = "file") MultipartFile file, Model model, HttpServletRequest request) {
+	public ResponseResult fileUpload(@RequestParam(value = "file") MultipartFile file) {
 		if (file.isEmpty()) {
-			System.out.println("文件为空空");
+			System.out.println("文件为空");
 		}
 		String fileName = file.getOriginalFilename();  // 文件名
 		String suffixName = fileName.substring(fileName.lastIndexOf("."));  // 后缀名
@@ -128,11 +128,6 @@ public class HospitalController implements HospitalControllerApi{
 			e.printStackTrace();
 		}
 		String filename = "/picture/" + fileName;
-		model.addAttribute("filename", filename);
-		//返回成功
-		//return "file";
-		QueryResult queryResult = new QueryResult();
-		QueryResponseResult queryResponseResult = new QueryResponseResult(CommonCode.SUCCESS, queryResult);
-		return queryResponseResult;
+		return new ResponseResult(CommonCode.SUCCESS);
 	}
 }

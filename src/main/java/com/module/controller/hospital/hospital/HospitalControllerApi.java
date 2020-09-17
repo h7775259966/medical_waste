@@ -44,5 +44,5 @@ public interface HospitalControllerApi {
     public ResponseResult delete(String id);
 
     @ApiOperation("通过图片上传")
-    public QueryResponseResult fileUpload(MultipartFile file, Model model, HttpServletRequest request);
+    public ResponseResult fileUpload(MultipartFile file);
 }
