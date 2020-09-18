@@ -7,6 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import org.apache.commons.codec.binary.Base64;
 
+
 /**
  * 密码明文加密
  * Created by Zhouxin on 2020/9/18;
@@ -23,7 +24,9 @@ public class CryptoUtil {
 
     /**
      * 获得key
-     **/
+     * @param key
+     * @return
+     */
     public static Key obtainKey(String key) {
         if (key == null) {
             return DEFAULT_KEY;
@@ -42,16 +45,19 @@ public class CryptoUtil {
 
 
     /**
-     * 加密<br>
-     * String明文输入,String密文输出
+     * 普通加密:以String明文输入,String密文输出
+     * @param str
+     * @return
      */
     public static String encode(String str) {
         return encode(null, str);
     }
 
     /**
-     * 带key加密<br>
-     * String明文输入,String密文输出
+     * 带key加密:以String明文输入,String密文输出
+     * @param key
+     * @param str
+     * @return
      */
     public static String encode(String key, String str) {
         return Base64.encodeBase64URLSafeString(obtainEncode(key, str.getBytes()));
@@ -61,8 +67,9 @@ public class CryptoUtil {
 
 
     /**
-     * 解密<br>
-     * 以String密文输入,String明文输出
+     * 普通解密:以String密文输入,String明文输出
+     * @param str
+     * @return
      */
     public static String decode(String str) {
         return decode(null, str);
@@ -70,8 +77,10 @@ public class CryptoUtil {
 
 
     /**
-     * 带key解密<br>
-     * 以String密文输入,String明文输出
+     * 带key解密:以String密文输入,String明文输出
+     * @param key
+     * @param str
+     * @return
      */
     public static String decode(String key, String str) {
         return new String(obtainDecode(key, Base64.decodeBase64(str)));
@@ -86,8 +95,10 @@ public class CryptoUtil {
 
 
     /**
-     * 加密<br>
-     * 以byte[]明文输入,byte[]密文输出
+     * 带key加密:以byte[]明文输入,byte[]密文输出
+     * @param key
+     * @param str
+     * @return
      */
     private static byte[] obtainEncode(String key, byte[] str) {
         byte[] byteFina = null;
@@ -106,15 +117,11 @@ public class CryptoUtil {
     }
 
 
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-
     /**
-     * 解密<br>
-     * 以byte[]密文输入,以byte[]明文输出
+     * 带key解密：以byte[]密文输入,以byte[]明文输出
+     * @param key
+     * @param str
+     * @return
      */
     private static byte[] obtainDecode(String key, byte[] str) {
         Cipher cipher;
@@ -131,6 +138,12 @@ public class CryptoUtil {
         }
         return byteFina;
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
 
     //public static void main(String[] args) {
         /*调用CryptoUtil.encode()加密

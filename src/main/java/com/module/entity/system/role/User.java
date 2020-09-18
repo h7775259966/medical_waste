@@ -15,14 +15,15 @@ import java.util.Date;
 public class User{
 
     private String id;      //主键
-    private String username;        //用户名
-    private String password;        //登录密码
-    private Integer enableState;        //启用状态 0为禁用 1为启用
+    private String userName;        //用户名
+    private String passWord;        //登录密码
+    private Integer status;        //启用状态 0为禁用 1为启用
     private String mobile;          //手机号码
     private String email;          //邮箱地址d
-    private String nickname;        //昵称
-    private String hospitalId;       //所属医院id
-    private String remark;      //备注
-    private Date createDate;		//创建时间
+    private String nickName;        //昵称
+    private String unitId;       //所属单位id
+    private String grade;       //所属单位级别(省市区医院)
+    private String remarks;      //备注
+    private Date createDate;	//创建时间
 
 }
