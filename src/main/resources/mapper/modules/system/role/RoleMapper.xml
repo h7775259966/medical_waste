@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.dao.system.role.RoleDao">
+
+    
+	<sql id="roleColumns">
+		a.id AS "id",
+		a.roleName AS "roleName",
+		a.unitId AS "unitId",
+		a.grade AS "grade",
+		a.remarks AS "remarks",
+		a.createDate AS "createDate"
+	</sql>
+
+	<!--查询单条数据-->
+	<select id="get" resultType="Role">
+		SELECT 
+			<include refid="roleColumns"/>
+		FROM pe_role a
+		WHERE a.id = #{id}
+	</select>
+
+	<!--通过查询条件查询所有数据-->
+	<select id="findListByRequest" resultType="Role">
+		SELECT
+		<include refid="roleColumns"/>
+		FROM pe_role a
+		<where>
+			<if test="roleName != null and roleName != ''">
+				AND a.roleName like concat('%',#{roleName},'%')
+			</if>
+			<if test="unitId != null and unitId != ''">
+				AND a.unitId = #{unitId}
+			</if>
+			<if test="grade != null and grade != ''">
+				AND a.grade = #{grade}
+			</if>
+		</where>
+		ORDER BY a.createDate DESC
+	</select>
+
+	<!--根据名称查询-->
+	<select id="getByName" resultType="Role">
+		SELECT
+		<include refid="roleColumns"/>
+		FROM pe_role a
+		WHERE a.roleName = #{value}
+	</select>
+
+	<!--查询所有-->
+	<select id="findList" resultType="Role">
+		SELECT 
+			<include refid="roleColumns"/>
+		FROM pe_role a ORDER BY a.createDate DESC
+	</select>
+
+	<!--插入-->
+	<insert id="insert">
+		INSERT INTO pe_role(
+			id,
+			roleName,
+			unitId,
+			grade,
+			createDate,
+			remarks
+		) VALUES (
+			#{id},
+			#{roleName},
+			#{unitId},
+			#{grade},
+			#{createDate},
+			#{remarks}
+		)
+	</insert>
+
+	<!--修改-->
+	<update id="update">
+		UPDATE pe_role SET
+			roleName = #{roleName},
+			unitId = #{unitId},
+			grade = #{grade},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM pe_role
+		WHERE id = #{id}
+	</update>
+
+</mapper>

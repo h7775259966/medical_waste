@@ -9,8 +9,6 @@ import com.module.service.equipment.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
-
 /**
  * 设备Controller
  * @author hbt
