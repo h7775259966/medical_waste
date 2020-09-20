@@ -11,8 +11,6 @@ import com.module.dao.system.role.PermissionApiDao;
 import com.module.dao.system.role.PermissionDao;
 import com.module.dao.system.role.PermissionMenuDao;
 import com.module.dao.system.role.PermissionPointDao;
-import com.module.entity.hospital.department.Department;
-import com.module.entity.hospital.office.Office;
 import com.module.entity.system.role.*;
 import com.module.request.system.role.PermissionRequest;
 import com.module.response.system.role.PermissionCode;
@@ -49,6 +47,7 @@ public class PermissionService {
 
 
     public QueryResponseResult findList(int page, int size, PermissionRequest permissionRequest) {
+        QueryResponseResult queryResponseResult = new QueryResponseResult(CommonCode.FAIL, null);
         try {
         //为防止后面报空指针，先进行查询条件的非空判断
         if (permissionRequest == null) {
@@ -98,11 +97,11 @@ public class PermissionService {
         QueryResult queryResult = new QueryResult();
         queryResult.setList(list);//数据列表
         queryResult.setTotal(pageInfo.getTotal());//数据总记录数
-        QueryResponseResult queryResponseResult = new QueryResponseResult(CommonCode.SUCCESS, queryResult);
+            queryResponseResult = new QueryResponseResult(CommonCode.SUCCESS, queryResult);
             return queryResponseResult;
         } catch (Exception e) {
             e.printStackTrace();
-            return new PermissionResult(PermissionCode.CMS_INSERT_FALSE,null);
+            return queryResponseResult;
         }
     }
 
