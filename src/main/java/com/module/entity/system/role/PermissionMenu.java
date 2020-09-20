@@ -14,8 +14,7 @@ import java.util.Date;
 @ToString
 public class PermissionMenu{
 
-    private String id;      // 主键
+    private String id;      //主键,和权限id保存一直
     private String menuIcon;        //展示图标
     private String menuOrder;       //排序号
-    private Date createDate;		//创建时间
 }

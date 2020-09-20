@@ -14,9 +14,8 @@ import java.util.Date;
 @ToString
 public class PermissionApi{
 
-    private String id;      //主键
+    private String id;      //主键,和权限id保存一直
     private String apiUrl;      //链接
     private String apiMethod;       //请求类型
     private String apiLevel;        //权限等级，1为通用接口权限，2为需校验接口权限
-    private Date createDate;		//创建时间
 }

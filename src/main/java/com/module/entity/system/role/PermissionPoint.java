@@ -14,10 +14,9 @@ import java.util.Date;
 @ToString
 public class PermissionPoint{
 
-    private String id;      //主键
-    private String pointClass;      //权限代码
+    private String id;      //主键,和权限id保存一直
+    private String pointClass;      //按钮代码
     private String pointIcon;       //按钮图标
     private String pointStatus;     //按钮状态
-    private Date createDate;		//创建时间
 
 }

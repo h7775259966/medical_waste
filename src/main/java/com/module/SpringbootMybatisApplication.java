@@ -24,7 +24,6 @@ public class SpringbootMybatisApplication {
 		SpringApplication.run(SpringbootMybatisApplication.class, args);
 	}
 
-
 //	@Override
 //	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder){
 //		return builder.sources(SpringbootMybatisApplication.class);
