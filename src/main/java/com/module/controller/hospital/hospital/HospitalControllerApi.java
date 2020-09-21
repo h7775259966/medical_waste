@@ -13,6 +13,8 @@ import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Map;
+
 /**
  * Created by Zhouxin on 2020/8/24;
  */
@@ -42,6 +44,7 @@ public interface HospitalControllerApi {
     @ApiOperation("通过id删除医院")
     @ApiImplicitParams({@ApiImplicitParam(name="id",value = "医院id",required=true,paramType="path",dataType="String") })
     public ResponseResult delete(String id);
+
 
     @ApiOperation("通过图片上传")
     public ResponseResult fileUpload(MultipartFile file);

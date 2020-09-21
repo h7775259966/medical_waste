@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.module.dao.violation.violationHistory.ViolationHistoryDao">
+
+
+    <sql id="planColumns">
+		a.violationExamineId AS "violationExamineId",
+		a.createDate AS "createDate",
+		a.hospitalId AS "hospitalId",
+		a.writeTime AS "writeTime",
+		a.way AS "way",
+		a.content AS "content",
+		a.status AS "status",
+		a.photograph AS "photograph",
+		a.abarbeitungTime AS "abarbeitungTime",
+		a.violationTime AS "violationTime"
+	</sql>
+
+    <select id="findList" resultType="ViolationExamine">
+        SELECT
+        <include refid="planColumns"/>
+        FROM t_violation_examine a
+        <where>
+        <if test="startTime != null and startTime != ''">
+            AND a.createDate &gt;=#{startTime}
+        </if>
+        <if test="endTime != null and endTime != ''">
+            AND a.createDate &lt;=#{endTime}
+        </if>
+        </where>
+    </select>
+</mapper>

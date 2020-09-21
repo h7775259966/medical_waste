@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.module.dao.custom.CustomDao">
+
+    <!--通过查询条件查询所有数据-->
+    <select id="customFind" resultType="TrashCollect">
+        SELECT
+        a.violationWeight,
+        a.Packets,
+        b.trashType
+        FROM t_trash_collect a left join t_trash_type b on a.trashId = b.trashId
+        <where>
+            <if test="startTime != null and startTime != ''">
+                AND a.createDate &gt;=#{startTime}
+            </if>
+            <if test="endTime != null and endTime != ''">
+                AND a.createDate &lt;=#{endTime}
+            </if>
+            <if test="processingMode != null and processingMode != ''">
+                AND a.processingMode = #{processingMode}
+            </if>
+            <if test="trashType != null and trashType != ''">
+                AND b.trashType = #{trashType}
+            </if>
+        </where>
+        ORDER BY a.createDate DESC
+    </select>
+
+    <!--通过查询条件查询所有数据-->
+    <select id="customWarn" resultType="WarnType">
+        SELECT
+        count(warnTypeId)
+        FROM t_warn_type a
+        <where>
+            <if test="startTime != null and startTime != ''">
+                AND a.createDate &gt;=#{startTime}
+            </if>
+            <if test="endTime != null and endTime != ''">
+                AND a.createDate &lt;=#{endTime}
+            </if>
+            <if test="processingMode != null and processingMode != ''">
+                AND a.processingMode = #{processingMode}
+            </if>
+            <if test="warnType != null and warnType != ''">
+                AND a.warnType = #{warnType}
+            </if>
+        </where>
+        ORDER BY a.createDate DESC
+    </select>
+
+
+</mapper>
