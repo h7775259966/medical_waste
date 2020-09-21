@@ -3,6 +3,7 @@ package com.module.service.system.role;
 import com.common.Utils.PermissionConstants;
 import com.module.dao.system.role.PermissionDao;
 import com.module.dao.system.role.RoleAndPermissionDao;
+import com.module.entity.hospital.department.Department;
 import com.module.entity.system.role.Permission;
 import com.module.entity.system.role.RoleAndPermission;
 import com.module.entity.system.role.UserAndRole;
@@ -72,7 +73,20 @@ public class RoleService {
         queryResult.setTotal(pageInfo.getTotal());//数据总记录数
         QueryResponseResult queryResponseResult = new QueryResponseResult(CommonCode.SUCCESS, queryResult);
         return queryResponseResult;
+    }
 
+    /**
+     * 查询所有角色
+     * @return
+     */
+    public QueryResponseResult all() {
+        List<Role> list = roleDao.findList();
+        PageInfo<Role> pageInfo = new PageInfo<Role>(list);
+        QueryResult queryResult = new QueryResult();
+        queryResult.setList(list);//数据列表
+        queryResult.setTotal(pageInfo.getTotal());//数据总记录数
+        QueryResponseResult queryResponseResult = new QueryResponseResult(CommonCode.SUCCESS, queryResult);
+        return queryResponseResult;
     }
 
     /**

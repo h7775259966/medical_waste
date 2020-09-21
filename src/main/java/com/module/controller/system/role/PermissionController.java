@@ -41,6 +41,18 @@ public class PermissionController implements PermissionControllerApi {
 
 
 	/**
+	 * 查询所有权限
+	 * @param
+	 * @return
+	 */
+	@Override
+	@GetMapping("/all")
+	public QueryResponseResult all() {
+
+		return permissionService.all();
+	}
+
+	/**
 	 * 添加权限
 	 * @param permissionAll
 	 * @return

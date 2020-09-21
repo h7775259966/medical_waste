@@ -36,6 +36,17 @@ public class RoleController implements RoleControllerApi{
 		return roleService.findList(page,size, roleRequest);
 	}
 
+	/**
+	 * 查询所有角色
+	 * @param
+	 * @return
+	 */
+	@Override
+	@GetMapping("/all")
+	public QueryResponseResult all() {
+
+		return roleService.all();
+	}
 
 	/**
 	 * 添加角色

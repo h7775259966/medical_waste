@@ -86,7 +86,7 @@ public class PermissionService {
                 map.put("name",permission.getName());
                 map.put("type",permission.getType());
                 map.put("code",permission.getCode());
-                map.put("description",permission.getRemarks());
+                map.put("remarks",permission.getRemarks());
                 map.put("pid",permission.getPid());
                 map.put("enVisible",permission.getEnVisible());
                 PermissionAll permissionAll = BeanMapUtils.mapToBean(map, PermissionAll.class);
@@ -95,7 +95,7 @@ public class PermissionService {
         }
         PageInfo<PermissionAll> pageInfo = new PageInfo<PermissionAll>(list2);
         QueryResult queryResult = new QueryResult();
-        queryResult.setList(list);//数据列表
+        queryResult.setList(list2);//数据列表
         queryResult.setTotal(pageInfo.getTotal());//数据总记录数
             queryResponseResult = new QueryResponseResult(CommonCode.SUCCESS, queryResult);
             return queryResponseResult;
@@ -105,7 +105,55 @@ public class PermissionService {
         }
     }
 
-
+    /**
+     * 查询所有权限
+     * @return
+     */
+    public QueryResponseResult all() {
+        QueryResponseResult queryResponseResult = new QueryResponseResult(CommonCode.FAIL, null);
+        try{
+        List<Permission> list = permissionDao.findList();
+        List<PermissionAll> list2 = new ArrayList<PermissionAll>();
+        if(list.size()>0){
+            for (int i = 0; i <list.size(); i++) {
+                Permission permission = list.get(i);
+                Object object = null;
+                int type = permission.getType();
+                switch (type) {
+                    case PermissionConstants.PERMISSION_MENU:
+                        object = permissionMenuDao.get(permission.getId());
+                        break;
+                    case PermissionConstants.PERMISSION_POINT:
+                        object = permissionPointDao.get(permission.getId());
+                        break;
+                    case PermissionConstants.PERMISSION_API:
+                        object = permissionApiDao.get(permission.getId());
+                        break;
+                    default:
+                        break;
+                }
+                Map<String, Object> map = BeanMapUtils.beanToMap(object);
+                map.put("name",permission.getName());
+                map.put("type",permission.getType());
+                map.put("code",permission.getCode());
+                map.put("remarks",permission.getRemarks());
+                map.put("pid",permission.getPid());
+                map.put("enVisible",permission.getEnVisible());
+                PermissionAll permissionAll = BeanMapUtils.mapToBean(map, PermissionAll.class);
+                list2.add(permissionAll);
+            }
+        }
+        PageInfo<PermissionAll> pageInfo = new PageInfo<PermissionAll>(list2);
+        QueryResult queryResult = new QueryResult();
+        queryResult.setList(list2);//数据列表
+        queryResult.setTotal(pageInfo.getTotal());//数据总记录数
+        queryResponseResult = new QueryResponseResult(CommonCode.SUCCESS, queryResult);
+        return queryResponseResult;
+    } catch (Exception e) {
+        e.printStackTrace();
+        return queryResponseResult;
+    }
+    }
     /**
      * 添加权限
      * @param permissionAll

@@ -24,6 +24,9 @@ public interface RoleControllerApi {
             @ApiImplicitParam(name="size",value = "每页记录 数",required=true,paramType="path",dataType="int") })
     public QueryResponseResult findList(int page, int size, RoleRequest roleRequest) ;
 
+    @ApiOperation("查询所有角色")
+    public QueryResponseResult all();
+
     @ApiOperation("添加角色")
     public RoleResult add(Role role);
 

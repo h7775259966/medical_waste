@@ -27,6 +27,9 @@ public interface PermissionControllerApi {
             @ApiImplicitParam(name="size",value = "每页记录 数",required=true,paramType="path",dataType="int") })
     public QueryResponseResult findList(int page, int size, PermissionRequest permissionRequest) ;
 
+    @ApiOperation("查询所有权限")
+    public QueryResponseResult all();
+
     @ApiOperation("添加权限")
     public PermissionResult add(PermissionAll permissionAll);
 
