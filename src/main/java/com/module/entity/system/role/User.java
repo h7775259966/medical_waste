@@ -3,6 +3,7 @@ package com.module.entity.system.role;
 import lombok.Data;
 import lombok.ToString;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 用户Entity
@@ -25,5 +26,7 @@ public class User{
     private String grade;       //所属单位级别(省市区医院)
     private String remarks;      //备注
     private Date createDate;	//创建时间
+
+    private List<Role> roleList;    //此用户下所分配的所有角色，用于给前端展示
 
 }

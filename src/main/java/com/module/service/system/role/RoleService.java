@@ -4,9 +4,7 @@ import com.common.Utils.PermissionConstants;
 import com.module.dao.system.role.PermissionDao;
 import com.module.dao.system.role.RoleAndPermissionDao;
 import com.module.entity.hospital.department.Department;
-import com.module.entity.system.role.Permission;
-import com.module.entity.system.role.RoleAndPermission;
-import com.module.entity.system.role.UserAndRole;
+import com.module.entity.system.role.*;
 import com.module.request.system.role.RoleAndPermissionRequest;
 import com.module.request.system.role.UserAndRoleRequest;
 import com.module.response.system.role.RoleResult;
@@ -20,7 +18,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.module.config.exception.ExceptionCast;
 import com.module.dao.system.role.RoleDao;
-import com.module.entity.system.role.Role;
 import com.module.request.system.role.RoleRequest;
 import com.module.response.system.role.RoleCode;
 import com.module.response.system.role.UserCode;
@@ -50,6 +47,9 @@ public class RoleService {
 
 	@Autowired
     private RoleAndPermissionDao roleAndPermissionDao;
+
+	@Autowired
+    private PermissionService permissionService;
 
 
     public QueryResponseResult findList(int page, int size, RoleRequest roleRequest) {
@@ -118,13 +118,26 @@ public class RoleService {
     }
 
     /**
-     * 通过ID查询角色
+     * 通过id查询角色
+     * (同时查询出此角色下分配的权限)
      * @param id
      * @return
      */
     public RoleResult findById(String id) {
         if (roleDao.get(id) != null) {
             Role role = roleDao.get(id);
+            List<RoleAndPermission> list = roleAndPermissionDao.getByRoleId(id);
+            List<PermissionAll> permissionAllList = new ArrayList<PermissionAll>();
+            if(list.size()>0){
+                for (int i = 0; i <list.size(); i++) {
+                    RoleAndPermission roleAndPermission = list.get(i);
+                    if (permissionService.getPermissionAllById(roleAndPermission.getPermissionId())!=null){
+                        PermissionAll permissionAll = permissionService.getPermissionAllById(roleAndPermission.getPermissionId());
+                        permissionAllList.add(permissionAll);
+                    }
+                }
+                role.setPermissionAllList(permissionAllList);
+            }
             //返回成功
             return new RoleResult(CommonCode.SUCCESS, role);
         }

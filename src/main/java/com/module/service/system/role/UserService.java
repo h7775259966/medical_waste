@@ -9,8 +9,10 @@ import com.common.Utils.IdGen;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.module.config.exception.ExceptionCast;
+import com.module.dao.system.role.RoleDao;
 import com.module.dao.system.role.UserAndRoleDao;
 import com.module.dao.system.role.UserDao;
+import com.module.entity.system.role.Role;
 import com.module.entity.system.role.User;
 import com.module.entity.system.role.UserAndRole;
 import com.module.request.system.role.UserAndRoleRequest;
@@ -20,6 +22,8 @@ import com.module.response.system.role.UserResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -34,6 +38,9 @@ public class UserService {
 
 	@Autowired
 	private UserDao userDao;
+
+    @Autowired
+    private RoleDao roleDao;
 
     @Autowired
     private UserAndRoleDao userAndRoleDao;
@@ -101,13 +108,24 @@ public class UserService {
     }
 
     /**
-     * 通过ID查询用户
+     * 通过id查询用户
+     * (同时查询出此用户下分配的角色)
      * @param id
      * @return
      */
     public UserResult findById(String id) {
         if (userDao.get(id) != null) {
             User user = userDao.get(id);
+            List<UserAndRole> list = userAndRoleDao.getByUserId(id);
+            List<Role> roleList = new ArrayList<Role>();
+            if(list.size()>0){
+                for (int i = 0; i <list.size(); i++) {
+                    UserAndRole userAndRole = list.get(i);
+                    Role role = roleDao.get(userAndRole.getRoleId());
+                    roleList.add(role);
+                }
+                user.setRoleList(roleList);
+            }
             String newpassword = CryptoUtil.decode(key,user.getPassWord());
             user.setPassWord(newpassword);
             //返回成功
