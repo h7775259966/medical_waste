@@ -102,23 +102,23 @@ public class TrashOutService {
      */
     @Transactional
     public TrashOutResult add(TrashOut trashOut) {
-            TrashOut one = new TrashOut();
-            one.setTrashOutId(IdGen.uuid());
-            one.setCreateDate(trashOut.getCreateDate());
-            one.setCollectTime(trashOut.getCollectTime());
-            one.setStatus(trashOut.getStatus());
-            one.setCollectWeight(trashOut.getCollectWeight());
-            one.setPutWeight(trashOut.getPutWeight());
-            one.setOutWeight(trashOut.getOutWeight());
-            one.setOutDetail(trashOut.getOutDetail());
-            int insert = trashOutDao.insert(one);
-            if (insert > 0) {
-                //返回成功
-                return new TrashOutResult(CommonCode.SUCCESS, one);
-            } else {
-                //自定义异常处理
-                ExceptionCast.cast(TrashOutCode.CMS_INSERT_FALSE);
-            }
+        TrashOut one = new TrashOut();
+        one.setTrashOutId(IdGen.uuid());
+        one.setCreateDate(trashOut.getCreateDate());
+        one.setCollectTime(trashOut.getCollectTime());
+        one.setStatus(trashOut.getStatus());
+        one.setCollectWeight(trashOut.getCollectWeight());
+        one.setPutWeight(trashOut.getPutWeight());
+        one.setOutWeight(trashOut.getOutWeight());
+        one.setOutDetail(trashOut.getOutDetail());
+        int insert = trashOutDao.insert(one);
+        if (insert > 0) {
+            //返回成功
+            return new TrashOutResult(CommonCode.SUCCESS, one);
+        } else {
+            //自定义异常处理
+            ExceptionCast.cast(TrashOutCode.CMS_INSERT_FALSE);
+        }
 
         //返回失败
         return new TrashOutResult(TrashOutCode.CMS_NAME_REPETITION, null);

@@ -16,17 +16,12 @@ import java.util.Date;
 @ToString
 public class TrashOutRequest {
 
+
     @ApiModelProperty("开始时间")
-    @DateTimeFormat(pattern = "yyyy-MM-dd") //入参
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd") //出参
-    //   @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
-    private Date startTime;
+    private String startTime;
 
     @ApiModelProperty("结束时间")
-    @DateTimeFormat(pattern = "yyyy-MM-dd") //入参
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd") //出参
-    //   @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
-    private Date endTime;
+    private String endTime;
 
     @ApiModelProperty("出库状态")
     private String status;
