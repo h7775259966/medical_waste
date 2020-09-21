@@ -177,8 +177,7 @@ public class PermissionService {
             return new PermissionResult(PermissionCode.CMS_GET_ISNULL, null);
         }
     }
-
-
+    
     /**
      * 通过权限id获得对应的PermissionAll
      * @param id
