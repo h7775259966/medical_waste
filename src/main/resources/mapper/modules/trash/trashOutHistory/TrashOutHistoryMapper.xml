@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.dao.trash.trashOutHistory.TrashOutHistoryDao">
+
+
+    <sql id="trashOutHistoryColumns">
+		a.trashOutHistoryId AS "trashOutHistoryId",
+		a.createDate AS "createDate",
+		a.outTime AS "outTime",
+		a.person AS "person",
+		a.outWeight AS "outWeight",
+		a.caseNum AS "caseNum",
+		a.outCompany AS "outCompany",
+		a.carNumber AS "carNumber",
+		a.carry AS "carry",
+		a.accessory AS "accessory",
+		a.outDetail AS "outDetail"
+
+	</sql>
+
+    <!--查询单条数据-->
+    <select id="get" resultType="TrashOutHistory">
+        SELECT
+        <include refid="trashOutHistoryColumns"/>
+        FROM t_trash_out_history a
+        WHERE a.trashOutHistoryId = #{id}
+    </select>
+
+    <!--根据名称查询-->
+    <select id="getByName" resultType="TrashOutHistory">
+        SELECT
+        <include refid="trashOutHistoryColumns"/>
+        FROM t_trash_out_history a
+        WHERE a.trashOutHistoryName = #{value}
+    </select>
+
+    <!--查询所有-->
+    <select id="findList" resultType="TrashOutHistory">
+        SELECT
+        <include refid="trashOutHistoryColumns"/>
+        FROM t_trash_out_history a ORDER BY a.createDate DESC
+    </select>
+
+
+
+    <!--插入-->
+    <insert id="insert">
+		INSERT INTO t_trash_out_history(
+			trashOutHistoryId,
+			createDate,
+			outTime,
+			person,
+			outWeight,
+			caseNum,
+			outCompany,
+			carNumber,
+			carry,
+			accessory,
+			outDetail
+		) VALUES (
+			#{trashOutHistoryId},
+			#{createDate},
+			#{outTime},
+			#{person},
+			#{outWeight},
+			#{caseNum},
+			#{outCompany},
+			#{carNumber},
+			#{carry},
+			#{accessory},
+			#{outDetail}
+		)
+	</insert>
+
+    <!--修改-->
+    <update id="update">
+		UPDATE t_trash_out_history SET
+			trashOutHistoryId = #{trashOutHistoryId},
+			createDate = #{createDate},
+			outTime = #{outTime},
+			person = #{person},
+			outWeight = #{outWeight},
+			caseNum = #{caseNum},
+			outCompany = #{outCompany},
+			carNumber = #{carNumber},
+			carry = #{carry},
+			accessory = #{accessory},
+			outDetail = #{outDetail}
+		WHERE trashOutHistoryId = #{trashOutHistoryId}
+	</update>
+
+    <!--物理删除-->
+    <update id="delete">
+		DELETE FROM t_trash_out_history
+		WHERE trashOutHistoryId = #{id}
+	</update>
+
+</mapper>

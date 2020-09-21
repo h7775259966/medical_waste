@@ -48,11 +48,11 @@
 			<if test="status != null and status != ''">
 				AND a.status = #{status}
 			</if>
-			<if test="startTime!=null">
-				<![CDATA[   and DATE_FORMAT(a.collectTime, '%Y-%m-%d %H:%i:%s') >=  DATE_FORMAT(#{startTime}, '%Y-%m-%d %H:%i:%s')   ]]>
+			<if test="startTime != null and startTime != ''">
+				AND a.createDate &gt;=#{startTime}
 			</if>
-			<if test="endTime!=null">
-				<![CDATA[  and DATE_FORMAT(a.collectTime, '%Y-%m-%d %H:%i:%s') <= DATE_FORMAT(#{endTime}, '%Y-%m-%d %H:%i:%s')    ]]>
+			<if test="endTime != null and endTime != ''">
+				AND a.createDate &lt;=#{endTime}
 			</if>
 		</where>
 	</select>

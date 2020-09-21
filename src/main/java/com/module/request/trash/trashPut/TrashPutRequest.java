@@ -31,15 +31,8 @@ public class TrashPutRequest {
     private String code;
 
     @ApiModelProperty("开始时间")
-    @DateTimeFormat(pattern = "yyyy-MM-dd") //入参
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd") //出参
-    //   @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
-    private Date startTime;
+    private String startTime;
 
     @ApiModelProperty("结束时间")
-    @DateTimeFormat(pattern = "yyyy-MM-dd") //入参
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd") //出参
-    //   @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
-    private Date endTime;
-
+    private String endTime;
 }

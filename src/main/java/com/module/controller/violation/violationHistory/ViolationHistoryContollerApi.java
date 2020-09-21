@@ -9,9 +9,10 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
 /**
+ * 违规历史
  * Created by huangbotao on 2020/9/21;
  */
-@Api(value="violationStandard接口",description = "违规标准")
+@Api(value="violationHistory接口",description = "违规历史")
 public interface ViolationHistoryContollerApi {
 
     @ApiOperation("分页查询违规检查列表")
