@@ -3,6 +3,7 @@ package com.module.controller.system.role;
 import com.common.Response.QueryResponseResult;
 import com.common.Response.ResponseResult;
 import com.module.entity.system.role.Role;
+import com.module.request.system.role.RoleAndPermissionRequest;
 import com.module.request.system.role.RoleRequest;
 import com.module.response.system.role.RoleResult;
 import io.swagger.annotations.Api;
@@ -36,5 +37,8 @@ public interface RoleControllerApi {
     @ApiOperation("通过id删除角色")
     @ApiImplicitParams({@ApiImplicitParam(name="id",value = "角色id",required=true,paramType="path",dataType="String") })
     public ResponseResult delete(String id);
+
+    @ApiOperation("给角色分配权限")
+    public ResponseResult assignPrem(RoleAndPermissionRequest roleAndPermissionRequest);
 
 }

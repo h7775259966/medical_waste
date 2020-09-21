@@ -1,5 +1,13 @@
 package com.module.service.system.role;
 
+import com.common.Utils.PermissionConstants;
+import com.module.dao.system.role.PermissionDao;
+import com.module.dao.system.role.RoleAndPermissionDao;
+import com.module.entity.system.role.Permission;
+import com.module.entity.system.role.RoleAndPermission;
+import com.module.entity.system.role.UserAndRole;
+import com.module.request.system.role.RoleAndPermissionRequest;
+import com.module.request.system.role.UserAndRoleRequest;
 import com.module.response.system.role.RoleResult;
 import com.common.Response.CommonCode;
 import com.common.Response.QueryResponseResult;
@@ -14,11 +22,14 @@ import com.module.dao.system.role.RoleDao;
 import com.module.entity.system.role.Role;
 import com.module.request.system.role.RoleRequest;
 import com.module.response.system.role.RoleCode;
+import com.module.response.system.role.UserCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -32,6 +43,12 @@ public class RoleService {
 
 	@Autowired
 	private RoleDao roleDao;
+
+	@Autowired
+	private PermissionDao permissionDao;
+
+	@Autowired
+    private RoleAndPermissionDao roleAndPermissionDao;
 
 
     public QueryResponseResult findList(int page, int size, RoleRequest roleRequest) {
@@ -137,6 +154,7 @@ public class RoleService {
         if (roleDao.get(id) != null) {
             int delete = roleDao.delete(id);
             if (delete > 0) {
+                roleAndPermissionDao.deleteByRoleId(id);
                 //返回成功
                 return new ResponseResult(CommonCode.SUCCESS);
             } else {
@@ -147,5 +165,43 @@ public class RoleService {
         //返回失败
         return new RoleResult(RoleCode.CMS_GET_ISNULL, null);
 	}
+
+    /**
+     * 给角色添加权限
+     * @param roleAndPermissionRequest
+     * @return
+     */
+    @Transactional
+    public ResponseResult assignPrem(RoleAndPermissionRequest roleAndPermissionRequest) {
+        if (roleDao.get(roleAndPermissionRequest.getRoleId()) != null) {
+            List<String> PermissionList = roleAndPermissionRequest.getPermissionId();
+            if (PermissionList.size()>0) {
+                //分配权限前，先将中间表旧数据删除
+                roleAndPermissionDao.deleteByRoleId(roleAndPermissionRequest.getRoleId());
+                List<Permission> perms = new ArrayList<Permission>();
+                for (int i = 0; i < PermissionList.size(); i++) {
+                    Permission permission = permissionDao.get(PermissionList.get(i));
+                    perms.add(permission);//当前菜单或按钮的权限
+                    //需要根据父id和类型查询API权限列表
+                    List<Permission> apiList = permissionDao.findByTypeAndPid(PermissionConstants.PERMISSION_API, PermissionList.get(i));
+                    if (apiList.size()>0) {
+                        perms.addAll(apiList);//pid等于这个权限id的API权限
+                    }
+                }
+                for (int k = 0; k <perms.size(); k++) {
+                    Permission permission2 = perms.get(k);
+                    RoleAndPermission roleAndPermission = new RoleAndPermission();
+                    roleAndPermission.setId(IdGen.uuid());
+                    roleAndPermission.setCreateDate(new Date());
+                    roleAndPermission.setRoleId(roleAndPermissionRequest.getRoleId());
+                    roleAndPermission.setPermissionId(permission2.getId());
+                    roleAndPermissionDao.insert(roleAndPermission);
+                }
+                return new ResponseResult(CommonCode.SUCCESS);
+            }
+        }
+        //返回失败
+        return new ResponseResult(RoleCode.CMS_ASSIGNROLES_FALSE);
+    }
 
 }

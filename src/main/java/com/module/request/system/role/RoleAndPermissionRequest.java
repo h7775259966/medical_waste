@@ -12,12 +12,12 @@ import java.util.List;
  */
 @Data
 @ToString
-public class UserAndRoleRequest {
+public class RoleAndPermissionRequest {
 
-    @ApiModelProperty("用户id")
-    private String userId;
+    @ApiModelProperty("角色id")
+    private String roleId;
 
-    @ApiModelProperty("角色id集合")
-    private List<String> roleId;
+    @ApiModelProperty("权限id集合")
+    private List<String> PermissionId;
 
 }

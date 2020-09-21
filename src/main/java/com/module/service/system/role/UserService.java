@@ -159,7 +159,7 @@ public class UserService {
         if (userDao.get(id) != null) {
             int delete = userDao.delete(id);
             if (delete > 0) {
-                userAndRoleDao.deleteByuserId(id);
+                userAndRoleDao.deleteByUserId(id);
                 //返回成功
                 return new ResponseResult(CommonCode.SUCCESS);
             } else {
@@ -206,7 +206,7 @@ public class UserService {
             List<String> roleIdList = userAndRoleRequest.getRoleId();
             if (roleIdList.size()>0){
                 //分配角色前，先将中间表旧数据删除
-                userAndRoleDao.deleteByuserId(userAndRoleRequest.getUserId());
+                userAndRoleDao.deleteByUserId(userAndRoleRequest.getUserId());
                 for (int i = 0; i <roleIdList.size() ; i++) {
                     UserAndRole userAndRole = new UserAndRole();
                     userAndRole.setId(IdGen.uuid());

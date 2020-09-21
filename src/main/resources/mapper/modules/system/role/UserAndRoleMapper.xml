@@ -64,7 +64,7 @@
 	</update>
 
 	<!--根据userId删除所有中间表数据-->
-	<update id="deleteByuserId">
+	<update id="deleteByUserId">
 		DELETE FROM pe_user_and_role
 		WHERE userId = #{userId}
 	</update>

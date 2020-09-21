@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.dao.system.role.RoleAndPermissionDao">
+
+    
+	<sql id="roleColumns">
+		a.id AS "id",
+		a.roleId AS "roleId",
+		a.permissionId AS "permissionId",
+		a.createDate AS "createDate"
+	</sql>
+
+	<!--查询单条数据-->
+	<select id="get" resultType="RoleAndPermission">
+		SELECT 
+			<include refid="roleColumns"/>
+		FROM pe_role_and_permission a
+		WHERE a.id = #{id}
+	</select>
+
+	<!--根据roleId查询所有数据-->
+	<select id="getByRoleId" resultType="RoleAndPermission">
+		SELECT
+		<include refid="roleColumns"/>
+		FROM pe_role_and_permission a
+		WHERE a.roleId = #{value}
+	</select>
+
+	<!--查询所有-->
+	<select id="findList" resultType="RoleAndPermission">
+		SELECT 
+			<include refid="roleColumns"/>
+		FROM pe_role_and_permission a ORDER BY a.createDate DESC
+	</select>
+
+	<!--插入-->
+	<insert id="insert">
+		INSERT INTO pe_role_and_permission(
+			id,
+			roleId,
+			permissionId,
+			createDate
+		) VALUES (
+			#{id},
+			#{roleId},
+			#{permissionId},
+			#{createDate}
+		)
+	</insert>
+
+	<!--修改-->
+	<update id="update">
+		UPDATE pe_role_and_permission SET
+			roleId = #{roleId},
+			permissionId = #{permissionId}
+		WHERE id = #{id}
+	</update>
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM pe_role_and_permission
+		WHERE id = #{id}
+	</update>
+
+	<!--根据roleId删除所有中间表数据-->
+	<update id="deleteByRoleId">
+		DELETE FROM pe_role_and_permission
+		WHERE roleId = #{roleId}
+	</update>
+
+</mapper>

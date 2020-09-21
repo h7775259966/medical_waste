@@ -26,5 +26,5 @@ public interface UserAndRoleDao extends CrudDao<UserAndRole> {
      * @param userId
      * @return
      */
-    public int deleteByuserId(String userId);
+    public int deleteByUserId(String userId);
 }
