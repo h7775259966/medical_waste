@@ -1,13 +1,17 @@
 package com.module.controller.system.role;
 
+import com.common.Response.CommonCode;
 import com.common.Response.QueryResponseResult;
 import com.common.Response.ResponseResult;
 import com.module.entity.system.role.User;
+import com.module.request.system.role.UserAndRoleRequest;
 import com.module.request.system.role.UserRequest;
 import com.module.response.system.role.UserResult;
 import com.module.service.system.role.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 /**
  * 用户Controller
@@ -93,10 +97,21 @@ public class UserController implements UserControllerApi{
 	 * @return
 	 */
 	@Override
-	@PutMapping("/edit/{id}/{status}")
+	@PutMapping("/editStatus/{id}/{status}")
 	public UserResult editStatus(@PathVariable("id") String id,@PathVariable("status") Integer status) {
 
 		return userService.editStatus(id,status);
+	}
 
+	/**
+	 * 给用户分配角色
+	 * @param userAndRoleRequest
+	 * @return
+	 */
+	@Override
+	@PostMapping("/assignRoles")
+	public ResponseResult assignRoles(@RequestBody UserAndRoleRequest userAndRoleRequest) {
+
+		return userService.assignRoles(userAndRoleRequest);
 	}
 }

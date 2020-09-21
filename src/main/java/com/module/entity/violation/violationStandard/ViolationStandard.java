@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 /**
- * 设备Entity
+ * 违规标准Entity
  * Created by huangbotao on 2020/8/28;
  */
 

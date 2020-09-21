@@ -9,8 +9,11 @@ import com.common.Utils.IdGen;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.module.config.exception.ExceptionCast;
+import com.module.dao.system.role.UserAndRoleDao;
 import com.module.dao.system.role.UserDao;
 import com.module.entity.system.role.User;
+import com.module.entity.system.role.UserAndRole;
+import com.module.request.system.role.UserAndRoleRequest;
 import com.module.request.system.role.UserRequest;
 import com.module.response.system.role.UserCode;
 import com.module.response.system.role.UserResult;
@@ -32,8 +35,12 @@ public class UserService {
 	@Autowired
 	private UserDao userDao;
 
+    @Autowired
+    private UserAndRoleDao userAndRoleDao;
+
     //通过key加密用户密码
 	private static final String key ="lfzn";
+
 
     public QueryResponseResult findList(int page, int size, UserRequest userRequest) {
         //为防止后面报空指针，先进行查询条件的非空判断
@@ -152,6 +159,7 @@ public class UserService {
         if (userDao.get(id) != null) {
             int delete = userDao.delete(id);
             if (delete > 0) {
+                userAndRoleDao.deleteByuserId(id);
                 //返回成功
                 return new ResponseResult(CommonCode.SUCCESS);
             } else {
@@ -180,10 +188,37 @@ public class UserService {
                 return new UserResult(CommonCode.SUCCESS, one);
             } else {
                 //自定义异常处理
-                ExceptionCast.cast(UserCode.CMS_UPDATE_FALSE);
+                ExceptionCast.cast(UserCode.CMS_EDITSTATUS_FALSE);
             }
         }
         //返回失败
         return new UserResult(UserCode.CMS_GET_ISNULL, null);
+    }
+
+    /**
+     * 给用户分配角色
+     * @param userAndRoleRequest
+     * @return
+     */
+    @Transactional
+    public ResponseResult assignRoles(UserAndRoleRequest userAndRoleRequest) {
+        if (userDao.get(userAndRoleRequest.getUserId()) != null) {
+            List<String> roleIdList = userAndRoleRequest.getRoleId();
+            if (roleIdList.size()>0){
+                //分配角色前，先将中间表旧数据删除
+                userAndRoleDao.deleteByuserId(userAndRoleRequest.getUserId());
+                for (int i = 0; i <roleIdList.size() ; i++) {
+                    UserAndRole userAndRole = new UserAndRole();
+                    userAndRole.setId(IdGen.uuid());
+                    userAndRole.setCreateDate(new Date());
+                    userAndRole.setUserId(userAndRoleRequest.getUserId());
+                    userAndRole.setRoleId(roleIdList.get(i));
+                    userAndRoleDao.insert(userAndRole);
+                }
+                return new ResponseResult(CommonCode.SUCCESS);
+            }
+        }
+        //返回失败
+        return new ResponseResult(UserCode.CMS_ASSIGNROLES_FALSE);
     }
 }

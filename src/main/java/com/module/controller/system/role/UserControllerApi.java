@@ -3,6 +3,7 @@ package com.module.controller.system.role;
 import com.common.Response.QueryResponseResult;
 import com.common.Response.ResponseResult;
 import com.module.entity.system.role.User;
+import com.module.request.system.role.UserAndRoleRequest;
 import com.module.request.system.role.UserRequest;
 import com.module.response.system.role.UserResult;
 import io.swagger.annotations.Api;
@@ -39,4 +40,7 @@ public interface UserControllerApi {
 
     @ApiOperation("通过id修改用户状态")
     public UserResult editStatus(String id, Integer status);
+
+    @ApiOperation("给用户分配角色")
+    public ResponseResult assignRoles(UserAndRoleRequest userAndRoleRequest);
 }

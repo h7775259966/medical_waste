@@ -13,7 +13,9 @@ public enum UserCode implements ResultCode {
     CMS_GET_ISNULL(false,24002,"操作失败,用户id不存在！"),
     CMS_NAME_REPETITION(false,24003,"用户名已存在,无法新增！"),
     CMS_UPDATE_FALSE(false,24004,"修改用户失败！"),
-    CMS_DELETE_FALSE(false,24005,"删除用户失败！");
+    CMS_DELETE_FALSE(false,24005,"删除用户失败！"),
+    CMS_ASSIGNROLES_FALSE(false,24006,"用户添加角色失败！"),
+    CMS_EDITSTATUS_FALSE(false,24007,"修改用户状态失败！");
 
     //操作代码
     boolean success;

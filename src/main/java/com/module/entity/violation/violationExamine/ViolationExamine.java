@@ -20,7 +20,7 @@ public class ViolationExamine {
     private String content; // 违规内容
     private String status;  // 状态
     private String photograph; // 现场照片
-    private Date abarbeitungTime; // 整改时限
+    private int abarbeitungTime; // 整改时限
     private Date violationTime; // 违规时间
 
 }
