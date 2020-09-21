@@ -2,15 +2,12 @@ package com.module.controller.hospital.hospital;
 
 import com.common.Response.CommonCode;
 import com.common.Response.QueryResponseResult;
-import com.common.Response.QueryResult;
 import com.common.Response.ResponseResult;
 import com.module.entity.hospital.hospital.Hospital;
 import com.module.request.hospital.hospital.HospitalRequest;
 import com.module.response.hospital.hospital.HospitalResult;
 import com.module.service.hospital.hospital.HospitalService;
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -112,7 +109,7 @@ public class HospitalController implements HospitalControllerApi{
 	@PostMapping(value = "/fileUpload")
 	public ResponseResult fileUpload(@RequestParam(value = "file") MultipartFile file) {
 		if (file.isEmpty()) {
-			System.out.println("文件为空");
+			System.out.println("文件为空空");
 		}
 		String fileName = file.getOriginalFilename();  // 文件名
 		String suffixName = fileName.substring(fileName.lastIndexOf("."));  // 后缀名
@@ -125,9 +122,15 @@ public class HospitalController implements HospitalControllerApi{
 		try {
 			file.transferTo(dest);
 		} catch (IOException e) {
+			System.out.println("图片上传失败");
 			e.printStackTrace();
+			return new ResponseResult(CommonCode.FAIL);
+		} catch (RuntimeException e){
+			e.printStackTrace();
+			return new ResponseResult(CommonCode.INVALID_PARAM);
 		}
 		String filename = "/picture/" + fileName;
 		return new ResponseResult(CommonCode.SUCCESS);
 	}
+
 }
