@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.dao.hospital.zone.ZoneDao">
+
+    
+	<sql id="zoneColumns">
+		a.zoneId AS "zoneId",
+		a.zoneName AS "zoneName",
+		a.zoneNumber AS "zoneNumber",
+		a.cityId AS "cityId",
+		a.area AS "area",
+		a.grade AS "grade",
+		a.longitude AS "longitude",
+		a.latitude AS "latitude",
+		a.principal AS "principal",
+		a.createDate AS "createDate",
+		a.remarks AS "remarks"
+	</sql>
+
+	<!--查询单条数据-->
+	<select id="get" resultType="zone">
+		SELECT 
+			<include refid="zoneColumns"/>
+		FROM t_zone a
+		WHERE a.zoneId = #{id}
+	</select>
+
+	<!--根据名称查询-->
+	<select id="getByName" resultType="zone">
+		SELECT
+		<include refid="zoneColumns"/>
+		FROM t_zone a
+		WHERE a.zoneName = #{value}
+	</select>
+
+	<!--查询所有-->
+	<select id="findList" resultType="zone">
+		SELECT 
+			<include refid="zoneColumns"/>
+		FROM t_zone a	ORDER BY a.createDate DESC
+	</select>
+
+	<!--通过查询条件查询所有数据-->
+	<select id="findListByRequest" resultType="zone">
+		SELECT
+		<include refid="zoneColumns"/>
+		FROM t_zone a
+		<where>
+			<if test="zoneName != null and zoneName != ''">
+				AND a.zoneName like concat('%',#{zoneName},'%')
+			</if>
+			<if test="zoneNumber != null and zoneNumber != ''">
+				AND a.zoneNumber = #{zoneNumber}
+			</if>
+		</where>
+		ORDER BY a.createDate DESC
+	</select>
+
+	<!--插入-->
+	<insert id="insert">
+		INSERT INTO t_zone(
+			zoneId,
+			zoneName,
+			zoneNumber,
+			cityId,
+			area,
+			grade,
+			principal,
+			longitude,
+			latitude,
+			createDate,
+			remarks
+		) VALUES (
+			#{zoneId},
+			#{zoneName},
+			#{zoneNumber},
+			#{cityId},
+			#{area},
+			#{grade},
+			#{principal},
+			#{longitude},
+			#{latitude},
+			#{createDate},
+			#{remarks}
+		)
+	</insert>
+
+	<!--修改-->
+	<update id="update">
+		UPDATE t_zone SET
+			zoneName = #{zoneName},
+			zoneNumber = #{zoneNumber},
+			cityId = #{cityId},
+			grade = #{grade},
+			area = #{area},
+			principal = #{principal},
+			longitude = #{longitude},
+			latitude = #{latitude},
+			remarks	= #{remarks}
+		WHERE zoneId = #{zoneId}
+	</update>
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM t_zone
+		WHERE zoneId = #{id}
+	</update>
+
+</mapper>
