@@ -5,7 +5,7 @@
 <mapper namespace="com.module.dao.custom.CustomDao">
 
     <!--通过查询条件查询所有数据-->
-    <select id="customFind" resultType="TrashCollect">
+    <select id="customFind" resultType="Custom">
         SELECT
         a.violationWeight,
         a.Packets,
@@ -47,7 +47,6 @@
                 AND a.warnType = #{warnType}
             </if>
         </where>
-        ORDER BY a.createDate DESC
     </select>
 
 

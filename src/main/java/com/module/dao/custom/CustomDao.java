@@ -1,6 +1,7 @@
 package com.module.dao.custom;
 
 import com.common.CrudDao.CrudDao;
+import com.module.entity.custom.Custom;
 import com.module.entity.hospital.department.Department;
 import com.module.entity.trash.trashCollect.TrashCollect;
 import com.module.entity.warn.warnType.WarnType;
@@ -19,7 +20,7 @@ import java.util.List;
 @Mapper
 public interface CustomDao extends CrudDao<TrashCollect> {
 
-    public List<TrashCollect> customFind(CustomRequest customRequest);
+    public List<Custom> customFind(CustomRequest customRequest);
 
     public List<WarnType> customWarn(CustomWarnRequest customWarnRequest);
 

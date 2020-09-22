@@ -6,6 +6,7 @@ import com.common.Response.QueryResult;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.module.dao.custom.CustomDao;
+import com.module.entity.custom.Custom;
 import com.module.entity.trash.trashCollect.TrashCollect;
 import com.module.entity.warn.warnType.WarnType;
 import com.module.request.custom.CustomRequest;
@@ -51,8 +52,8 @@ public class CustomService {
         //分页处理
         PageHelper.startPage(page, size);
 
-        List<TrashCollect> list = customDao.customFind(customRequest);
-        PageInfo<TrashCollect> pageInfo = new PageInfo<TrashCollect>(list);
+        List<Custom> list = customDao.customFind(customRequest);
+        PageInfo<Custom> pageInfo = new PageInfo<Custom>(list);
 
 
         //封装结果
@@ -100,4 +101,5 @@ public class CustomService {
         return queryResponseResult;
 
     }
+
 }
