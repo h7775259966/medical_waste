@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.module.dao.trash.trashCollectHistory.TrashCollectHistoryDao">
+
+    <sql id="trashPutColumns">
+		a.trashPutId AS "trashPutId",
+		a.createDate AS "createDate",
+		a.officeId AS "officeId",
+		a.departmentId AS "departmentId",
+		a.code AS "code",
+		a.trashId AS "trashId",
+		a.Packets AS "Packets",
+		/*a.collectId AS "collectId",*/
+		a.collectTime AS "collectTime",
+		a.collectNumber AS "collectNumber",
+		/*a.caseNum AS "caseNum",*/
+		a.weight AS "weight",
+		/*a.weightNumber AS "weightNumber",
+		a.putInTime AS "putInTime",*/
+		a.collectMethods AS "collectMethods"
+	</sql>
+
+
+    <select id="findHistory" resultType="TrashCollectHistory">
+        SELECT
+        <include refid="trashPutColumns"/>
+        FROM t_trash_put a
+		<where>
+			<if test="startTime != null and startTime != ''">
+				AND a.createDate &gt;=#{startTime}
+			</if>
+			<if test="endTime != null and endTime != ''">
+				AND a.createDate &lt;=#{endTime}
+			</if>
+			<if test="trashType != null and trashType != ''">
+				AND b.trashType = #{trashType}
+			</if>
+		</where>
+        ORDER BY a.createDate DESC
+    </select>
+
+</mapper>
