@@ -1,5 +1,6 @@
 package com.module;
 
+import com.common.Utils.JwtUtils;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -28,6 +29,11 @@ public class SpringbootMybatisApplication {
 //	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder){
 //		return builder.sources(SpringbootMybatisApplication.class);
 //	}
+
+	@Bean
+	public JwtUtils jwtUtils() {
+		return new JwtUtils();
+	}
 }
 
 

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.dao.hospital.province.ProvinceDao">
+
+    
+	<sql id="provinceColumns">
+		a.provinceId AS "provinceId",
+		a.provinceName AS "provinceName",
+		a.provinceNumber AS "provinceNumber",
+		a.area AS "area",
+		a.grade AS "grade",
+		a.longitude AS "longitude",
+		a.latitude AS "latitude",
+		a.principal AS "principal",
+		a.createDate AS "createDate",
+		a.remarks AS "remarks"
+	</sql>
+
+	<!--查询单条数据-->
+	<select id="get" resultType="province">
+		SELECT 
+			<include refid="provinceColumns"/>
+		FROM t_province a
+		WHERE a.provinceId = #{id}
+	</select>
+
+	<!--根据名称查询-->
+	<select id="getByName" resultType="province">
+		SELECT
+		<include refid="provinceColumns"/>
+		FROM t_province a
+		WHERE a.provinceName = #{value}
+	</select>
+
+	<!--查询所有-->
+	<select id="findList" resultType="province">
+		SELECT 
+			<include refid="provinceColumns"/>
+		FROM t_province a	ORDER BY a.createDate DESC
+	</select>
+
+	<!--通过查询条件查询所有数据-->
+	<select id="findListByRequest" resultType="province">
+		SELECT
+		<include refid="provinceColumns"/>
+		FROM t_province a
+		<where>
+			<if test="provinceName != null and provinceName != ''">
+				AND a.provinceName like concat('%',#{provinceName},'%')
+			</if>
+			<if test="provinceNumber != null and provinceNumber != ''">
+				AND a.provinceNumber = #{provinceNumber}
+			</if>
+		</where>
+		ORDER BY a.createDate DESC
+	</select>
+
+	<!--插入-->
+	<insert id="insert">
+		INSERT INTO t_province(
+			provinceId,
+			provinceName,
+			provinceNumber,
+			area,
+			grade,
+			principal,
+			longitude,
+			latitude,
+			createDate,
+			remarks
+		) VALUES (
+			#{provinceId},
+			#{provinceName},
+			#{provinceNumber},
+			#{area},
+			#{grade},
+			#{principal},
+			#{longitude},
+			#{latitude},
+			#{createDate},
+			#{remarks}
+		)
+	</insert>
+
+	<!--修改-->
+	<update id="update">
+		UPDATE t_province SET
+			provinceName = #{provinceName},
+			provinceNumber = #{provinceNumber},
+			grade = #{grade},
+			area = #{area},
+			principal = #{principal},
+			longitude = #{longitude},
+			latitude = #{latitude},
+			remarks	= #{remarks}
+		WHERE provinceId = #{provinceId}
+	</update>
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM t_province
+		WHERE provinceId = #{id}
+	</update>
+
+</mapper>

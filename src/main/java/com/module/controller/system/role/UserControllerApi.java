@@ -3,8 +3,10 @@ package com.module.controller.system.role;
 import com.common.Response.QueryResponseResult;
 import com.common.Response.ResponseResult;
 import com.module.entity.system.role.User;
+import com.module.request.system.role.LoginRequest;
 import com.module.request.system.role.UserAndRoleRequest;
 import com.module.request.system.role.UserRequest;
+import com.module.response.system.role.LoginResult;
 import com.module.response.system.role.UserResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -46,4 +48,7 @@ public interface UserControllerApi {
 
     @ApiOperation("给用户分配角色")
     public ResponseResult assignRoles(UserAndRoleRequest userAndRoleRequest);
+
+    @ApiOperation("用户登录,认证后返回token")
+    public LoginResult login(LoginRequest loginRequest) ;
 }

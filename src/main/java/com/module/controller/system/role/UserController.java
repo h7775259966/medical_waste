@@ -3,15 +3,19 @@ package com.module.controller.system.role;
 import com.common.Response.CommonCode;
 import com.common.Response.QueryResponseResult;
 import com.common.Response.ResponseResult;
+import com.common.Response.ResultCode;
 import com.module.entity.system.role.User;
+import com.module.request.system.role.LoginRequest;
 import com.module.request.system.role.UserAndRoleRequest;
 import com.module.request.system.role.UserRequest;
+import com.module.response.system.role.LoginResult;
 import com.module.response.system.role.UserResult;
 import com.module.service.system.role.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 用户Controller
@@ -66,6 +70,7 @@ public class UserController implements UserControllerApi{
 
 	/**
 	 * 通过id修改用户
+	 * (安全考虑，用户名和状态无法修改)
 	 * @param id
 	 * @param user
 	 * @return
@@ -113,5 +118,18 @@ public class UserController implements UserControllerApi{
 	public ResponseResult assignRoles(@RequestBody UserAndRoleRequest userAndRoleRequest) {
 
 		return userService.assignRoles(userAndRoleRequest);
+	}
+
+	/**
+	 * 用户登录
+	 * 认证后返回token
+	 * @param loginRequest
+	 * @return
+	 */
+	@Override
+	@PostMapping(value="/login")
+	public LoginResult login(@RequestBody LoginRequest loginRequest) {
+
+		return userService.login(loginRequest);
 	}
 }

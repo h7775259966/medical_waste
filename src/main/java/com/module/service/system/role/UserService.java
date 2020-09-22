@@ -1,11 +1,9 @@
 package com.module.service.system.role;
 
-import com.common.Response.CommonCode;
-import com.common.Response.QueryResponseResult;
-import com.common.Response.QueryResult;
-import com.common.Response.ResponseResult;
+import com.common.Response.*;
 import com.common.Utils.CryptoUtil;
 import com.common.Utils.IdGen;
+import com.common.Utils.JwtUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.module.config.exception.ExceptionCast;
@@ -15,17 +13,17 @@ import com.module.dao.system.role.UserDao;
 import com.module.entity.system.role.Role;
 import com.module.entity.system.role.User;
 import com.module.entity.system.role.UserAndRole;
+import com.module.request.system.role.LoginRequest;
 import com.module.request.system.role.UserAndRoleRequest;
 import com.module.request.system.role.UserRequest;
+import com.module.response.system.role.LoginResult;
 import com.module.response.system.role.UserCode;
 import com.module.response.system.role.UserResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  *用户Service
@@ -44,6 +42,9 @@ public class UserService {
 
     @Autowired
     private UserAndRoleDao userAndRoleDao;
+
+    @Autowired
+    private JwtUtils jwtUtils;
 
     //通过key加密用户密码
 	private static final String key ="lfzn";
@@ -137,6 +138,7 @@ public class UserService {
 
 	/**
 	 * 通过id修改用户
+     * (安全考虑，用户名和状态无法修改)
 	 * @param id
 	 * @return
 	 */
@@ -144,7 +146,7 @@ public class UserService {
 	public UserResult edit(String id, User user) {
         if (userDao.get(id) != null) {
             User one = userDao.get(id);
-            one.setUserName(user.getUserName());
+            //one.setUserName(user.getUserName());
             String newpassword = CryptoUtil.encode(key,user.getPassWord());
             one.setPassWord(newpassword);//明文密码加密后再保存
             //one.setStatus(1);
@@ -188,7 +190,6 @@ public class UserService {
         //返回失败
         return new UserResult(UserCode.CMS_GET_ISNULL, null);
 	}
-
 
     /**
      * 通过id修改用户状态
@@ -238,5 +239,32 @@ public class UserService {
         }
         //返回失败
         return new ResponseResult(UserCode.CMS_ASSIGNROLES_FALSE);
+    }
+
+    /**
+     * 用户登录
+     * 认证后返回token
+     * @param loginRequest
+     * @return
+     */
+    @Transactional
+    public LoginResult login(LoginRequest loginRequest) {
+        if (userDao.getByName(loginRequest.getUserName()) != null) {
+            User user = userDao.getByName(loginRequest.getUserName());
+            String password = CryptoUtil.encode(key, loginRequest.getPassWord());
+            if(!user.getPassWord().equals(password)) {
+                //密码认证失败
+                return new LoginResult(UserCode.CMS_LOGIN_FALSE,null);
+            }else{
+                //密码认证成功
+                Map<String,Object> map = new HashMap<>();
+                map.put("userId",user.getId());
+                map.put("unitId",user.getUnitId());
+                map.put("grade",user.getGrade());
+                String token = jwtUtils.createJwt(user.getId(), user.getUserName(), map);
+                return new LoginResult(CommonCode.SUCCESS,token);
+            }
+        }
+        return new LoginResult(UserCode.CMS_LOGIN_FALSE,null);
     }
 }
