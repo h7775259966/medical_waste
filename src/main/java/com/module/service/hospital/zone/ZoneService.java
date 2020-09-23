@@ -83,6 +83,7 @@ public class ZoneService {
             one.setZoneId(IdGen.uuid());
             one.setZoneName(zone.getZoneName());
             one.setZoneNumber(zone.getZoneNumber());
+            one.setProvinceId(zone.getProvinceId());
             one.setCityId(zone.getCityId());
             one.setArea(zone.getArea());
             one.setPrincipal(zone.getPrincipal());
@@ -130,6 +131,7 @@ public class ZoneService {
             Zone one = zoneDao.get(id);
             one.setZoneName(zone.getZoneName());
             one.setZoneNumber(zone.getZoneNumber());
+            one.setProvinceId(zone.getProvinceId());
             one.setCityId(zone.getCityId());
             one.setArea(zone.getArea());
             one.setPrincipal(zone.getPrincipal());

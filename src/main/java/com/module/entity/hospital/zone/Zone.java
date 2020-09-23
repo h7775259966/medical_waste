@@ -18,6 +18,7 @@ public class Zone {
     private String zoneId;        //区县级单位id
     private String zoneName;        //区县级单位名称
     private String zoneNumber;      //区县级单位编号
+    private String provinceId;        //所属省级单位id
     private String cityId;        //所属市级单位id
     private String area;        //所在地
     private String grade;       //等级(省区县区医院)
