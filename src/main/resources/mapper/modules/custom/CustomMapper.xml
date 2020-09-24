@@ -18,9 +18,6 @@
             <if test="endTime != null and endTime != ''">
                 AND a.createDate &lt;=#{endTime}
             </if>
-            <if test="processingMode != null and processingMode != ''">
-                AND a.processingMode = #{processingMode}
-            </if>
             <if test="trashType != null and trashType != ''">
                 AND b.trashType = #{trashType}
             </if>
@@ -29,10 +26,10 @@
     </select>
 
     <!--通过查询条件查询所有数据-->
-    <select id="customWarn" resultType="WarnType">
+    <select id="customWarn" resultType="int">
         SELECT
-        count(warnTypeId)
-        FROM t_warn_type a
+        COUNT(warnDamagedId)
+        FROM t_warn_damaged a
         <where>
             <if test="startTime != null and startTime != ''">
                 AND a.createDate &gt;=#{startTime}
@@ -40,14 +37,109 @@
             <if test="endTime != null and endTime != ''">
                 AND a.createDate &lt;=#{endTime}
             </if>
-            <if test="processingMode != null and processingMode != ''">
-                AND a.processingMode = #{processingMode}
+        </where>
+    </select>
+
+    <select id="customInWeight" resultType="int">
+        SELECT
+        COUNT(warnInWeightId)
+        FROM t_warn_inWeight a
+        <where>
+            <if test="startTime != null and startTime != ''">
+                AND a.createDate &gt;=#{startTime}
             </if>
-            <if test="warnType != null and warnType != ''">
-                AND a.warnType = #{warnType}
+            <if test="endTime != null and endTime != ''">
+                AND a.createDate &lt;=#{endTime}
             </if>
         </where>
     </select>
+
+    <select id="customLeakage" resultType="int">
+        SELECT
+        COUNT(warnLeakageId)
+        FROM t_warn_leakage a
+        <where>
+            <if test="startTime != null and startTime != ''">
+                AND a.createDate &gt;=#{startTime}
+            </if>
+            <if test="endTime != null and endTime != ''">
+                AND a.createDate &lt;=#{endTime}
+            </if>
+        </where>
+    </select>
+
+    <select id="customLose" resultType="int">
+        SELECT
+        COUNT(warnLoseId)
+        FROM t_warn_lose a
+        <where>
+            <if test="startTime != null and startTime != ''">
+                AND a.createDate &gt;=#{startTime}
+            </if>
+            <if test="endTime != null and endTime != ''">
+                AND a.createDate &lt;=#{endTime}
+            </if>
+        </where>
+    </select>
+
+    <select id="customNoOut" resultType="int">
+        SELECT
+        COUNT(warnNoOutId)
+        FROM t_warn_noOut a
+        <where>
+            <if test="startTime != null and startTime != ''">
+                AND a.createDate &gt;=#{startTime}
+            </if>
+            <if test="endTime != null and endTime != ''">
+                AND a.createDate &lt;=#{endTime}
+            </if>
+        </where>
+    </select>
+
+    <select id="customOutOvertime" resultType="int">
+        SELECT
+        COUNT(warnOutOvertimeId)
+        FROM t_warn_outOvertime a
+        <where>
+            <if test="startTime != null and startTime != ''">
+                AND a.createDate &gt;=#{startTime}
+            </if>
+            <if test="endTime != null and endTime != ''">
+                AND a.createDate &lt;=#{endTime}
+            </if>
+        </where>
+    </select>
+
+    <select id="customOutWeight" resultType="int">
+        SELECT
+        COUNT(warnOutWeightId)
+        FROM t_warn_outWeight a
+        <where>
+            <if test="startTime != null and startTime != ''">
+                AND a.createDate &gt;=#{startTime}
+            </if>
+            <if test="endTime != null and endTime != ''">
+                AND a.createDate &lt;=#{endTime}
+            </if>
+        </where>
+    </select>
+
+
+    <select id="customViolation" resultType="int">
+        SELECT
+        COUNT(warnViolationId)
+        FROM t_warn_violation a
+        <where>
+            <if test="startTime != null and startTime != ''">
+                AND a.createDate &gt;=#{startTime}
+            </if>
+            <if test="endTime != null and endTime != ''">
+                AND a.createDate &lt;=#{endTime}
+            </if>
+        </where>
+    </select>
+
+
 
 
 </mapper>

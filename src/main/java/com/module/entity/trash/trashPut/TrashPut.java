@@ -25,7 +25,7 @@ public class TrashPut {
     private String caseNum;//转运箱编号
     private String weight;//物品重量
     private String weightNumber; //物品称重
-    private String putInTime;//入库时间
+    private Date putInTime;//入库时间
     private String collectMethods;//收集方式
 
 

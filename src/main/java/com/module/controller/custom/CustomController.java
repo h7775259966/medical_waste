@@ -35,15 +35,133 @@ public class CustomController implements CustomControllerApi {
     }
 
 
+
     /**
-     * 预警统计
+     * 破损预警统计
      */
     @Override
-    @GetMapping("/warn/{page}/{size}")
+    @GetMapping("/damage/{page}/{size}")
     public QueryResponseResult customWarn(@PathVariable("page") int page, @PathVariable("size") int size, CustomWarnRequest customWarnRequest) {
 
         return customService.customWarn(page, size, customWarnRequest);
 
     }
 
+    /**
+     *
+     * @param page
+     * @param size
+     * @param customWarnRequest
+     * @return
+     * 入库预警
+     */
+    @Override
+    @GetMapping("/InWeight/{page}/{size}")
+    public QueryResponseResult customInWeight(@PathVariable("page") int page, @PathVariable("size") int size, CustomWarnRequest customWarnRequest) {
+
+        return customService.customInWeight(page, size, customWarnRequest);
+
+    }
+
+    /**
+     *
+     * @param page
+     * @param size
+     * @param customWarnRequest
+     * @return
+     * 破损预警
+     */
+    @Override
+    @GetMapping("/leakage/{page}/{size}")
+    public QueryResponseResult customLeakage(@PathVariable("page") int page, @PathVariable("size") int size, CustomWarnRequest customWarnRequest) {
+
+        return customService.customLeakage(page, size, customWarnRequest);
+
+    }
+
+    /**
+     *
+     * @param page
+     * @param size
+     * @param customWarnRequest
+     * @return
+     * 遗失预警
+     */
+
+    @Override
+    @GetMapping("/lose/{page}/{size}")
+    public QueryResponseResult customLose(@PathVariable("page") int page, @PathVariable("size") int size, CustomWarnRequest customWarnRequest) {
+
+        return customService.customLose(page, size, customWarnRequest);
+
+    }
+
+
+    /**
+     *
+     * 未出预警
+     * @param page
+     * @param size
+     * @param customWarnRequest
+     * @return
+     */
+    @Override
+    @GetMapping("/noOut/{page}/{size}")
+    public QueryResponseResult customNoOut(@PathVariable("page") int page, @PathVariable("size") int size, CustomWarnRequest customWarnRequest) {
+
+        return customService.customNoOut(page, size, customWarnRequest);
+
+    }
+
+
+    /**
+     *
+     * @param page
+     * @param size
+     * @param customWarnRequest
+     * @return
+     * 超时预警
+     */
+
+    @Override
+    @GetMapping("/overtime/{page}/{size}")
+    public QueryResponseResult customOutOvertime(@PathVariable("page") int page, @PathVariable("size") int size, CustomWarnRequest customWarnRequest) {
+
+        return customService.customOutOvertime(page, size, customWarnRequest);
+
+    }
+
+
+    /**
+     *
+     * @param page
+     * @param size
+     * @param customWarnRequest
+     * @return
+     * 出库重量预警
+     */
+    @Override
+    @GetMapping("/OutWeight/{page}/{size}")
+    public QueryResponseResult customOutWeight(@PathVariable("page") int page, @PathVariable("size") int size, CustomWarnRequest customWarnRequest) {
+
+        return customService.customOutWeight(page, size, customWarnRequest);
+
+    }
+
+
+    /**
+     *
+     * @param page
+     * @param size
+     * @param customWarnRequest
+     * @return
+     * 违规预警
+     */
+    @Override
+    @GetMapping("/Violation/{page}/{size}")
+    public QueryResponseResult customViolation(@PathVariable("page") int page, @PathVariable("size") int size, CustomWarnRequest customWarnRequest) {
+
+        return customService.customViolation(page, size, customWarnRequest);
+
+    }
 }
