@@ -154,6 +154,26 @@ public class UserService {
         return roleList;
     }
 
+    /**
+     * 根据用户id查询用户包含角色下的所有权限
+     * @param id
+     * @return
+     */
+    public List<PermissionAll> findPermissionAllByUserId(String id){
+        List<PermissionAll> list = new ArrayList<>();
+        List<Role> roleList = findRoleByUserId(id);
+        if(roleList.size()>0){
+            for (int i = 0; i <roleList.size(); i++) {
+                Role role = roleList.get(i);
+                List<PermissionAll> PermissionAllList = roleService.findPermissionAllByRoleId(role.getId());
+                if (PermissionAllList.size()>0){
+                    list = PermissionAllList;
+                }
+            }
+        }
+        return list;
+    }
+
 	/**
 	 * 通过id修改用户
      * (安全考虑，用户名和状态无法修改)
@@ -277,19 +297,13 @@ public class UserService {
                 //密码认证成功
                 //查询此用户下所有角色的api权限
                 StringBuilder apis = new StringBuilder();
-                List<Role> roleList = findRoleByUserId(user.getId());
-                if(roleList.size()>0){
-                    for (int i = 0; i <roleList.size(); i++) {
-                        Role role = roleList.get(i);
-                        List<PermissionAll> PermissionAllList = roleService.findPermissionAllByRoleId(role.getId());
-                        if (PermissionAllList.size()>0){
-                            for (int j = 0; j <PermissionAllList.size(); j++) {
-                                PermissionAll permissionAll = PermissionAllList.get(j);
-                                if (permissionAll.getType().equals(PermissionConstants.PERMISSION_API)){
-                                    //将此用户下所有api权限拼接后存入token,用于调用其他接口时的api鉴权校验
-                                    apis.append(permissionAll.getCode()).append(",");
-                                }
-                            }
+                List<PermissionAll> PermissionAllList = findPermissionAllByUserId(user.getId());
+                if (PermissionAllList.size()>0){
+                    for (int j = 0; j <PermissionAllList.size(); j++) {
+                        PermissionAll permissionAll = PermissionAllList.get(j);
+                        if (permissionAll.getType() == PermissionConstants.PERMISSION_API){
+                            //将此用户下所有api权限拼接后存入token,用于调用其他接口时的api鉴权校验
+                            apis.append(permissionAll.getCode()).append(",");
                         }
                     }
                 }
@@ -303,5 +317,38 @@ public class UserService {
             }
         }
         return new LoginResult(UserCode.CMS_LOGIN_FALSE,null);
+    }
+
+    /**
+     * 获取用户信息和所有权限标识
+     * @param id
+     * @return
+     */
+    @Transactional
+    public User profile(String id){
+        User user = userDao.get(id);
+        List<PermissionAll> PermissionAllList = findPermissionAllByUserId(id);
+        Map<String, Object> codeList = new HashMap<>();
+        Set<String> menus = new HashSet<>();
+        Set<String> points = new HashSet<>();
+        Set<String> apis = new HashSet<>();
+        if (PermissionAllList.size()>0) {
+            for (int j = 0; j < PermissionAllList.size(); j++) {
+                PermissionAll permissionAll = PermissionAllList.get(j);
+                String code = permissionAll.getCode();
+                if (permissionAll.getType() == PermissionConstants.PERMISSION_MENU) {
+                    menus.add(code);
+                }else if(permissionAll.getType() == PermissionConstants.PERMISSION_POINT){
+                    points.add(code);
+                }else{
+                    apis.add(code);
+                }
+            }
+        }
+        codeList.put("menus", menus);
+        codeList.put("points", points);
+        codeList.put("apis", apis);
+        user.setCodeList(codeList);
+        return user;
     }
 }

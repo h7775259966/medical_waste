@@ -2,6 +2,8 @@ package com.module.controller.system.user;
 
 import com.common.Response.QueryResponseResult;
 import com.common.Response.ResponseResult;
+import com.common.Response.system.user.UserCode;
+import com.common.Utils.JwtUtils;
 import com.module.entity.system.user.User;
 import com.common.Request.system.user.LoginRequest;
 import com.common.Request.system.user.UserAndRoleRequest;
@@ -9,8 +11,12 @@ import com.common.Request.system.user.UserRequest;
 import com.common.Response.system.user.LoginResult;
 import com.common.Response.system.user.UserResult;
 import com.module.service.system.user.UserService;
+import io.jsonwebtoken.Claims;
+import org.omg.SendingContext.RunTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 用户Controller
@@ -23,6 +29,9 @@ public class UserController implements UserControllerApi {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private JwtUtils jwtUtils;
 
 	/**
 	 * 分页同时自定义查询
@@ -129,32 +138,22 @@ public class UserController implements UserControllerApi {
 	}
 
 	/**
-	 * 用户登录成功之后，获取用户信息
-	 *      1.获取用户id
-	 *      2.根据用户id查询用户
-	 *      3.构建返回值对象
-	 *      4.响应
+	 * 登录成功之后，根据token获取用户信息和所有权限标识
+	 * 要求token存储在请求头内(Authorization:Bearer+“ ”+token)
+	 * @param request
+	 * @return
 	 */
-//	@RequestMapping(value="/profile",method = RequestMethod.POST)
-//	public Result profile(HttpServletRequest Request) throws Exception {
-//
-//		String userid = claims.getId();
-//		//获取用户信息
-//		User user = userService.findById(userid);
-//		//根据不同的用户级别获取用户权限
-//
-//		ProfileResult result = null;
-//
-//		if("user".equals(user.getLevel())) {
-//			result = new ProfileResult(user);
-//		}else {
-//			Map map = new HashMap();
-//			if("coAdmin".equals(user.getLevel())) {
-//				map.put("enVisible","1");
-//			}
-//			List<Permission> list = permissionService.findAll(map);
-//			result = new ProfileResult(user,list);
-//		}
-//		return new Result(ResultCode.SUCCESS,result);
-//	}
+	@PostMapping(value="/profile")
+	public UserResult profile(HttpServletRequest request){
+		String authorization = request.getHeader("Authorization");
+		if(!StringUtils.isEmpty(authorization) && authorization.startsWith("Bearer")) {
+			String token = authorization.replace("Bearer ","");
+			Claims claims = jwtUtils.parseJwt(token);
+			if(claims != null) {
+				User user= userService.profile(claims.getId());
+				return new UserResult(UserCode.CMS_PRFILE_TRUE,user);
+			}
+		}
+		return new UserResult(UserCode.CMS_PRFILE_FALSE, null);
+	}
 }

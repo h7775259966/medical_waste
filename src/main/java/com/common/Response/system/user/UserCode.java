@@ -18,8 +18,10 @@ public enum UserCode implements ResultCode {
     CMS_EDITSTATUS_FALSE(false,24007,"修改用户状态失败！"),
     CMS_LOGIN_FALSE(false,24008,"登录认证失败！"),
     CMS_LOGIN_TRUE(true,24009,"登录认证成功！"),
-    UNAUTHENTICATED(false,24010,"您还未登录"),
-    UNAUTHORISE(false,24011,"权限不足");
+    UNAUTHENTICATED(false,24010,"您还未登录!"),
+    UNAUTHORISE(false,24011,"权限不足!"),
+    CMS_PRFILE_TRUE(true,24012,"根据token获取用户权限成功!"),
+    CMS_PRFILE_FALSE(false,24013,"根据token获取用户权限失败!");
 
     //操作代码
     boolean success;
