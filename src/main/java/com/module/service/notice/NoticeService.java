@@ -4,6 +4,9 @@ import com.common.Response.CommonCode;
 import com.common.Response.QueryResponseResult;
 import com.common.Response.QueryResult;
 import com.common.Response.ResponseResult;
+import com.common.Response.system.user.UserCode;
+import com.common.Response.system.user.UserResult;
+import com.common.Utils.CryptoUtil;
 import com.common.Utils.IdGen;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -13,6 +16,7 @@ import com.module.entity.notice.Notice;
 import com.common.Request.notice.NoticeRequest;
 import com.common.Response.notice.NoticeCode;
 import com.common.Response.notice.NoticeResult;
+import com.module.entity.system.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -104,11 +108,8 @@ public class NoticeService {
 
     }
 
-
-
-
     /**
-     * 添加医废收集
+     * 添加公告
      * @param notice
      * @return
      */
@@ -138,9 +139,8 @@ public class NoticeService {
         return new NoticeResult(NoticeCode.CMS_NAME_REPETITION, null);
     }
 
-
     /**
-     * 通过ID查询医废收集
+     * 通过ID查询公告
      * @param id
      * @return
      */
@@ -155,10 +155,8 @@ public class NoticeService {
         return new NoticeResult(NoticeCode.CMS_GET_ISNULL, null);
     }
 
-
-
     /**
-     * 通过id修改医废收集
+     * 通过id修改公告
      * @param id
      * @return
      */
@@ -188,7 +186,7 @@ public class NoticeService {
     }
 
     /**
-     * 通过id删除医废收集
+     * 通过id删除公告
      * @param id
      * @return
      */
@@ -207,4 +205,28 @@ public class NoticeService {
         //返回失败
         return new NoticeResult(NoticeCode.CMS_GET_ISNULL, null);
     }
+
+    /**
+     * 通过id修改发布状态
+     * @param id
+     * @return
+     */
+    @Transactional
+    public NoticeResult editStatus(String id,Integer status) {
+        if (noticeDao.get(id) != null && status != null) {
+            Notice one = noticeDao.get(id);
+            one.setStatus(status);
+            int update = noticeDao.editStatus(one);
+            if (update > 0) {
+                //返回成功
+                return new NoticeResult(CommonCode.SUCCESS, one);
+            } else {
+                //自定义异常处理
+                ExceptionCast.cast(NoticeCode.CMS_EDITSTATUS_FALSE);
+            }
+        }
+        //返回失败
+        return new NoticeResult(NoticeCode.CMS_GET_ISNULL, null);
+    }
+
 }

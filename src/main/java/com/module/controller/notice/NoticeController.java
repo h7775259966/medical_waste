@@ -93,4 +93,18 @@ public class NoticeController implements NoticeControllerApi {
 
         return noticeService.delete(id);
     }
+
+    /**
+     * 通过id修改发布状态
+     * @param id
+     * @param status
+     * @return
+     */
+    @Override
+    @PutMapping(value="/editStatus/{id}/{status}")
+    public NoticeResult editStatus(@PathVariable("id") String id, @PathVariable("status") Integer status) {
+
+        return noticeService.editStatus(id,status);
+    }
+
 }

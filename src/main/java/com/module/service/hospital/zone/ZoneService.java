@@ -87,7 +87,7 @@ public class ZoneService {
             one.setCityId(zone.getCityId());
             one.setArea(zone.getArea());
             one.setPrincipal(zone.getPrincipal());
-            one.setGrade(zone.getGrade());
+            one.setGrade("3");//等级 1为省,2为市,3为区县
             one.setLatitude(zone.getLatitude());
             one.setLongitude(zone.getLongitude());
             one.setRemarks(zone.getRemarks());
@@ -135,7 +135,7 @@ public class ZoneService {
             one.setCityId(zone.getCityId());
             one.setArea(zone.getArea());
             one.setPrincipal(zone.getPrincipal());
-            one.setGrade(zone.getGrade());
+            //one.setGrade(zone.getGrade());默认等级无法修改
             one.setLatitude(zone.getLatitude());
             one.setLongitude(zone.getLongitude());
             one.setRemarks(zone.getRemarks());

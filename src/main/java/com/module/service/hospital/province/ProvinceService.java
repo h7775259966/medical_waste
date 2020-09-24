@@ -85,7 +85,7 @@ public class ProvinceService {
             one.setProvinceNumber(province.getProvinceNumber());
             one.setArea(province.getArea());
             one.setPrincipal(province.getPrincipal());
-            one.setGrade(province.getGrade());
+            one.setGrade("1");//等级 1为省,2为市,3为区县
             one.setLatitude(province.getLatitude());
             one.setLongitude(province.getLongitude());
             one.setRemarks(province.getRemarks());
@@ -131,7 +131,7 @@ public class ProvinceService {
             one.setProvinceNumber(province.getProvinceNumber());
             one.setArea(province.getArea());
             one.setPrincipal(province.getPrincipal());
-            one.setGrade(province.getGrade());
+            //one.setGrade(province.getGrade());默认等级无法修改
             one.setLatitude(province.getLatitude());
             one.setLongitude(province.getLongitude());
             one.setRemarks(province.getRemarks());

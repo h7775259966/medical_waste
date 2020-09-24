@@ -101,6 +101,13 @@
 		WHERE noticeWriteId = #{noticeWriteId}
 	</update>
 
+	<!--通过id修改用户状态-->
+	<update id="editStatus">
+		UPDATE t_notice_write SET
+		status = #{status}
+		WHERE noticeWriteId = #{noticeWriteId}
+	</update>
+
     <!--物理删除-->
     <update id="delete">
 		DELETE FROM t_notice_write

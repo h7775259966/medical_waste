@@ -88,7 +88,6 @@
 		UPDATE t_province SET
 			provinceName = #{provinceName},
 			provinceNumber = #{provinceNumber},
-			grade = #{grade},
 			area = #{area},
 			principal = #{principal},
 			longitude = #{longitude},

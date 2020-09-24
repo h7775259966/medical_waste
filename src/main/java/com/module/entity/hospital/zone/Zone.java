@@ -21,7 +21,7 @@ public class Zone {
     private String provinceId;        //所属省级单位id
     private String cityId;        //所属市级单位id
     private String area;        //所在地
-    private String grade;       //等级(省区县区医院)
+    private String grade;       //等级 1为省,2为市,3为区县
     private String principal;       //区县级单位负责人
     private String longitude;     //经度
     private String latitude;      //纬度

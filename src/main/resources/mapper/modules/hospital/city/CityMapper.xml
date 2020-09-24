@@ -92,7 +92,6 @@
 			cityName = #{cityName},
 			cityNumber = #{cityNumber},
 			provinceId = #{provinceId},
-			grade = #{grade},
 			area = #{area},
 			principal = #{principal},
 			longitude = #{longitude},

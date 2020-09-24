@@ -16,7 +16,7 @@ import java.util.Date;
 public class Hospital {
 
     private String hospitalId;        // 医院id
-    private String hospitalName;        // 部门名称
+    private String hospitalName;        //医院名称
     private String hospitalNumber;      //医院编号
     private String grade;       //医院等级
     private String bedNumber;       //床位数

@@ -46,7 +46,7 @@ public interface UserControllerApi {
     @ApiOperation("通过id修改用户状态")
     @ApiImplicitParams({
             @ApiImplicitParam(name="id",value = "用户id",required=true,paramType="path",dataType="String"),
-            @ApiImplicitParam(name="status",value = "启用状态",required=true,paramType="path",dataType="String")})
+            @ApiImplicitParam(name="status",value = "启用状态",required=true,paramType="path",dataType="Integer")})
     public UserResult editStatus(String id, Integer status);
 
     @ApiOperation("给用户分配角色")

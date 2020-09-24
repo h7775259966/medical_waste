@@ -96,7 +96,6 @@
 			zoneNumber = #{zoneNumber},
 			provinceId = #{provinceId},
 			cityId = #{cityId},
-			grade = #{grade},
 			area = #{area},
 			principal = #{principal},
 			longitude = #{longitude},

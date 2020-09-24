@@ -86,7 +86,7 @@ public class CityService {
             one.setProvinceId(city.getProvinceId());
             one.setArea(city.getArea());
             one.setPrincipal(city.getPrincipal());
-            one.setGrade(city.getGrade());
+            one.setGrade("2");//等级 1为省,2为市,3为区县
             one.setLatitude(city.getLatitude());
             one.setLongitude(city.getLongitude());
             one.setRemarks(city.getRemarks());
@@ -133,7 +133,7 @@ public class CityService {
             one.setProvinceId(city.getProvinceId());
             one.setArea(city.getArea());
             one.setPrincipal(city.getPrincipal());
-            one.setGrade(city.getGrade());
+            //one.setGrade(city.getGrade());等级默认无法修改
             one.setLatitude(city.getLatitude());
             one.setLongitude(city.getLongitude());
             one.setRemarks(city.getRemarks());
