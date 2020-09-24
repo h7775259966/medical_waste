@@ -1,5 +1,6 @@
 package com.module.entity.system.role;
 
+import com.module.entity.system.permission.PermissionAll;
 import lombok.Data;
 import lombok.ToString;
 

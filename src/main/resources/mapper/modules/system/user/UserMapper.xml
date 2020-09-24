@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.dao.system.user.UserDao">
+
+    
+	<sql id="userColumns">
+		a.id AS "id",
+		a.userName AS "userName",
+		a.passWord AS "passWord",
+		a.status AS "status",
+		a.mobile AS "mobile",
+		a.email AS "email",
+		a.nickName AS "nickName",
+		a.unitId AS "unitId",
+		a.grade AS "grade",
+		a.remarks AS "remarks",
+		a.createDate AS "createDate"
+	</sql>
+
+	<!--查询单条数据-->
+	<select id="get" resultType="User">
+		SELECT 
+			<include refid="userColumns"/>
+		FROM pe_user a
+		WHERE a.id = #{id}
+	</select>
+
+	<!--通过查询条件查询所有数据-->
+	<select id="findListByRequest" resultType="User">
+		SELECT
+		<include refid="userColumns"/>
+		FROM pe_user a
+		<where>
+			<if test="userName != null and userName != ''">
+				AND a.userName like concat('%',#{userName},'%')
+			</if>
+			<if test="unitId != null and unitId != ''">
+				AND a.unitId = #{unitId}
+			</if>
+			<if test="grade != null and grade != ''">
+				AND a.grade = #{grade}
+			</if>
+		</where>
+		ORDER BY a.createDate DESC
+	</select>
+
+	<!--根据名称查询-->
+	<select id="getByName" resultType="User">
+		SELECT
+		<include refid="userColumns"/>
+		FROM pe_user a
+		WHERE a.userName = #{value}
+	</select>
+
+	<!--查询所有-->
+	<select id="findList" resultType="User">
+		SELECT 
+			<include refid="userColumns"/>
+		FROM pe_user a ORDER BY a.createDate DESC
+	</select>
+
+	<!--插入-->
+	<insert id="insert">
+		INSERT INTO pe_user(
+			id,
+			userName,
+			passWord,
+			status,
+			mobile,
+			email,
+			nickName,
+			unitId,
+			grade,
+			createDate,
+			remarks
+		) VALUES (
+			#{id},
+			#{userName},
+			#{passWord},
+			#{status},
+			#{mobile},
+			#{email},
+			#{nickName},
+			#{unitId},
+			#{grade},
+			#{createDate},
+			#{remarks}
+		)
+	</insert>
+
+	<!--修改(安全考虑，用户名和状态状态无法修改)-->
+	<update id="update">
+		UPDATE pe_user SET
+			passWord = #{passWord},
+			mobile = #{mobile},
+			email = #{email},
+			nickName = #{nickName},
+			unitId = #{unitId},
+			grade = #{grade},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+
+	<!--通过id修改用户状态-->
+	<update id="editStatus">
+		UPDATE pe_user SET
+		status = #{status}
+		WHERE id = #{id}
+	</update>
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM pe_user
+		WHERE id = #{id}
+	</update>
+
+</mapper>

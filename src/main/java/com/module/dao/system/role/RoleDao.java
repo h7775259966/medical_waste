@@ -2,9 +2,7 @@ package com.module.dao.system.role;
 
 import com.common.CrudDao.CrudDao;
 import com.module.entity.system.role.Role;
-import com.module.entity.system.role.User;
 import com.common.Request.system.role.RoleRequest;
-import com.common.Request.system.role.UserRequest;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

@@ -2,7 +2,7 @@ package com.common.Interceptor;
 
 import com.common.Utils.JwtUtils;
 import com.common.Exception.ExceptionCast;
-import com.common.Response.system.role.UserCode;
+import com.common.Response.system.user.UserCode;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

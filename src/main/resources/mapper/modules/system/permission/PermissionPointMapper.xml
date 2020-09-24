@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.dao.system.permission.PermissionPointDao">
+
+
+	<sql id="roleColumns">
+		a.id AS "id",
+		a.pointClass AS "pointClass",
+		a.pointIcon AS "pointIcon",
+		a.pointStatus AS "pointStatus"
+	</sql>
+
+	<!--查询单条数据-->
+	<select id="get" resultType="PermissionPoint">
+		SELECT
+		<include refid="roleColumns"/>
+		FROM pe_permission_point a
+		WHERE a.id = #{id}
+	</select>
+
+	<!--查询所有-->
+	<select id="findList" resultType="PermissionPoint">
+		SELECT
+		<include refid="roleColumns"/>
+		FROM pe_permission_point a
+	</select>
+
+	<!--插入-->
+	<insert id="insert">
+		INSERT INTO pe_permission_point(
+		id,
+		pointClass,
+		pointIcon,
+		pointStatus
+		) VALUES (
+		#{id},
+		#{pointClass},
+		#{pointIcon},
+		#{pointStatus}
+		)
+	</insert>
+
+	<!--修改-->
+	<update id="update">
+		UPDATE pe_permission_point SET
+		pointClass = #{pointClass},
+		pointIcon = #{pointIcon},
+		pointStatus = #{pointStatus}
+		WHERE id = #{id}
+	</update>
+
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM pe_permission_point
+		WHERE id = #{id}
+	</update>
+
+</mapper>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.dao.system.permission.PermissionDao">
+
+    
+	<sql id="roleColumns">
+		a.id AS "id",
+		a.name AS "name",
+		a.type AS "type",
+		a.code AS "code",
+		a.pid AS "pid",
+		a.enVisible AS "enVisible",
+		a.remarks AS "remarks",
+		a.createDate AS "createDate"
+	</sql>
+
+	<!--查询单条数据-->
+	<select id="get" resultType="Permission">
+		SELECT 
+			<include refid="roleColumns"/>
+		FROM pe_permission a
+		WHERE a.id = #{id}
+	</select>
+
+	<!--通过查询条件查询所有数据-->
+	<select id="findListByRequest" resultType="Permission">
+		SELECT
+		<include refid="roleColumns"/>
+		FROM pe_permission a
+		<where>
+			<if test="type != null and type != ''">
+				AND a.type = #{type}
+			</if>
+			<if test="pid != null and pid != ''">
+				AND a.pid = #{pid}
+			</if>
+			<if test="enVisible != null and enVisible != ''">
+				AND a.enVisible = #{enVisible}
+			</if>
+		</where>
+		ORDER BY a.createDate DESC
+	</select>
+
+	<!--根据名称查询-->
+	<select id="getByName" resultType="Permission">
+		SELECT
+		<include refid="roleColumns"/>
+		FROM pe_permission a
+		WHERE a.name = #{value}
+	</select>
+
+	<!--查询所有-->
+	<select id="findList" resultType="Permission">
+		SELECT 
+			<include refid="roleColumns"/>
+		FROM pe_permission a ORDER BY a.createDate DESC
+	</select>
+
+	<!--插入-->
+	<insert id="insert">
+		INSERT INTO pe_permission(
+			id,
+			name,
+			type,
+			code,
+			pid,
+			enVisible,
+			createDate,
+			remarks
+		) VALUES (
+			#{id},
+			#{name},
+			#{type},
+			#{code},
+			#{pid},
+			#{enVisible},
+			#{createDate},
+			#{remarks}
+		)
+	</insert>
+
+	<!--修改-->
+	<update id="update">
+		UPDATE pe_permission SET
+			name = #{name},
+			type = #{type},
+			code = #{code},
+			pid = #{pid},
+			enVisible = #{enVisible},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM pe_permission
+		WHERE id = #{id}
+	</update>
+
+	<!--通过类型和父级id查询相关权限数据-->
+	<select id="findByTypeAndPid" resultType="Permission">
+		SELECT
+		<include refid="roleColumns"/>
+		FROM pe_permission a
+		where a.type = #{0} AND a.pid = #{1}
+		ORDER BY a.createDate DESC
+	</select>
+</mapper>

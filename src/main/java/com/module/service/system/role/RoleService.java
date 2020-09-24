@@ -1,8 +1,10 @@
 package com.module.service.system.role;
 
 import com.common.Utils.PermissionConstants;
-import com.module.dao.system.role.PermissionDao;
+import com.module.dao.system.permission.PermissionDao;
 import com.module.dao.system.role.RoleAndPermissionDao;
+import com.module.entity.system.permission.Permission;
+import com.module.entity.system.permission.PermissionAll;
 import com.module.entity.system.role.*;
 import com.common.Request.system.role.RoleAndPermissionRequest;
 import com.common.Response.system.role.RoleResult;
@@ -17,6 +19,7 @@ import com.common.Exception.ExceptionCast;
 import com.module.dao.system.role.RoleDao;
 import com.common.Request.system.role.RoleRequest;
 import com.common.Response.system.role.RoleCode;
+import com.module.service.system.permission.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
