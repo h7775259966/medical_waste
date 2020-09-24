@@ -1,5 +1,6 @@
 package com.module.controller.system.user;
 
+import com.common.Response.MapResult;
 import com.common.Response.QueryResponseResult;
 import com.common.Response.ResponseResult;
 import com.common.Response.system.user.UserCode;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * 用户Controller
@@ -67,7 +69,7 @@ public class UserController implements UserControllerApi {
 	 */
 	@Override
 	@GetMapping(value="/get/{id}",name="api-user-get")
-	public UserResult findById(@PathVariable("id") String id) {
+	public MapResult findById(@PathVariable("id") String id) {
 
 		return userService.findById(id);
 	}
@@ -143,17 +145,18 @@ public class UserController implements UserControllerApi {
 	 * @param request
 	 * @return
 	 */
+	@Override
 	@PostMapping(value="/profile")
-	public UserResult profile(HttpServletRequest request){
+	public MapResult profile(HttpServletRequest request){
 		String authorization = request.getHeader("Authorization");
 		if(!StringUtils.isEmpty(authorization) && authorization.startsWith("Bearer")) {
 			String token = authorization.replace("Bearer ","");
 			Claims claims = jwtUtils.parseJwt(token);
 			if(claims != null) {
-				User user= userService.profile(claims.getId());
-				return new UserResult(UserCode.CMS_PRFILE_TRUE,user);
+				Map<String, Object> map= userService.profile(claims.getId());
+				return new MapResult(UserCode.CMS_PRFILE_TRUE,map);
 			}
 		}
-		return new UserResult(UserCode.CMS_PRFILE_FALSE, null);
+		return new MapResult(UserCode.CMS_PRFILE_FALSE, null);
 	}
 }

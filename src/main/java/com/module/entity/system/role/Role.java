@@ -24,5 +24,4 @@ public class Role {
     private String remarks;		//备注
     private Date createDate;		//创建时间
 
-    private List<PermissionAll> permissionAllList;      //此角色下所分配的所有权限，用于给前端展示
 }

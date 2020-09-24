@@ -120,20 +120,23 @@ public class UserService {
      * @param id
      * @return
      */
-    public UserResult findById(String id) {
+    @Transactional
+    public MapResult findById(String id) {
         if (userDao.get(id) != null) {
+            Map<String,Object> map = new HashMap<>();
             User user = userDao.get(id);
+            map.put("user",user);
             List<Role> roleList = findRoleByUserId(id);
             if(roleList.size()>0){
-                user.setRoleList(roleList);
+                map.put("roleList",roleList);
             }
             String newpassword = CryptoUtil.decode(key,user.getPassWord());
             user.setPassWord(newpassword);
             //返回成功
-            return new UserResult(CommonCode.SUCCESS, user);
+            return new MapResult(CommonCode.SUCCESS, map);
         }
         //返回失败
-        return new UserResult(UserCode.CMS_GET_ISNULL, null);
+        return new MapResult(UserCode.CMS_GET_ISNULL, null);
     }
 
     /**
@@ -141,6 +144,7 @@ public class UserService {
      * @param id
      * @return
      */
+    @Transactional
     public List<Role> findRoleByUserId(String id){
         List<UserAndRole> list = userAndRoleDao.getByUserId(id);
         List<Role> roleList = new ArrayList<Role>();
@@ -159,6 +163,7 @@ public class UserService {
      * @param id
      * @return
      */
+    @Transactional
     public List<PermissionAll> findPermissionAllByUserId(String id){
         List<PermissionAll> list = new ArrayList<>();
         List<Role> roleList = findRoleByUserId(id);
@@ -289,44 +294,50 @@ public class UserService {
     public LoginResult login(LoginRequest loginRequest) {
         if (userDao.getByName(loginRequest.getUserName()) != null) {
             User user = userDao.getByName(loginRequest.getUserName());
-            String password = CryptoUtil.encode(key, loginRequest.getPassWord());
-            if(!user.getPassWord().equals(password)) {
-                //密码认证失败
-                return new LoginResult(UserCode.CMS_LOGIN_FALSE,null);
-            }else{
-                //密码认证成功
-                //查询此用户下所有角色的api权限
-                StringBuilder apis = new StringBuilder();
-                List<PermissionAll> PermissionAllList = findPermissionAllByUserId(user.getId());
-                if (PermissionAllList.size()>0){
-                    for (int j = 0; j <PermissionAllList.size(); j++) {
-                        PermissionAll permissionAll = PermissionAllList.get(j);
-                        if (permissionAll.getType() == PermissionConstants.PERMISSION_API){
-                            //将此用户下所有api权限拼接后存入token,用于调用其他接口时的api鉴权校验
-                            apis.append(permissionAll.getCode()).append(",");
+            if (user.getStatus() != 0) {
+                String password = CryptoUtil.encode(key, loginRequest.getPassWord());
+                if(!user.getPassWord().equals(password)) {
+                    //密码认证失败
+                    return new LoginResult(UserCode.CMS_LOGIN_FALSE,null);
+                }else{
+                    //密码认证成功
+                    //查询此用户下所有角色的api权限
+                    StringBuilder apis = new StringBuilder();
+                    List<PermissionAll> PermissionAllList = findPermissionAllByUserId(user.getId());
+                    if (PermissionAllList.size()>0){
+                        for (int j = 0; j <PermissionAllList.size(); j++) {
+                            PermissionAll permissionAll = PermissionAllList.get(j);
+                            if (permissionAll.getType() == PermissionConstants.PERMISSION_API){
+                                //将此用户下所有api权限拼接后存入token,用于调用其他接口时的api鉴权校验
+                                apis.append(permissionAll.getCode()).append(",");
+                            }
                         }
                     }
+                    Map<String,Object> map = new HashMap<>();
+                    map.put("apis",apis.toString());//可访问的api权限字符串
+                    map.put("userId",user.getId());
+                    map.put("unitId",user.getUnitId());
+                    map.put("grade",user.getGrade());
+                    String token = jwtUtils.createJwt(user.getId(), user.getUserName(), map);
+                    return new LoginResult(UserCode.CMS_LOGIN_TRUE,token);
                 }
-                Map<String,Object> map = new HashMap<>();
-                map.put("apis",apis.toString());//可访问的api权限字符串
-                map.put("userId",user.getId());
-                map.put("unitId",user.getUnitId());
-                map.put("grade",user.getGrade());
-                String token = jwtUtils.createJwt(user.getId(), user.getUserName(), map);
-                return new LoginResult(UserCode.CMS_LOGIN_TRUE,token);
+            }else{
+                return new LoginResult(UserCode.CMS_LOGIN_NO,null);
             }
         }
         return new LoginResult(UserCode.CMS_LOGIN_FALSE,null);
     }
 
     /**
-     * 获取用户信息和所有权限标识
+     * 通过用户id获取用户的所有权限标识
      * @param id
      * @return
      */
     @Transactional
-    public User profile(String id){
+    public Map<String, Object> profile(String id){
+        Map<String,Object> map = new HashMap<>();
         User user = userDao.get(id);
+        map.put("user",user);
         List<PermissionAll> PermissionAllList = findPermissionAllByUserId(id);
         Map<String, Object> codeList = new HashMap<>();
         Set<String> menus = new HashSet<>();
@@ -348,7 +359,7 @@ public class UserService {
         codeList.put("menus", menus);
         codeList.put("points", points);
         codeList.put("apis", apis);
-        user.setCodeList(codeList);
-        return user;
+        map.put("codeList",codeList);
+        return map;
     }
 }

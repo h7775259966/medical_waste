@@ -1,5 +1,6 @@
 package com.module.service.system.role;
 
+import com.common.Response.*;
 import com.common.Utils.PermissionConstants;
 import com.module.dao.system.permission.PermissionDao;
 import com.module.dao.system.role.RoleAndPermissionDao;
@@ -8,10 +9,6 @@ import com.module.entity.system.permission.PermissionAll;
 import com.module.entity.system.role.*;
 import com.common.Request.system.role.RoleAndPermissionRequest;
 import com.common.Response.system.role.RoleResult;
-import com.common.Response.CommonCode;
-import com.common.Response.QueryResponseResult;
-import com.common.Response.QueryResult;
-import com.common.Response.ResponseResult;
 import com.common.Utils.IdGen;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -19,14 +16,13 @@ import com.common.Exception.ExceptionCast;
 import com.module.dao.system.role.RoleDao;
 import com.common.Request.system.role.RoleRequest;
 import com.common.Response.system.role.RoleCode;
+import com.module.entity.system.user.User;
 import com.module.service.system.permission.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  *角色Service
@@ -121,18 +117,20 @@ public class RoleService {
      * @param id
      * @return
      */
-    public RoleResult findById(String id) {
+    public MapResult findById(String id) {
         if (roleDao.get(id) != null) {
+            Map<String,Object> map = new HashMap<>();
             Role role = roleDao.get(id);
+            map.put("role",role);
             List<PermissionAll> permissionAllList = findPermissionAllByRoleId(id);
             if(permissionAllList.size()>0){
-                role.setPermissionAllList(permissionAllList);
+                map.put("permissionAllList",permissionAllList);
             }
             //返回成功
-            return new RoleResult(CommonCode.SUCCESS, role);
+            return new MapResult(CommonCode.SUCCESS, map);
         }
         //返回失败
-        return new RoleResult(RoleCode.CMS_GET_ISNULL, null);
+        return new MapResult(RoleCode.CMS_GET_ISNULL, null);
     }
 
     /**

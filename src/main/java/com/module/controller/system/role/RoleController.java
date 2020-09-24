@@ -1,5 +1,6 @@
 package com.module.controller.system.role;
 
+import com.common.Response.MapResult;
 import com.common.Response.QueryResponseResult;
 import com.common.Response.ResponseResult;
 import com.module.entity.system.role.Role;
@@ -67,7 +68,7 @@ public class RoleController implements RoleControllerApi{
 	 */
 	@Override
 	@GetMapping("/get/{id}")
-	public RoleResult findById(@PathVariable("id") String id) {
+	public MapResult findById(@PathVariable("id") String id) {
 
 		return roleService.findById(id);
 	}

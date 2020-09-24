@@ -1,5 +1,6 @@
 package com.module.controller.system.role;
 
+import com.common.Response.MapResult;
 import com.common.Response.QueryResponseResult;
 import com.common.Response.ResponseResult;
 import com.module.entity.system.role.Role;
@@ -32,7 +33,7 @@ public interface RoleControllerApi {
 
     @ApiOperation("通过id查询角色")
     @ApiImplicitParams({@ApiImplicitParam(name="id",value = "角色id",required=true,paramType="path",dataType="String") })
-    public RoleResult findById(String id);
+    public MapResult findById(String id);
 
     @ApiOperation("通过id修改角色")
     public RoleResult edit(String id, Role role);

@@ -1,5 +1,6 @@
 package com.module.controller.system.user;
 
+import com.common.Response.MapResult;
 import com.common.Response.QueryResponseResult;
 import com.common.Response.ResponseResult;
 import com.module.entity.system.user.User;
@@ -12,6 +13,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by Zhouxin on 2020/8/24;
@@ -31,7 +34,7 @@ public interface UserControllerApi {
 
     @ApiOperation("通过id查询用户")
     @ApiImplicitParams({@ApiImplicitParam(name="id",value = "用户id",required=true,paramType="path",dataType="String") })
-    public UserResult findById(String id);
+    public MapResult findById(String id);
 
     @ApiOperation("通过id修改用户")
     public UserResult edit(String id, User user);
@@ -51,4 +54,7 @@ public interface UserControllerApi {
 
     @ApiOperation("用户登录,认证后返回token")
     public LoginResult login(LoginRequest loginRequest) ;
+
+    @ApiOperation("登录成功后，根据token获取用户信息和所有权限标识")
+    public MapResult profile(HttpServletRequest request) ;
 }
