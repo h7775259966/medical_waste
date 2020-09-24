@@ -84,6 +84,7 @@ public class TrashPutService {
             one.setCode(trashPut.getCode());
             one.setTrashId(trashPut.getTrashId());
             one.setPackets(trashPut.getPackets());
+            one.setRecycle(trashPut.getRecycle());
             one.setCollectId(trashPut.getCollectId());
             one.setCollectTime(trashPut.getCollectTime());
             one.setCollectNumber(trashPut.getCollectNumber());
@@ -139,6 +140,7 @@ public class TrashPutService {
             one.setCode(trashPut.getCode());
             one.setTrashId(trashPut.getTrashId());
             one.setPackets(trashPut.getPackets());
+            one.setRecycle(trashPut.getRecycle());
             one.setCollectId(trashPut.getCollectId());
             one.setCollectTime(trashPut.getCollectTime());
             one.setCollectNumber(trashPut.getCollectNumber());

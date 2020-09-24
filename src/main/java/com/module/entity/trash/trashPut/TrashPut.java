@@ -18,6 +18,7 @@ public class TrashPut {
             private String code; //条形编码
             private String trashId; //废物类型ID
             private String Packets; //医废包数
+            private String recycle;  //回收人员
             private String collectId; //移交人员
             private Date collectTime; //收集时间
             private String collectNumber;//回收趟次
