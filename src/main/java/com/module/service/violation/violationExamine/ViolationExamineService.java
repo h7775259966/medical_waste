@@ -8,11 +8,13 @@ import com.common.Utils.IdGen;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.common.Exception.ExceptionCast;
+import com.module.dao.violation.violationExamine.ViolationExamineAndStandardDao;
 import com.module.dao.violation.violationExamine.ViolationExamineDao;
 import com.module.entity.violation.violationExamine.ViolationExamine;
 import com.common.Request.violation.violationExamine.ViolationExamineRequest;
 import com.common.Response.violation.violationExamine.ViolationExamineCode;
 import com.common.Response.violation.violationExamine.ViolationExamineResult;
+import com.module.entity.violation.violationExamine.ViolationExamineAndStandard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +33,9 @@ public class ViolationExamineService {
     @Autowired
     private ViolationExamineDao violationExamineDao;
 
+    @Autowired
+    private ViolationExamineAndStandardDao violationExamineAndStandardDao;
+
     public QueryResponseResult findList(int page, int size, ViolationExamineRequest violationExamineRequest) {
         //为防止后面报空指针，先进行查询条件的非空判断
         if (violationExamineRequest == null) {
@@ -45,17 +50,8 @@ public class ViolationExamineService {
         }
         //分页处理
         PageHelper.startPage(page,size);
-        //注意：如果violationExamineRequest内参数不为空，则进行带值查询
-        //violationExamineDao.findList()为没有任何查询条件的分页查询
         List<ViolationExamine> list = violationExamineDao.findList();
         PageInfo<ViolationExamine> pageInfo = new PageInfo<ViolationExamine>(list);
-
-        /*System.out.println("总数量：" + pageInfo.getTotal());
-        System.out.println("当前页查询记录：" + pageInfo.getList().size());
-        System.out.println("当前页码：" + pageInfo.getPageNum());
-        System.out.println("每页显示数量：" + pageInfo.getPageSize());
-        System.out.println("总页：" + pageInfo.getPages());*/
-
         //封装结果
         QueryResult queryResult = new QueryResult();
         queryResult.setList(list);//数据列表
@@ -72,9 +68,9 @@ public class ViolationExamineService {
      */
     @Transactional
     public ViolationExamineResult add(ViolationExamine violationExamine) {
-
+        String ViolationExamineId = IdGen.uuid();
         ViolationExamine one = new ViolationExamine();
-        one.setViolationExamineId(IdGen.uuid());
+        one.setViolationExamineId(ViolationExamineId);
         one.setCreateDate(new Date());
         one.setHospitalId(violationExamine.getHospitalId());
         one.setWriteTime(violationExamine.getWriteTime());
@@ -85,7 +81,8 @@ public class ViolationExamineService {
         one.setAbarbeitungTime(violationExamine.getAbarbeitungTime());
         one.setViolationTime(violationExamine.getViolationTime());
         int insert = violationExamineDao.insert(one);
-        if (insert > 0) {
+        if (insert > 0 ) {
+            saveViolationStandardIdList(ViolationExamineId, violationExamine.getViolationStandardIdList());
             //返回成功
             return new ViolationExamineResult(CommonCode.SUCCESS, one);
         } else {
@@ -98,7 +95,30 @@ public class ViolationExamineService {
     }
 
     /**
-     * 通过ID查询违规检查
+     * 根据违规检查id保存分配的所有违规标准
+     * @param ViolationExamineId
+     * @param violationStandardIdList
+     * @return
+     */
+    public int saveViolationStandardIdList(String ViolationExamineId, List<String> violationStandardIdList){
+        int result = 0;
+        if (violationStandardIdList.size()>0){
+            for (int i = 0; i <violationStandardIdList.size(); i++) {
+                ViolationExamineAndStandard violationExamineAndStandard = new ViolationExamineAndStandard();
+                violationExamineAndStandard.setId(IdGen.uuid());
+                violationExamineAndStandard.setViolationExamineId(ViolationExamineId);
+                violationExamineAndStandard.setViolationStandardId(violationStandardIdList.get(i));
+                violationExamineAndStandard.setCreateDate(new Date());
+                int insert = violationExamineAndStandardDao.insert(violationExamineAndStandard);
+                result = result + insert;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 通过id查询违规检查
+     * (同时查询出此违规检查下的所有违规标准)
      * @param id
      * @return
      */
@@ -132,6 +152,8 @@ public class ViolationExamineService {
             one.setViolationTime(violationExamine.getViolationTime());
             int update = violationExamineDao.update(one);
             if (update > 0) {
+                violationExamineAndStandardDao.deleteByViolationExamineId(id);
+                saveViolationStandardIdList(id,violationExamine.getViolationStandardIdList());
                 //返回成功
                 return new ViolationExamineResult(CommonCode.SUCCESS, one);
             } else {
@@ -153,6 +175,7 @@ public class ViolationExamineService {
         if (violationExamineDao.get(id) != null) {
             int delete = violationExamineDao.delete(id);
             if (delete > 0) {
+                violationExamineAndStandardDao.deleteByViolationExamineId(id);
                 //返回成功
                 return new ResponseResult(CommonCode.SUCCESS);
             } else {

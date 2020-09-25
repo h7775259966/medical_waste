@@ -64,6 +64,7 @@ public class UserController implements UserControllerApi {
 
 	/**
 	 * 通过id查询用户
+	 * (同时查询出此用户下分配的角色)
 	 * @param id
 	 * @return
 	 */

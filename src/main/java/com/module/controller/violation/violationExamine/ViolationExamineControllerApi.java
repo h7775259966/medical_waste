@@ -1,5 +1,6 @@
 package com.module.controller.violation.violationExamine;
 
+import com.common.Response.MapResult;
 import com.common.Response.QueryResponseResult;
 import com.common.Response.ResponseResult;
 import com.module.entity.violation.violationExamine.ViolationExamine;
@@ -28,7 +29,7 @@ public interface ViolationExamineControllerApi {
 
     @ApiOperation("通过id查询违规检查")
     @ApiImplicitParams({@ApiImplicitParam(name="id",value = "违规检查id",required=true,paramType="path",dataType="String") })
-    public ViolationExamineResult findById(String id);
+    public MapResult findById(String id);
 
     @ApiOperation("通过id修改违规检查")
     public ViolationExamineResult edit(String id, ViolationExamine violationExamine);

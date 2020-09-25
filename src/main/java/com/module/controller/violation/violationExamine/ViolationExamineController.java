@@ -1,5 +1,6 @@
 package com.module.controller.violation.violationExamine;
 
+import com.common.Response.MapResult;
 import com.common.Response.QueryResponseResult;
 import com.common.Response.ResponseResult;
 import com.module.entity.violation.violationExamine.ViolationExamine;
@@ -49,12 +50,13 @@ public class ViolationExamineController implements ViolationExamineControllerApi
 
     /**
      * 通过id查询违规检查
+     *(同时查询出此违规检查下的所有违规标准)
      * @param id
      * @return
      */
     @Override
     @GetMapping("/get/{id}")
-    public ViolationExamineResult findById(@PathVariable("id") String id) {
+    public MapResult findById(@PathVariable("id") String id) {
 
         return violationExamineService.findById(id);
     }

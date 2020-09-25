@@ -25,5 +25,5 @@ public class ViolationExamine {
     private int abarbeitungTime; // 整改时限
     private Date violationTime; // 违规时间
 
-    List<ViolationStandard> violationStandardIdList; //关联选中的违规标准
+    List<String> violationStandardIdList; //违规标准id集合
 }

@@ -63,6 +63,7 @@ public class RoleController implements RoleControllerApi{
 
 	/**
 	 * 通过id查询角色
+	 * (同时查询出此角色下分配的权限)
 	 * @param id
 	 * @return
 	 */
