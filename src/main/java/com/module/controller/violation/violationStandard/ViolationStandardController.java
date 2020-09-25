@@ -5,7 +5,7 @@ import com.common.Response.ResponseResult;
 import com.module.entity.violation.violationStandard.ViolationStandard;
 import com.common.Request.violation.violationStandard.ViolationStandardRequest;
 import com.common.Response.violation.violationStandard.ViolationStandardResult;
-import com.module.service.violationStandard.ViolationStandardService;
+import com.module.service.violation.violationStandard.ViolationStandardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +34,17 @@ public class ViolationStandardController implements ViolationStandardControllerA
         return violationStandardService.findList(page,size, violationStandardRequest);
     }
 
+    /**
+     * 查询所有违规标准
+     * @param
+     * @return
+     */
+    @Override
+    @GetMapping("/all")
+    public QueryResponseResult all() {
+
+        return violationStandardService.all();
+    }
 
     /**
      * 添加违规标准

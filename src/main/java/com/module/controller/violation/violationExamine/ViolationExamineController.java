@@ -5,7 +5,7 @@ import com.common.Response.ResponseResult;
 import com.module.entity.violation.violationExamine.ViolationExamine;
 import com.common.Request.violation.violationExamine.ViolationExamineRequest;
 import com.common.Response.violation.violationExamine.ViolationExamineResult;
-import com.module.service.violationExamine.ViolationExamineService;
+import com.module.service.violation.violationExamine.ViolationExamineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

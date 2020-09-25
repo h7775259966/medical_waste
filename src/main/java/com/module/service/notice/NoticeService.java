@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -123,7 +124,6 @@ public class NoticeService {
             one.setWriter(notice.getWriter());
             one.setContent(notice.getContent());
             one.setUnit(notice.getUnit());
-            one.setWriteTime(notice.getWriteTime());
             one.setStatus(notice.getStatus());
             one.setPicture(notice.getPicture());
             int insert = noticeDao.insert(one);
@@ -216,6 +216,12 @@ public class NoticeService {
         if (noticeDao.get(id) != null && status != null) {
             Notice one = noticeDao.get(id);
             one.setStatus(status);
+            if(status==0){
+                //取消发布
+                one.setWriteTime(null);
+            }else{//发布
+                one.setWriteTime(new Date());
+            }
             int update = noticeDao.editStatus(one);
             if (update > 0) {
                 //返回成功

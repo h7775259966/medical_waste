@@ -40,4 +40,7 @@ public interface ZoneControllerApi {
     @ApiImplicitParams({@ApiImplicitParam(name="id",value = "区县级单位id",required=true,paramType="path",dataType="String") })
     public ResponseResult delete(String id);
 
+    @ApiOperation("通过市级id查询所属区县级")
+    @ApiImplicitParams({@ApiImplicitParam(name="CityId",value = "市级id",required=true,paramType="path",dataType="String") })
+    public QueryResponseResult findByCityId(String CityId);
 }

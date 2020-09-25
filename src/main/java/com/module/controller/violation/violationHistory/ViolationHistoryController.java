@@ -1,11 +1,8 @@
 package com.module.controller.violation.violationHistory;
 
 import com.common.Response.QueryResponseResult;
-import com.common.Request.violation.violationExamine.ViolationExamineRequest;
 import com.common.Request.violation.violationHistory.ViolationHistoryRequest;
-import com.module.service.violationExamine.ViolationExamineService;
-import com.module.service.violationHistory.ViolationHistoryService;
-import io.swagger.annotations.Api;
+import com.module.service.violation.violationHistory.ViolationHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -1,6 +1,7 @@
 package com.module.dao.hospital.zone;
 
 import com.common.CrudDao.CrudDao;
+import com.module.entity.hospital.city.City;
 import com.module.entity.hospital.zone.Zone;
 import com.common.Request.hospital.zone.ZoneRequest;
 import org.apache.ibatis.annotations.Mapper;
@@ -23,4 +24,10 @@ public interface ZoneDao extends CrudDao<Zone>{
      */
     public List<Zone> findListByRequest(ZoneRequest zoneRequest);
 
+    /**
+     * 通过市级id查询所属区县级
+     * @param CityId
+     * @returno
+     */
+    public List<Zone> findByCityId(String CityId);
 }

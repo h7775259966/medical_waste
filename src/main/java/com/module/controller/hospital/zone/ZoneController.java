@@ -97,5 +97,16 @@ public class ZoneController implements ZoneControllerApi {
 
 		return zoneService.delete(id);
 	}
-	
+
+	/**
+	 * 通过市级id查询所属区县级
+	 * @param CityId
+	 * @return
+	 */
+	@Override
+	@GetMapping("/findByCityId/{CityId}")
+	public QueryResponseResult findByCityId(@PathVariable("CityId") String CityId) {
+
+		return zoneService.findByCityId(CityId);
+	}
 }

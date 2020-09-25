@@ -40,4 +40,8 @@ public interface CityControllerApi {
     @ApiImplicitParams({@ApiImplicitParam(name="id",value = "市级单位id",required=true,paramType="path",dataType="String") })
     public ResponseResult delete(String id);
 
+    @ApiOperation("通过省级id查询所属市级")
+    @ApiImplicitParams({@ApiImplicitParam(name="provinceId",value = "省级id",required=true,paramType="path",dataType="String") })
+    public QueryResponseResult findByProvinceId(String provinceId);
+
 }

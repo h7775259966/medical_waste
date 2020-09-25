@@ -1,4 +1,4 @@
-package com.module.service.violationHistory;
+package com.module.service.violation.violationHistory;
 
 import com.common.Response.CommonCode;
 import com.common.Response.QueryResponseResult;

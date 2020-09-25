@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.dao.violation.violationExamine.ViolationExamineAndStandardDao">
+
+    
+	<sql id="roleColumns">
+		a.id AS "id",
+		a.violationExamineId AS "violationExamineId",
+		a.violationStandardId AS "violationStandardId",
+		a.createDate AS "createDate"
+	</sql>
+
+	<!--查询单条数据-->
+	<select id="get" resultType="ViolationExamineAndStandard">
+		SELECT 
+			<include refid="roleColumns"/>
+		FROM t_violation_examine_and_standard a
+		WHERE a.id = #{id}
+	</select>
+
+	<!--根据violationExamineId查询所有数据-->
+	<select id="getByViolationExamineId" resultType="ViolationExamineAndStandard">
+		SELECT
+		<include refid="roleColumns"/>
+		FROM t_violation_examine_and_standard a
+		WHERE a.violationExamineId = #{value}
+	</select>
+
+	<!--查询所有-->
+	<select id="findList" resultType="ViolationExamineAndStandard">
+		SELECT 
+			<include refid="roleColumns"/>
+		FROM t_violation_examine_and_standard a ORDER BY a.createDate DESC
+	</select>
+
+	<!--插入-->
+	<insert id="insert">
+		INSERT INTO t_violation_examine_and_standard(
+			id,
+			violationExamineId,
+			violationStandardId,
+			createDate
+		) VALUES (
+			#{id},
+			#{violationExamineId},
+			#{violationStandardId},
+			#{createDate}
+		)
+	</insert>
+
+	<!--修改-->
+	<update id="update">
+		UPDATE t_violation_examine_and_standard SET
+			violationExamineId = #{violationExamineId},
+			violationStandardId = #{violationStandardId}
+		WHERE id = #{id}
+	</update>
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM t_violation_examine_and_standard
+		WHERE id = #{id}
+	</update>
+
+	<!--根据violationExamineIdd删除所有中间表数据-->
+	<update id="deleteByViolationExamineId">
+		DELETE FROM t_violation_examine_and_standard
+		WHERE violationExamineId = #{violationExamineId}
+	</update>
+
+</mapper>

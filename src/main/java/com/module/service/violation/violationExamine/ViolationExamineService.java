@@ -1,4 +1,4 @@
-package com.module.service.violationExamine;
+package com.module.service.violation.violationExamine;
 
 import com.common.Response.CommonCode;
 import com.common.Response.QueryResponseResult;

@@ -23,6 +23,9 @@ public interface ViolationStandardControllerApi {
             @ApiImplicitParam(name="size",value = "每页记录 数",required=true,paramType="path",dataType="int") })
     public QueryResponseResult findList(int page, int size, ViolationStandardRequest violationStandardRequest) ;
 
+    @ApiOperation("查询所有违规标准")
+    public QueryResponseResult all();
+
     @ApiOperation("添加违规标准")
     public ViolationStandardResult add(ViolationStandard violationStandard);
 

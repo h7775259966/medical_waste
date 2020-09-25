@@ -171,4 +171,17 @@ public class CityService {
         return new CityResult(CityCode.CMS_GET_ISNULL, null);
 	}
 
+    /**
+     * 通过省级id查询所属市级
+     * @return
+     */
+    public QueryResponseResult findByProvinceId(String provinceId) {
+        List<City> list = cityDao.findByProvinceId(provinceId);
+        PageInfo<City> pageInfo = new PageInfo<City>(list);
+        QueryResult queryResult = new QueryResult();
+        queryResult.setList(list);//数据列表
+        queryResult.setTotal(pageInfo.getTotal());//数据总记录数
+        QueryResponseResult queryResponseResult = new QueryResponseResult(CommonCode.SUCCESS, queryResult);
+        return queryResponseResult;
+    }
 }

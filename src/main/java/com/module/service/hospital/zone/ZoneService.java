@@ -9,6 +9,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.common.Exception.ExceptionCast;
 import com.module.dao.hospital.zone.ZoneDao;
+import com.module.entity.hospital.city.City;
 import com.module.entity.hospital.zone.Zone;
 import com.common.Request.hospital.zone.ZoneRequest;
 import com.common.Response.hospital.zone.ZoneCode;
@@ -173,4 +174,17 @@ public class ZoneService {
         return new ZoneResult(ZoneCode.CMS_GET_ISNULL, null);
 	}
 
+    /**
+     * 通过市级id查询所属区县级
+     * @return
+     */
+    public QueryResponseResult findByCityId(String CityId) {
+        List<Zone> list = zoneDao.findByCityId(CityId);
+        PageInfo<Zone> pageInfo = new PageInfo<Zone>(list);
+        QueryResult queryResult = new QueryResult();
+        queryResult.setList(list);//数据列表
+        queryResult.setTotal(pageInfo.getTotal());//数据总记录数
+        QueryResponseResult queryResponseResult = new QueryResponseResult(CommonCode.SUCCESS, queryResult);
+        return queryResponseResult;
+    }
 }

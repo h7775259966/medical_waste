@@ -18,15 +18,21 @@ public class Hospital {
     private String hospitalId;        // 医院id
     private String hospitalName;        //医院名称
     private String hospitalNumber;      //医院编号
-    private String grade;       //医院等级
-    private String bedNumber;       //床位数
+    private int grade;       //医院等级
+    private int bedNumber;       //床位数
     private String averageTrash;        //平均医废量/日
-    private String officeNumber;        //科室数量
+    private int officeNumber;        //科室数量
     private String principal;       //医院第一负责人
     private String hospitalContent;     //医院说明
     private String picture;     //上传的图片
-    private String processingMode;      //医废处置方式(自行处置:0;集中处置:1)
+    private int processingMode;      //医废处置方式(自行处置:0;集中处置:1)
     private Date createDate;        //创建时间
     private String remarks;        //备注
-
+    //2020.9.25新增字段
+    private int regime;         //医院体制   0为公立,1为民营
+    private String supervisionId;       //所属监督单位id
+    private int supervisionGrade;       //所属监督单位级别
+    private String provinceId;        //所属省级单位id
+    private String cityId;        //所属市级单位id
+    private String zoneId;        //所属区县级单位id
 }

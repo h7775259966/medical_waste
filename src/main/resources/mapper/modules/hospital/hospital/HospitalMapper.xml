@@ -17,7 +17,13 @@
 		a.picture AS "picture",
 		a.processingMode AS "processingMode",
 		a.createDate AS "createDate",
-		a.remarks AS "remarks"
+		a.remarks AS "remarks",
+		a.regime AS "regime",
+		a.supervisionId AS "supervisionId",
+		a.supervisionGrade AS "supervisionGrade",
+		a.provinceId AS "provinceId",
+		a.cityId AS "cityId",
+		a.zoneId AS "zoneId"
 	</sql>
 
 	<!--查询单条数据-->
@@ -74,7 +80,13 @@
 			picture,
 			processingMode,
 			createDate,
-			remarks
+			remarks,
+			regime,
+			supervisionId,
+			supervisionGrade,
+			provinceId,
+			cityId,
+			zoneId
 		) VALUES (
 			#{hospitalId},
 			#{hospitalName},
@@ -88,7 +100,13 @@
 			#{picture},
 			#{processingMode},
 			#{createDate},
-			#{remarks}
+			#{remarks},
+			#{regime},
+			#{supervisionId},
+			#{supervisionGrade},
+			#{provinceId},
+			#{cityId},
+			#{zoneId}
 		)
 	</insert>
 
@@ -105,7 +123,13 @@
 			hospitalContent = #{hospitalContent},
 			picture = #{picture},
 			processingMode = #{processingMode},
-			remarks	= #{remarks}
+			remarks	= #{remarks},
+			regime = #{regime},
+			supervisionId = #{supervisionId},
+			supervisionGrade = #{supervisionGrade},
+			provinceId	= #{provinceId},
+			cityId = #{cityId},
+			zoneId = #{zoneId}
 		WHERE hospitalId = #{hospitalId}
 	</update>
 	

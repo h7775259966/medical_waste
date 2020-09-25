@@ -1,4 +1,4 @@
-package com.module.service.violationStandard;
+package com.module.service.violation.violationStandard;
 
 import com.common.Response.CommonCode;
 import com.common.Response.QueryResponseResult;
@@ -9,6 +9,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.common.Exception.ExceptionCast;
 import com.module.dao.violation.violationStandard.ViolationStandardDao;
+import com.module.entity.system.role.Role;
 import com.module.entity.violation.violationStandard.ViolationStandard;
 import com.common.Request.violation.violationStandard.ViolationStandardRequest;
 import com.common.Response.violation.violationStandard.ViolationStandardResult;
@@ -63,6 +64,20 @@ public class ViolationStandardService {
         QueryResponseResult queryResponseResult = new QueryResponseResult(CommonCode.SUCCESS, queryResult);
         return queryResponseResult;
 
+    }
+
+    /**
+     * 查询所有违规标准
+     * @return
+     */
+    public QueryResponseResult all() {
+        List<ViolationStandard> list = violationStandardDao.findList();
+        PageInfo<ViolationStandard> pageInfo = new PageInfo<ViolationStandard>(list);
+        QueryResult queryResult = new QueryResult();
+        queryResult.setList(list);//数据列表
+        queryResult.setTotal(pageInfo.getTotal());//数据总记录数
+        QueryResponseResult queryResponseResult = new QueryResponseResult(CommonCode.SUCCESS, queryResult);
+        return queryResponseResult;
     }
 
     /**

@@ -92,6 +92,12 @@ public class HospitalService {
             one.setPicture(hospital.getPicture());
             one.setRemarks(hospital.getRemarks());
             one.setCreateDate(new Date());
+            one.setRegime(hospital.getRegime());
+            one.setSupervisionId(hospital.getSupervisionId());
+            one.setSupervisionGrade(hospital.getSupervisionGrade());
+            one.setProvinceId(hospital.getProvinceId());
+            one.setCityId(hospital.getCityId());
+            one.setZoneId(hospital.getZoneId());
             int insert = hospitalDao.insert(one);
             if (insert > 0) {
                 //返回成功
@@ -141,6 +147,12 @@ public class HospitalService {
             one.setPicture(hospital.getPicture());
             one.setRemarks(hospital.getRemarks());
             one.setCreateDate(new Date());
+            one.setRegime(hospital.getRegime());
+            one.setSupervisionId(hospital.getSupervisionId());
+            one.setSupervisionGrade(hospital.getSupervisionGrade());
+            one.setProvinceId(hospital.getProvinceId());
+            one.setCityId(hospital.getCityId());
+            one.setZoneId(hospital.getZoneId());
             int update = hospitalDao.update(one);
             if (update > 0) {
                 //返回成功

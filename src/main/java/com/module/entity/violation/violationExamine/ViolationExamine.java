@@ -1,8 +1,10 @@
 package com.module.entity.violation.violationExamine;
 
+import com.module.entity.violation.violationStandard.ViolationStandard;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 违规检查Entity
@@ -23,4 +25,5 @@ public class ViolationExamine {
     private int abarbeitungTime; // 整改时限
     private Date violationTime; // 违规时间
 
+    List<ViolationStandard> violationStandardIdList; //关联选中的违规标准
 }

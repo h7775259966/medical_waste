@@ -41,6 +41,15 @@
 		FROM t_city a	ORDER BY a.createDate DESC
 	</select>
 
+	<!--通过省级id查询所属市级-->
+	<select id="findByProvinceId" resultType="city">
+		SELECT
+		<include refid="cityColumns"/>
+		FROM t_city a
+		where a.provinceId = #{provinceId}
+		ORDER BY a.createDate DESC
+	</select>
+
 	<!--通过查询条件查询所有数据-->
 	<select id="findListByRequest" resultType="city">
 		SELECT

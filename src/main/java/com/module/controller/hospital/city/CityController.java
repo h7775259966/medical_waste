@@ -3,7 +3,6 @@ package com.module.controller.hospital.city;
 
 import com.common.Response.QueryResponseResult;
 import com.common.Response.ResponseResult;
-import com.module.controller.hospital.city.CityControllerApi;
 import com.module.entity.hospital.city.City;
 import com.common.Request.hospital.city.CityRequest;
 import com.common.Response.hospital.city.CityResult;
@@ -97,6 +96,18 @@ public class CityController implements CityControllerApi {
 	public ResponseResult delete(@PathVariable("id") String id) {
 
 		return cityService.delete(id);
+	}
+
+	/**
+	 * 通过省级id查询所属市级
+	 * @param provinceId
+	 * @return
+	 */
+	@Override
+	@GetMapping("/findByProvinceId/{provinceId}")
+	public QueryResponseResult findByProvinceId(@PathVariable("provinceId") String provinceId) {
+
+		return cityService.findByProvinceId(provinceId);
 	}
 	
 }

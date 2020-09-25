@@ -3,6 +3,7 @@ package com.module.dao.hospital.city;
 import com.common.CrudDao.CrudDao;
 import com.module.entity.hospital.city.City;
 import com.common.Request.hospital.city.CityRequest;
+import com.module.entity.hospital.office.Office;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -22,5 +23,12 @@ public interface CityDao extends CrudDao<City>{
      * @return
      */
     public List<City> findListByRequest(CityRequest cityRequest);
+
+    /**
+     * 通过省级id查询所属市级
+     * @param provinceId
+     * @returno
+     */
+    public List<City> findByProvinceId(String provinceId);
 
 }
