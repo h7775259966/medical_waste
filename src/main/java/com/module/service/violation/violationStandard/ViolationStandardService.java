@@ -51,12 +51,6 @@ public class ViolationStandardService {
         List<ViolationStandard> list = violationStandardDao.findList();
         PageInfo<ViolationStandard> pageInfo = new PageInfo<ViolationStandard>(list);
 
-        /*System.out.println("总数量：" + pageInfo.getTotal());
-        System.out.println("当前页查询记录：" + pageInfo.getList().size());
-        System.out.println("当前页码：" + pageInfo.getPageNum());
-        System.out.println("每页显示数量：" + pageInfo.getPageSize());
-        System.out.println("总页：" + pageInfo.getPages());*/
-
         //封装结果
         QueryResult queryResult = new QueryResult();
         queryResult.setList(list);//数据列表

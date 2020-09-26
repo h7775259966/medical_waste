@@ -1,26 +1,25 @@
 package com.module.service.violation.violationExamine;
 
-import com.common.Response.CommonCode;
-import com.common.Response.QueryResponseResult;
-import com.common.Response.QueryResult;
-import com.common.Response.ResponseResult;
+import com.common.Response.*;
+import com.common.Response.system.user.UserCode;
 import com.common.Utils.IdGen;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.common.Exception.ExceptionCast;
 import com.module.dao.violation.violationExamine.ViolationExamineAndStandardDao;
 import com.module.dao.violation.violationExamine.ViolationExamineDao;
+import com.module.dao.violation.violationStandard.ViolationStandardDao;
 import com.module.entity.violation.violationExamine.ViolationExamine;
 import com.common.Request.violation.violationExamine.ViolationExamineRequest;
 import com.common.Response.violation.violationExamine.ViolationExamineCode;
 import com.common.Response.violation.violationExamine.ViolationExamineResult;
 import com.module.entity.violation.violationExamine.ViolationExamineAndStandard;
+import com.module.entity.violation.violationStandard.ViolationStandard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * 违规检查Service
@@ -32,6 +31,9 @@ public class ViolationExamineService {
 
     @Autowired
     private ViolationExamineDao violationExamineDao;
+
+    @Autowired
+    private ViolationStandardDao violationStandardDao;
 
     @Autowired
     private ViolationExamineAndStandardDao violationExamineAndStandardDao;
@@ -122,14 +124,39 @@ public class ViolationExamineService {
      * @param id
      * @return
      */
-    public ViolationExamineResult findById(String id) {
+    public MapResult findById(String id) {
         if (violationExamineDao.get(id) != null) {
+            Map<String,Object> map = new HashMap<>();
             ViolationExamine violationExamine = violationExamineDao.get(id);
+            map.put("violationExamine",violationExamine);
+            List<ViolationStandard> list = findViolationStandardListById(id);
+            if(list.size()>0){
+                map.put("violationExamine",violationExamine);
+            }
             //返回成功
-            return new ViolationExamineResult(CommonCode.SUCCESS, violationExamine);
+            return new MapResult(CommonCode.SUCCESS, map);
         }
         //返回失败
-        return new ViolationExamineResult(ViolationExamineCode.CMS_GET_ISNULL, null);
+        return new MapResult(UserCode.CMS_GET_ISNULL, null);
+    }
+
+    /**
+     * 根据违规检查id查询对应的所有违规标准
+     * @param id
+     * @return
+     */
+    @Transactional
+    public List<ViolationStandard> findViolationStandardListById(String id){
+        List<ViolationExamineAndStandard> list = violationExamineAndStandardDao.getByViolationExamineId(id);
+        List<ViolationStandard> violationStandardList = new ArrayList<ViolationStandard>();
+        if(list.size()>0){
+            for (int i = 0; i <violationStandardList.size(); i++) {
+                ViolationExamineAndStandard violationExamineAndStandard = list.get(i);
+                ViolationStandard violationStandard = violationStandardDao.get(violationExamineAndStandard.getViolationStandardId());
+                violationStandardList.add(violationStandard);
+            }
+        }
+        return violationStandardList;
     }
 
     /**
