@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.module.dao.violation.violationStandard.ViolationStandardDao">
 
 
-    <sql id="violationStandardColumns">
+	<sql id="violationStandardColumns">
 		a.violationStandardId AS "violationStandardId",
 		a.createDate AS "createDate",
 		a.violationStandardName AS "violationStandardName",
@@ -15,68 +15,83 @@
 		a.remark AS "remark"
 	</sql>
 
-    <!--查询单条数据-->
-    <select id="get" resultType="ViolationStandard">
-        SELECT
-        <include refid="violationStandardColumns"/>
-        FROM t_violation_standard a
-        WHERE a.violationStandardId = #{id}
-    </select>
+	<!--查询单条数据-->
+	<select id="get" resultType="ViolationStandard">
+		SELECT
+		<include refid="violationStandardColumns"/>
+		FROM t_violation_standard a
+		WHERE a.violationStandardId = #{id}
+	</select>
 
-    <!--根据名称查询-->
-    <select id="getByName" resultType="ViolationStandard">
-        SELECT
-        <include refid="violationStandardColumns"/>
-        FROM t_violation_standard a
-        WHERE a.violationStandardName = #{value}
-    </select>
+	<!--根据名称查询-->
+	<select id="getByName" resultType="ViolationStandard">
+		SELECT
+		<include refid="violationStandardColumns"/>
+		FROM t_violation_standard a
+		WHERE a.violationStandardName = #{value}
+	</select>
 
-    <!--查询所有-->
-    <select id="findList" resultType="ViolationStandard">
-        SELECT
-        <include refid="violationStandardColumns"/>
-        FROM t_violation_standard a
-    </select>
+	<!--查询所有-->
+	<select id="findList" resultType="ViolationStandard">
+		SELECT
+		<include refid="violationStandardColumns"/>
+		FROM t_violation_standard a
+	</select>
 
-    <!--插入-->
-    <insert id="insert">
+	<!--通过状态查询所有违规标准-->
+	<select id="findAllByStatus" resultType="ViolationStandard">
+		SELECT
+		<include refid="violationStandardColumns"/>
+		FROM t_violation_standard a
+		WHERE a.status = #{value}
+	</select>
+
+	<!--插入-->
+	<insert id="insert">
 		INSERT INTO t_violation_standard(
-			violationStandardId,
-			createDate,
-			violationStandardName,
-			punishmentWay,
-			administrativePenalty,
-			grade,
-			status,
-			remark
+		violationStandardId,
+		createDate,
+		violationStandardName,
+		punishmentWay,
+		administrativePenalty,
+		grade,
+		status,
+		remark
 		) VALUES (
-			#{violationStandardId},
-			#{createDate},
-			#{violationStandardName},
-			#{punishmentWay},
-			#{administrativePenalty},
-			#{grade},
-			#{status},
-			#{remark}
+		#{violationStandardId},
+		#{createDate},
+		#{violationStandardName},
+		#{punishmentWay},
+		#{administrativePenalty},
+		#{grade},
+		#{status},
+		#{remark}
 		)
 	</insert>
 
-    <!--修改-->
-    <update id="update">
+	<!--修改-->
+	<update id="update">
 		UPDATE t_violation_standard SET
-			violationStandardId = #{violationStandardId},
-			createDate = #{createDate},
-			violationStandardName =	#{violationStandardName},
-			punishmentWay = #{punishmentWay},
-			administrativePenalty = #{administrativePenalty},
-			grade = #{grade},
-			status = #{status},
-			remark = #{remark}
+		violationStandardId = #{violationStandardId},
+		createDate = #{createDate},
+		violationStandardName =	#{violationStandardName},
+		punishmentWay = #{punishmentWay},
+		administrativePenalty = #{administrativePenalty},
+		grade = #{grade},
+		status = #{status},
+		remark = #{remark}
 		WHERE violationStandardId = #{violationStandardId}
 	</update>
 
-    <!--物理删除-->
-    <update id="delete">
+	<!--通过id修改违规标准状态-->
+	<update id="editStatus">
+		UPDATE t_violation_standard SET
+		status = #{status}
+		WHERE violationStandardId = #{violationStandardId}
+	</update>
+
+	<!--物理删除-->
+	<update id="delete">
 		DELETE FROM t_violation_standard
 		WHERE violationStandardId = #{id}
 	</update>

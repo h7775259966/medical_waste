@@ -9,7 +9,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.common.Exception.ExceptionCast;
 import com.module.dao.violation.violationStandard.ViolationStandardDao;
-import com.module.entity.system.role.Role;
 import com.module.entity.violation.violationStandard.ViolationStandard;
 import com.common.Request.violation.violationStandard.ViolationStandardRequest;
 import com.common.Response.violation.violationStandard.ViolationStandardResult;
@@ -61,11 +60,12 @@ public class ViolationStandardService {
     }
 
     /**
-     * 查询所有违规标准
+     * 查询所有状态为启用的违规标准
+     * //状态:1为启用 0为禁用
      * @return
      */
     public QueryResponseResult all() {
-        List<ViolationStandard> list = violationStandardDao.findList();
+        List<ViolationStandard> list = violationStandardDao.findAllByStatus(1);//状态:1为启用 0为禁用
         PageInfo<ViolationStandard> pageInfo = new PageInfo<ViolationStandard>(list);
         QueryResult queryResult = new QueryResult();
         queryResult.setList(list);//数据列表
@@ -105,7 +105,7 @@ public class ViolationStandardService {
     }
 
     /**
-     * 通过ID查询违规标准
+     * 通过id查询违规标准
      * @param id
      * @return
      */
@@ -169,4 +169,26 @@ public class ViolationStandardService {
         return new ViolationStandardResult(ViolationStandardCode.CMS_GET_ISNULL, null);
     }
 
+    /**
+     * 通过id修改违规标准状态
+     * @param id
+     * @return
+     */
+    @Transactional
+    public ViolationStandardResult editStatus(String id, Integer status) {
+        if (violationStandardDao.get(id) != null && status != null) {
+            ViolationStandard one = violationStandardDao.get(id);
+            one.setStatus(status);
+            int update = violationStandardDao.editStatus(one);
+            if (update > 0) {
+                //返回成功
+                return new ViolationStandardResult(CommonCode.SUCCESS, one);
+            } else {
+                //自定义异常处理
+                ExceptionCast.cast(ViolationStandardCode.CMS_EDITSTATUS_FALSE);
+            }
+        }
+        //返回失败
+        return new ViolationStandardResult(ViolationStandardCode.CMS_GET_ISNULL, null);
+    }
 }

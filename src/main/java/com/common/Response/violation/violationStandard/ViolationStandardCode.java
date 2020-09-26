@@ -12,7 +12,8 @@ public enum ViolationStandardCode implements ResultCode {
     CMS_GET_ISNULL(false,24002,"操作失败,违规标准id不存在！"),
     CMS_NAME_REPETITION(false,24003,"违规标准名称已存在,无法新增！"),
     CMS_UPDATE_FALSE(false,24004,"修改违规标准失败！"),
-    CMS_DELETE_FALSE(false,24005,"删除违规标准失败！");
+    CMS_DELETE_FALSE(false,24005,"删除违规标准失败！"),
+    CMS_EDITSTATUS_FALSE(false,24006,"修改违规标准状态失败！");
 
     //操作代码
     boolean success;

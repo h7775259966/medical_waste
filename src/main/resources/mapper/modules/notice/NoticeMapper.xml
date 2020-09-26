@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.module.dao.notice.NoticeDao">
 
-    <sql id="noticeColumns">
-        a.noticeWriteId AS "noticeWriteId",
+	<sql id="noticeColumns">
+		a.noticeWriteId AS "noticeWriteId",
 		a.headline AS "headline",
 		a.issuer AS "issuer",
 		a.writer AS "writer",
@@ -17,72 +16,69 @@
 		a.picture AS "picture"
 	</sql>
 
-    <!--查询单条数据-->
-    <select id="get" resultType="Notice">
-        SELECT
-        <include refid="noticeColumns"/>
-        FROM t_notice_write a
-        WHERE a.noticeWriteId = #{noticeWriteId}
-    </select>
+	<!--查询单条数据-->
+	<select id="get" resultType="Notice">
+		SELECT
+		<include refid="noticeColumns"/>
+		FROM t_notice_write a
+		WHERE a.noticeWriteId = #{noticeWriteId}
+	</select>
 
-    <!--根据名称查询-->
-    <select id="getByName" resultType="Notice">
-        SELECT
-        <include refid="noticeColumns"/>
-        FROM t_notice_write a
-        WHERE a.headline = #{value}
-    </select>
+	<!--根据名称查询-->
+	<select id="getByName" resultType="Notice">
+		SELECT
+		<include refid="noticeColumns"/>
+		FROM t_notice_write a
+		WHERE a.headline = #{value}
+	</select>
 
-
-
-    <!--条件查询所有-->
-    <select id="findList" resultType="Notice">
-        SELECT
-        <include refid="noticeColumns"/>
-        FROM t_notice_write a
+	<!--条件查询所有-->
+	<select id="findList" resultType="Notice">
+		SELECT
+		<include refid="noticeColumns"/>
+		FROM t_notice_write a
 
 	</select>
 
-
-    <!--插入-->
-    <insert id="insert">
+	<!--插入-->
+	<insert id="insert">
 		INSERT INTO t_notice_write(
-		    noticeWriteId,
-			headline,
-			issuer,
-			writer,
-			content,
-			unit,
-			status,
-			picture
+		noticeWriteId,
+		headline,
+		issuer,
+		writer,
+		content,
+		unit,
+		status,
+		picture
 		) VALUES (
-		    #{noticeWriteId},
-			#{headline},
-			#{issuer},
-			#{writer},
-			#{content},
-			#{unit},
-			#{status},
-			#{picture}
+		#{noticeWriteId},
+		#{headline},
+		#{issuer},
+		#{writer},
+		#{content},
+		#{unit},
+		#{status},
+		#{picture}
 		)
 	</insert>
 
-    <!--修改-->
-    <update id="update">
+	<!--修改-->
+	<update id="update">
 		UPDATE t_notice_write SET
-			noticeWriteId = #{noticeWriteId},
-			headline = #{headline},
-			issuer = #{issuer},
-			writer = #{writer},
-			content = #{content},
-			unit = #{unit},
-			writeTime = #{writeTime},
-			status = #{status},
-			picture = #{picture}
+		noticeWriteId = #{noticeWriteId},
+		headline = #{headline},
+		issuer = #{issuer},
+		writer = #{writer},
+		content = #{content},
+		unit = #{unit},
+		writeTime = #{writeTime},
+		status = #{status},
+		picture = #{picture}
 		WHERE noticeWriteId = #{noticeWriteId}
 	</update>
 
-	<!--通过id修改用户状态-->
+	<!--通过id修改公告状态-->
 	<update id="editStatus">
 		UPDATE t_notice_write SET
 		status = #{status},
@@ -90,8 +86,8 @@
 		WHERE noticeWriteId = #{noticeWriteId}
 	</update>
 
-    <!--物理删除-->
-    <update id="delete">
+	<!--物理删除-->
+	<update id="delete">
 		DELETE FROM t_notice_write
 		WHERE noticeWriteId = #{noticeWriteId}
 	</update>

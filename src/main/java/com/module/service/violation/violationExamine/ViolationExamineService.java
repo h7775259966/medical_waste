@@ -82,6 +82,7 @@ public class ViolationExamineService {
         one.setPhotograph(violationExamine.getPhotograph());
         one.setAbarbeitungTime(violationExamine.getAbarbeitungTime());
         one.setViolationTime(violationExamine.getViolationTime());
+        one.setViolationStandardIdList(violationExamine.getViolationStandardIdList());
         int insert = violationExamineDao.insert(one);
         if (insert > 0 ) {
             saveViolationStandardIdList(ViolationExamineId, violationExamine.getViolationStandardIdList());
@@ -99,19 +100,20 @@ public class ViolationExamineService {
     /**
      * 根据违规检查id保存分配的所有违规标准
      * @param ViolationExamineId
-     * @param violationStandardIdList
+     * @param StandardIdList
      * @return
      */
-    public int saveViolationStandardIdList(String ViolationExamineId, List<String> violationStandardIdList){
+    @Transactional
+    public int saveViolationStandardIdList(String ViolationExamineId, List<String> StandardIdList){
         int result = 0;
-        if (violationStandardIdList.size()>0){
-            for (int i = 0; i <violationStandardIdList.size(); i++) {
-                ViolationExamineAndStandard violationExamineAndStandard = new ViolationExamineAndStandard();
-                violationExamineAndStandard.setId(IdGen.uuid());
-                violationExamineAndStandard.setViolationExamineId(ViolationExamineId);
-                violationExamineAndStandard.setViolationStandardId(violationStandardIdList.get(i));
-                violationExamineAndStandard.setCreateDate(new Date());
-                int insert = violationExamineAndStandardDao.insert(violationExamineAndStandard);
+        if (StandardIdList.size()>0){
+            for (int i = 0; i <StandardIdList.size(); i++) {
+                ViolationExamineAndStandard EAndS = new ViolationExamineAndStandard();
+                EAndS.setId(IdGen.uuid());
+                EAndS.setViolationExamineId(ViolationExamineId);
+                EAndS.setViolationStandardId(StandardIdList.get(i));
+                EAndS.setCreateDate(new Date());
+                int insert = violationExamineAndStandardDao.insert(EAndS);
                 result = result + insert;
             }
         }
@@ -124,15 +126,14 @@ public class ViolationExamineService {
      * @param id
      * @return
      */
+    @Transactional
     public MapResult findById(String id) {
         if (violationExamineDao.get(id) != null) {
             Map<String,Object> map = new HashMap<>();
             ViolationExamine violationExamine = violationExamineDao.get(id);
             map.put("violationExamine",violationExamine);
             List<ViolationStandard> list = findViolationStandardListById(id);
-            if(list.size()>0){
-                map.put("violationExamine",violationExamine);
-            }
+            map.put("ViolationStandardList",list);
             //返回成功
             return new MapResult(CommonCode.SUCCESS, map);
         }
@@ -148,15 +149,17 @@ public class ViolationExamineService {
     @Transactional
     public List<ViolationStandard> findViolationStandardListById(String id){
         List<ViolationExamineAndStandard> list = violationExamineAndStandardDao.getByViolationExamineId(id);
-        List<ViolationStandard> violationStandardList = new ArrayList<ViolationStandard>();
+        List<ViolationStandard> StandardList = new ArrayList<ViolationStandard>();
         if(list.size()>0){
-            for (int i = 0; i <violationStandardList.size(); i++) {
-                ViolationExamineAndStandard violationExamineAndStandard = list.get(i);
-                ViolationStandard violationStandard = violationStandardDao.get(violationExamineAndStandard.getViolationStandardId());
-                violationStandardList.add(violationStandard);
+            for (int i = 0; i <list.size(); i++) {
+                ViolationExamineAndStandard EAndS = list.get(i);
+                ViolationStandard Standard = violationStandardDao.get(EAndS.getViolationStandardId());
+                System.out.println("进入findViolationStandardListById");
+                System.out.println("通过违规检查id获取的违规标准如下："+Standard.toString());
+                StandardList.add(Standard);
             }
         }
-        return violationStandardList;
+        return StandardList;
     }
 
     /**
@@ -177,6 +180,7 @@ public class ViolationExamineService {
             one.setPhotograph(violationExamine.getPhotograph());
             one.setAbarbeitungTime(violationExamine.getAbarbeitungTime());
             one.setViolationTime(violationExamine.getViolationTime());
+            one.setViolationStandardIdList(violationExamine.getViolationStandardIdList());
             int update = violationExamineDao.update(one);
             if (update > 0) {
                 violationExamineAndStandardDao.deleteByViolationExamineId(id);

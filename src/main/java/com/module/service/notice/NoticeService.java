@@ -1,12 +1,8 @@
 package com.module.service.notice;
-
 import com.common.Response.CommonCode;
 import com.common.Response.QueryResponseResult;
 import com.common.Response.QueryResult;
 import com.common.Response.ResponseResult;
-import com.common.Response.system.user.UserCode;
-import com.common.Response.system.user.UserResult;
-import com.common.Utils.CryptoUtil;
 import com.common.Utils.IdGen;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -16,14 +12,12 @@ import com.module.entity.notice.Notice;
 import com.common.Request.notice.NoticeRequest;
 import com.common.Response.notice.NoticeCode;
 import com.common.Response.notice.NoticeResult;
-import com.module.entity.system.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
-
 
 
 /**
@@ -54,16 +48,8 @@ public class NoticeService {
         }
         //分页处理
         PageHelper.startPage(page,size);
-        //注意：如果equipmentRequest内参数不为空，则进行带值查询
-        //departmentDao.findList()为没有任何查询条件的分页查询
         List<Notice> list = noticeDao.findList();
         PageInfo<Notice> pageInfo = new PageInfo<Notice>(list);
-
-        /*System.out.println("总数量：" + pageInfo.getTotal());
-        System.out.println("当前页查询记录：" + pageInfo.getList().size());
-        System.out.println("当前页码：" + pageInfo.getPageNum());
-        System.out.println("每页显示数量：" + pageInfo.getPageSize());
-        System.out.println("总页：" + pageInfo.getPages());*/
 
         //封装结果
         QueryResult queryResult = new QueryResult();
@@ -73,7 +59,6 @@ public class NoticeService {
         return queryResponseResult;
 
     }
-
 
     /**
      * 添加公告
@@ -135,7 +120,7 @@ public class NoticeService {
             one.setWriter(notice.getWriter());
             one.setContent(notice.getContent());
             one.setUnit(notice.getUnit());
-            one.setWriteTime(notice.getWriteTime());
+            //one.setWriteTime(notice.getWriteTime());
             one.setStatus(notice.getStatus());
             one.setPicture(notice.getPicture());
             int update = noticeDao.update(one);

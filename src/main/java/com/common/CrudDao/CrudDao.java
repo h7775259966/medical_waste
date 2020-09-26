@@ -63,6 +63,4 @@ public interface CrudDao<T> {
      */
     public int deleteByLogic(String id);
 
-
-    List<T> search(@Param("startTime")Date startTime, @Param("endTime")Date endTime,@Param("status")String status );
 }

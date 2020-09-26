@@ -2,6 +2,7 @@ package com.module.controller.violation.violationStandard;
 
 import com.common.Response.QueryResponseResult;
 import com.common.Response.ResponseResult;
+import com.common.Response.system.user.UserResult;
 import com.module.entity.violation.violationStandard.ViolationStandard;
 import com.common.Request.violation.violationStandard.ViolationStandardRequest;
 import com.common.Response.violation.violationStandard.ViolationStandardResult;
@@ -23,7 +24,7 @@ public interface ViolationStandardControllerApi {
             @ApiImplicitParam(name="size",value = "每页记录 数",required=true,paramType="path",dataType="int") })
     public QueryResponseResult findList(int page, int size, ViolationStandardRequest violationStandardRequest) ;
 
-    @ApiOperation("查询所有违规标准")
+    @ApiOperation("查询所有状态为启用的违规标准")
     public QueryResponseResult all();
 
     @ApiOperation("添加违规标准")
@@ -39,5 +40,10 @@ public interface ViolationStandardControllerApi {
     @ApiOperation("通过id删除违规标准")
     @ApiImplicitParams({@ApiImplicitParam(name="id",value = "计划id",required=true,paramType="path",dataType="String") })
     public ResponseResult delete(String id);
-}
 
+    @ApiOperation("通过id修改违规标准状态")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="id",value = "违规标准id",required=true,paramType="path",dataType="String"),
+            @ApiImplicitParam(name="status",value = "启用状态",required=true,paramType="path",dataType="Integer")})
+    public ViolationStandardResult editStatus(String id, Integer status);
+}

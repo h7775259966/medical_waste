@@ -2,6 +2,7 @@ package com.module.controller.violation.violationStandard;
 
 import com.common.Response.QueryResponseResult;
 import com.common.Response.ResponseResult;
+import com.common.Response.system.user.UserResult;
 import com.module.entity.violation.violationStandard.ViolationStandard;
 import com.common.Request.violation.violationStandard.ViolationStandardRequest;
 import com.common.Response.violation.violationStandard.ViolationStandardResult;
@@ -35,7 +36,7 @@ public class ViolationStandardController implements ViolationStandardControllerA
     }
 
     /**
-     * 查询所有违规标准
+     * 查询所有状态为启用的违规标准
      * @param
      * @return
      */
@@ -93,5 +94,18 @@ public class ViolationStandardController implements ViolationStandardControllerA
     public ResponseResult delete(@PathVariable("id") String id) {
 
         return violationStandardService.delete(id);
+    }
+
+    /**
+     * 通过id修改违规标准状态
+     * @param id
+     * @param status
+     * @return
+     */
+    @Override
+    @PutMapping(value="/editStatus/{id}/{status}")
+    public ViolationStandardResult editStatus(@PathVariable("id") String id, @PathVariable("status") Integer status) {
+
+        return violationStandardService.editStatus(id,status);
     }
 }
