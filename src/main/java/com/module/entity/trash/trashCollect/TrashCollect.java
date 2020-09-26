@@ -12,9 +12,9 @@ import java.util.Date;
 @Data
 public class TrashCollect {
 
-    private String trashCollectId;  //医废收集id   
-            private Date createDate; //创建时间   
-            private String officeId; //科室ID   
+            private String trashCollectId;  //医废收集id
+            private Date createDate; //创建时间
+            private String officeId; //科室ID
             private String departmentId; //部门ID   
             private String code; // 条形编码   
             private String trashId; //废物类型ID   
@@ -24,7 +24,9 @@ public class TrashCollect {
             private String collectId;  //移交人员   
             private String collectTime;  //收集时间   
             private String collectNumber;  //回收趟次   
-            private String violationWeight;  //物品重量   
+            private String violationWeight;  //物品重量
+            private String officeName;     //科室名称officeName字段仅在前端展示数据时使用
+            private String trashType;     //医废类型trashType字段仅在前端展示数据时使用
 
 
 }

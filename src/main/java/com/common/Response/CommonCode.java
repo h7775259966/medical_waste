@@ -41,5 +41,4 @@ public enum CommonCode implements ResultCode {
         return message;
     }
 
-
 }

@@ -27,9 +27,6 @@ public interface NoticeControllerApi {
     @ApiOperation("通过id查询公告")
     public NoticeResult findById(String id);
 
-    @ApiOperation("通过条件查询公告")
-    public QueryResponseResult search(int page, int size, NoticeRequest noticeRequest);
-
     @ApiOperation("通过id修改公告")
     public NoticeResult edit(String id, Notice notice);
 

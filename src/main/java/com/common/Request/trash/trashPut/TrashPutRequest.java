@@ -1,13 +1,8 @@
 package com.common.Request.trash.trashPut;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.ToString;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.util.Date;
-
 /**
  * Created by huangbotao on 2020/8/31;
  */
@@ -19,13 +14,13 @@ public class TrashPutRequest {
 
 
     @ApiModelProperty("部门")
-    private String department;
+    private String departmentName;
 
     @ApiModelProperty("科室")
-    private String office;
+    private String officeName;
 
     @ApiModelProperty("废物类型")
-    private String trash;
+    private String trashType;
 
     @ApiModelProperty("条形编码")
     private String code;

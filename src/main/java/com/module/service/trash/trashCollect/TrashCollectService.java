@@ -8,11 +8,15 @@ import com.common.Utils.IdGen;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.common.Exception.ExceptionCast;
+import com.module.dao.hospital.office.OfficeDao;
 import com.module.dao.trash.trashCollect.TrashCollectDao;
-import com.module.entity.trash.trashCollect.TrashCollect;
+import com.module.dao.trash.trashType.TrashTypeDao;
+import com.module.entity.hospital.office.Office;
 import com.common.Request.trash.trashCollect.TrashCollectRequest;
 import com.common.Response.trash.trashCollect.TrashCollectCode;
 import com.common.Response.trash.trashCollect.TrashCollectResult;
+import com.module.entity.trash.trashCollect.TrashCollect;
+import com.module.entity.trash.trashType.TrashType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +34,11 @@ public class TrashCollectService {
     @Autowired
     private TrashCollectDao trashCollectDao;
 
+    @Autowired
+    private OfficeDao officeDao;
+
+    @Autowired
+    private TrashTypeDao trashTypeDao;
 
     public QueryResponseResult findList(int page, int size, TrashCollectRequest trashCollectRequest) {
         //为防止后面报空指针，先进行查询条件的非空判断
@@ -47,15 +56,27 @@ public class TrashCollectService {
         PageHelper.startPage(page,size);
         //注意：如果equipmentRequest内参数不为空，则进行带值查询
         //departmentDao.findList()为没有任何查询条件的分页查询
-        List<TrashCollect> list = trashCollectDao.findList();
+        List<TrashCollect> list = trashCollectDao.findList(trashCollectRequest);
+
+        if(list.size()>0){
+            for (int i = 0; i <list.size(); i++) {
+                TrashCollect trashCollect = list.get(i);
+                if (officeDao.get(trashCollect.getOfficeId()) != null) {
+                    Office office = officeDao.get(trashCollect.getOfficeId());
+                    trashCollect.setOfficeName(office.getOfficeName());
+                }else{
+                    trashCollect.setOfficeName("");
+                }
+                if (trashTypeDao.get(trashCollect.getTrashId()) != null) {
+                    TrashType trashType = trashTypeDao.get(trashCollect.getTrashId());
+                    trashCollect.setTrashType(trashType.getTrashType());
+                }else{
+                    trashCollect.setTrashType("");
+                }
+            }
+        }
+
         PageInfo<TrashCollect> pageInfo = new PageInfo<TrashCollect>(list);
-
-        /*System.out.println("总数量：" + pageInfo.getTotal());
-        System.out.println("当前页查询记录：" + pageInfo.getList().size());
-        System.out.println("当前页码：" + pageInfo.getPageNum());
-        System.out.println("每页显示数量：" + pageInfo.getPageSize());
-        System.out.println("总页：" + pageInfo.getPages());*/
-
         //封装结果
         QueryResult queryResult = new QueryResult();
         queryResult.setList(list);//数据列表

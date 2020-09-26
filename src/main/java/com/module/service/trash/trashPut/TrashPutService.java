@@ -11,8 +11,13 @@ import com.common.Response.trash.trashPut.TrashPutResult;
 import com.common.Utils.IdGen;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.module.dao.hospital.office.OfficeDao;
 import com.module.dao.trash.trashPut.TrashPutDao;
+import com.module.dao.trash.trashType.TrashTypeDao;
+import com.module.entity.hospital.office.Office;
+import com.module.entity.trash.trashCollect.TrashCollect;
 import com.module.entity.trash.trashPut.TrashPut;
+import com.module.entity.trash.trashType.TrashType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,8 +36,14 @@ public class TrashPutService {
     @Autowired
     private TrashPutDao trashPutDao;
 
+    @Autowired
+    private OfficeDao officeDao;
 
-    public QueryResponseResult findList(int page, int size, TrashPutRequest trashPutRequest) {
+    @Autowired
+    private TrashTypeDao trashTypeDao;
+
+
+    public QueryResponseResult findListByRequest(int page, int size, TrashPutRequest trashPutRequest) {
         //为防止后面报空指针，先进行查询条件的非空判断
         if (trashPutRequest == null) {
             trashPutRequest = new TrashPutRequest();
@@ -46,16 +57,29 @@ public class TrashPutService {
         }
         //分页处理
         PageHelper.startPage(page,size);
-        //注意：如果equipmentRequest内参数不为空，则进行带值查询
-        //departmentDao.findList()为没有任何查询条件的分页查询
-        List<TrashPut> list = trashPutDao.findList();
+
+        List<TrashPut> list = trashPutDao.findListByRequest(trashPutRequest);
+
+        if(list.size()>0){
+            for (int i = 0; i <list.size(); i++) {
+                TrashPut trashPut = list.get(i);
+                if (officeDao.get(trashPut.getOfficeId()) != null) {
+                    Office office = officeDao.get(trashPut.getOfficeId());
+                    trashPut.setOfficeName(office.getOfficeName());
+                }else{
+                    trashPut.setOfficeName("");
+                }
+                if (trashTypeDao.get(trashPut.getTrashId()) != null) {
+                    TrashType trashType = trashTypeDao.get(trashPut.getTrashId());
+                    trashPut.setTrashType(trashType.getTrashType());
+                }else{
+                    trashPut.setTrashType("");
+                }
+            }
+        }
+
         PageInfo<TrashPut> pageInfo = new PageInfo<TrashPut>(list);
 
-        /*System.out.println("总数量：" + pageInfo.getTotal());
-        System.out.println("当前页查询记录：" + pageInfo.getList().size());
-        System.out.println("当前页码：" + pageInfo.getPageNum());
-        System.out.println("每页显示数量：" + pageInfo.getPageSize());
-        System.out.println("总页：" + pageInfo.getPages());*/
 
         //封装结果
         QueryResult queryResult = new QueryResult();
@@ -79,7 +103,7 @@ public class TrashPutService {
     public TrashPutResult add(TrashPut trashPut) {
         TrashPut one = new TrashPut();
         one.setTrashPutId(IdGen.uuid());
-        one.setCreateDate(trashPut.getCreateDate());
+        one.setCreateDate(new Date());
         one.setOfficeId(trashPut.getOfficeId());
         one.setDepartmentId(trashPut.getDepartmentId());
         one.setCode(trashPut.getCode());
@@ -135,7 +159,7 @@ public class TrashPutService {
     public TrashPutResult edit(String id, TrashPut trashPut) {
         if (trashPutDao.get(id) != null) {
             TrashPut one = trashPutDao.get(id);
-            one.setCreateDate(trashPut.getCreateDate());
+            one.setCreateDate(new Date());
             one.setOfficeId(trashPut.getOfficeId());
             one.setDepartmentId(trashPut.getDepartmentId());
             one.setCode(trashPut.getCode());

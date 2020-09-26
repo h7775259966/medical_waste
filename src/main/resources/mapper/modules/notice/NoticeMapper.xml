@@ -44,23 +44,6 @@
 	</select>
 
 
-	<select id="search" resultType="Notice">
-		SELECT
-		<include refid="noticeColumns"/>
-		FROM t_notice_write a
-	<where>
-		<if test="startTime!=null">
-			<![CDATA[   and DATE_FORMAT(a.writeTime, '%Y-%m-%d %H:%i:%s') >=  DATE_FORMAT(#{startTime}, '%Y-%m-%d %H:%i:%s')   ]]>
-		</if>
-		<if test="endTime!=null">
-			<![CDATA[  and DATE_FORMAT(a.writeTime, '%Y-%m-%d %H:%i:%s') <= DATE_FORMAT(#{endTime}, '%Y-%m-%d %H:%i:%s')    ]]>
-		</if>
-     	<if test="status != '' and status != null">
-		    or a.status =#{status}
-		</if>
-	</where>
-	</select>
-
     <!--插入-->
     <insert id="insert">
 		INSERT INTO t_notice_write(

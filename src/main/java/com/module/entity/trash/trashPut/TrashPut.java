@@ -27,6 +27,6 @@ public class TrashPut {
     private String weightNumber; //物品称重
     private Date putInTime;//入库时间
     private String collectMethods;//收集方式
-
-
+    private String officeName;     //科室名称officeName字段仅在前端展示数据时使用
+    private String trashType;     //医废类型trashType字段仅在前端展示数据时使用
 }

@@ -17,28 +17,22 @@ import java.util.Date;
 public class TrashCollectRequest {
 
     @ApiModelProperty("部门")
-    private String department;
+    private String departmentName;
 
     @ApiModelProperty("科室")
-    private String office;
+    private String officeName;
 
     @ApiModelProperty("废物类型")
-    private String trash;
+    private String trashType;
 
     @ApiModelProperty("条形编码")
     private String code;
 
     @ApiModelProperty("开始时间")
-    @DateTimeFormat(pattern = "yyyy-MM-dd") //入参
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd") //出参
-    //   @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
-    private Date startTime;
+    private String startTime;
 
     @ApiModelProperty("结束时间")
-    @DateTimeFormat(pattern = "yyyy-MM-dd") //入参
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd") //出参
-    //   @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
-    private Date endTime;
+    private String endTime;
 
     @ApiModelProperty("回收趟次")
     private String collectNumber;

@@ -30,9 +30,9 @@ public class TrashPutController implements TrashPutControllerApi {
      */
     @Override
     @GetMapping("/list/{page}/{size}")
-    public QueryResponseResult findList(@PathVariable("page") int page, @PathVariable("size")int size, TrashPutRequest trashPutRequest) {
+    public QueryResponseResult findListByRequest(@PathVariable("page") int page, @PathVariable("size")int size, TrashPutRequest trashPutRequest) {
 
-        return trashPutService.findList(page,size, trashPutRequest);
+        return trashPutService.findListByRequest(page,size, trashPutRequest);
     }
 
     /**
