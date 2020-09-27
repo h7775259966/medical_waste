@@ -14,6 +14,7 @@ import com.common.Request.hospital.department.DepartmentRequest;
 import com.common.Response.hospital.department.DepartmentCode;
 import com.common.Response.hospital.department.DepartmentResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.expression.spel.ast.OpNE;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -93,6 +94,7 @@ public class DepartmentService {
             one.setDepartmentName(department.getDepartmentName());
             one.setRemarks(department.getRemarks());
             one.setCreateDate(new Date());
+            one.setHospitalId(department.getHospitalId());
             int insert = departmentDao.insert(one);
             if (insert > 0) {
                 //返回成功
@@ -132,6 +134,7 @@ public class DepartmentService {
             Department one = departmentDao.get(id);
             one.setDepartmentName(department.getDepartmentName());
             one.setRemarks(department.getRemarks());
+            one.setHospitalId(department.getHospitalId());
             int update = departmentDao.update(one);
             if (update > 0) {
                 //返回成功

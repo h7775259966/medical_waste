@@ -19,5 +19,6 @@ public class Department{
 	private String departmentName;		// 部门名称
     private Date createDate;		//创建时间
     private String remarks;		//备注
+    private String hospitalId;    //关联查询医院ID
 
 }

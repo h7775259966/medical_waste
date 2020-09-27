@@ -116,6 +116,7 @@ public class OfficeService {
             one.setOfficeName(office.getOfficeName());
             one.setRemarks(office.getRemarks());
             one.setCreateDate(new Date());
+            one.setHospitalId(office.getHospitalId());
             int insert = officeDao.insert(one);
             if (insert > 0) {
                 if (departmentDao.get(one.getDepartmentId()) != null) {
@@ -168,6 +169,7 @@ public class OfficeService {
             one.setDepartmentId(office.getDepartmentId());
             one.setOfficeName(office.getOfficeName());
             one.setRemarks(office.getRemarks());
+            one.setHospitalId(office.getHospitalId());
             int update = officeDao.update(one);
             if (update > 0) {
                 if (departmentDao.get(one.getDepartmentId()) != null) {

@@ -9,8 +9,16 @@
         SELECT
         a.violationWeight,
         a.Packets,
+        a.createDate,
         b.trashType
-        FROM t_trash_collect a left join t_trash_type b on a.trashId = b.trashId
+        FROM t_trash_collect a
+        left join t_trash_type b on a.trashId = b.trashId
+        left join t_office c on  a.officeId = c.officeId
+        left join t_department d on  a.departmentId = d.departmentId
+        left join t_hospital e on c.hospitalId = e.hospitalId
+        left join t_zone f on e.zoneId = f.zoneId
+        left join t_city g on e.cityId = g.cityId
+        left join t_province h on e.provinceId = h.provinceId
         <where>
             <if test="startTime != null and startTime != ''">
                 AND a.createDate &gt;=#{startTime}
@@ -20,6 +28,33 @@
             </if>
             <if test="trashType != null and trashType != ''">
                 AND b.trashType = #{trashType}
+            </if>
+            <if test="officeName != null and officeName != ''">
+                AND c.officeName = #{officeName}
+            </if>
+            <if test="departmentName != null and departmentName != ''">
+                AND d.departmentName = #{departmentName}
+            </if>
+            <if test="hospitalName != null and hospitalName != ''">
+                AND e.hospitalName = #{hospitalName}
+            </if>
+            <if test="zoneName != null and zoneName != ''">
+                AND f.zoneName = #{zoneName}
+            </if>
+            <if test="cityName != null and cityName != ''">
+                AND g.cityName = #{cityName}
+            </if>
+            <if test="provinceName != null and provinceName != ''">
+                AND h.provinceName = #{provinceName}
+            </if>
+            <if test="regime != null and regime != ''">
+                AND e.regime = #{regime}
+            </if>
+            <if test="grade != null and grade != ''">
+                AND e.grade = #{grade}
+            </if>
+            <if test="processingMode != null and processingMode != ''">
+                AND e.processingMode = #{processingMode}
             </if>
         </where>
         ORDER BY a.createDate DESC

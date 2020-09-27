@@ -8,7 +8,8 @@
 		a.departmentId AS "departmentId",
 		a.createDate AS "createDate",
 		a.remarks AS "remarks",
-		a.departmentName AS "departmentName"
+		a.departmentName AS "departmentName",
+		a.hospitalId AS "hospitalId"
 	</sql>
 
 	<!--查询单条数据-->
@@ -53,12 +54,14 @@
 			departmentId,
 			createDate,
 			remarks,
-			departmentName
+			departmentName,
+			hospitalId
 		) VALUES (
 			#{departmentId},
 			#{createDate},
 			#{remarks},
-			#{departmentName}
+			#{departmentName},
+			#{hospitalId}
 		)
 	</insert>
 
@@ -66,7 +69,8 @@
 	<update id="update">
 		UPDATE t_department SET 	
 			remarks = #{remarks},
-			departmentName = #{departmentName}
+			departmentName = #{departmentName},
+			hospitalId = #{hospitalId}
 		WHERE departmentId = #{departmentId}
 	</update>
 	
