@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.dao.warn.warnOpinion.WarnOpinionDao">
+
+    
+	<sql id="warnOpinionColumns">
+		a.opinionId AS "opinionId",
+		a.hospitalId AS "hospitalId",
+		a.warnTypeId AS "warnTypeId",
+		a.step AS "step",
+		a.opinion AS "opinion",
+		a.reason AS "reason",
+		a.createDate AS "createDate"
+	</sql>
+
+	<!--查询单条数据-->
+	<select id="get" resultType="warnOpinion">
+		SELECT 
+			<include refid="warnOpinionColumns"/>
+		FROM t_warn_opinion a
+		WHERE a.opinionId = #{id}
+	</select>
+
+	<!--通过查询条件查询所有数据-->
+	<select id="findListByRequest" resultType="warnOpinion">
+		SELECT
+		<include refid="warnOpinionColumns"/>
+		FROM t_warn_opinion a
+		<where>
+		<if test="warnTypeId != null and warnTypeId != ''">
+			  AND a.warnTypeId = #{warnTypeId}
+		</if>
+		<if test="startTime != null and startTime != ''">
+			  AND a.createDate &gt;=#{startTime}
+		</if>
+		<if test="endTime != null and endTime != ''">
+			AND a.createDate &lt;=#{endTime}
+		</if>
+		</where>
+		ORDER BY a.createDate DESC
+	</select>
+
+	<!--查询所有-->
+	<select id="findList" resultType="warnOpinion">
+		SELECT 
+			<include refid="warnOpinionColumns"/>
+		FROM t_warn_opinion a	ORDER BY a.createDate DESC
+	</select>
+
+	<!--插入-->
+	<insert id="insert">
+		INSERT INTO t_warn_opinion(
+			opinionId,
+			hospitalId,
+			warnTypeId,
+			step,
+			opinion,
+			reason,
+			createDate
+		) VALUES (
+			#{opinionId},
+			#{hospitalId},
+			#{warnTypeId},
+			#{step},
+			#{opinion},
+			#{reason},
+			#{createDate}
+		)
+	</insert>
+
+	<!--修改-->
+	<update id="update">
+		UPDATE t_warn_opinion SET
+			hospitalId = #{hospitalId},
+			warnTypeId = #{warnTypeId},
+			step = #{step},
+			opinion = #{opinion},
+			reason = #{reason}
+		WHERE opinionId = #{opinionId}
+	</update>
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM t_warn_opinion
+		WHERE opinionId = #{id}
+	</update>
+
+</mapper>
