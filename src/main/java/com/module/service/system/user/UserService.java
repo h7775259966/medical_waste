@@ -93,7 +93,7 @@ public class UserService {
             one.setUserName(user.getUserName());
             String newpassword = CryptoUtil.encode(key, user.getPassWord());
             one.setPassWord(newpassword);//明文密码加密后再保存
-            one.setStatus(1);//新增启用状态默认为:1为启用
+            one.setStatus(2);//新增默认启用(启用状态 1为禁用 2为启用)
             one.setMobile(user.getMobile());
             one.setEmail(user.getEmail());
             one.setNickName(user.getNickName());

@@ -37,6 +37,7 @@ public class NoticeService {
     public QueryResponseResult findList(int page, int size, NoticeRequest noticeRequest) {
         //为防止后面报空指针，先进行查询条件的非空判断
         if (noticeRequest == null) {
+            System.out.println("noticeRequest == null");
             noticeRequest = new NoticeRequest();
         }
         //分页参数处理
@@ -48,7 +49,7 @@ public class NoticeService {
         }
         //分页处理
         PageHelper.startPage(page,size);
-        List<Notice> list = noticeDao.findList();
+        List<Notice> list = noticeDao.findListByRequest(noticeRequest);
         PageInfo<Notice> pageInfo = new PageInfo<Notice>(list);
 
         //封装结果
@@ -75,8 +76,9 @@ public class NoticeService {
             one.setWriter(notice.getWriter());
             one.setContent(notice.getContent());
             one.setUnit(notice.getUnit());
-            one.setStatus(notice.getStatus());
+            one.setStatus(1); //发布状态 1为未发布,2为已发布
             one.setPicture(notice.getPicture());
+            one.setCreateDate(new Date());
             int insert = noticeDao.insert(one);
             if (insert > 0) {
                 //返回成功
@@ -121,7 +123,7 @@ public class NoticeService {
             one.setContent(notice.getContent());
             one.setUnit(notice.getUnit());
             //one.setWriteTime(notice.getWriteTime());
-            one.setStatus(notice.getStatus());
+            //one.setStatus(notice.getStatus());
             one.setPicture(notice.getPicture());
             int update = noticeDao.update(one);
             if (update > 0) {
@@ -167,11 +169,11 @@ public class NoticeService {
         if (noticeDao.get(id) != null && status != null) {
             Notice one = noticeDao.get(id);
             one.setStatus(status);
-            if(status==0){
-                //取消发布
-                one.setWriteTime(null);
-            }else{//发布
+            if(status==2){//发布状态 1为未发布,2为已发布
                 one.setWriteTime(new Date());
+            }
+            if(status==1){
+                one.setWriteTime(null);
             }
             int update = noticeDao.editStatus(one);
             if (update > 0) {

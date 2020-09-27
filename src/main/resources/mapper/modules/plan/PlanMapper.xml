@@ -86,6 +86,13 @@
 		WHERE planId = #{planId}
 	</update>
 
+	<!--通过id修改计划准状态-->
+	<update id="editStatus">
+		UPDATE t_plan SET
+		status = #{status}
+		WHERE planId = #{planId}
+	</update>
+
     <!--物理删除-->
     <update id="delete">
 		DELETE FROM t_plan

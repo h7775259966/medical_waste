@@ -4,6 +4,7 @@ import com.common.Response.CommonCode;
 import com.common.Response.QueryResponseResult;
 import com.common.Response.QueryResult;
 import com.common.Response.ResponseResult;
+import com.common.Response.violation.violationStandard.ViolationStandardCode;
 import com.common.Utils.IdGen;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -15,6 +16,7 @@ import com.module.entity.plan.Plan;
 import com.common.Request.plan.PlanRequest;
 import com.common.Response.plan.PlanCode;
 import com.common.Response.plan.PlanResult;
+import com.module.entity.violation.violationStandard.ViolationStandard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,12 +68,6 @@ public class PlanService {
             }
         }
         PageInfo<Plan> pageInfo = new PageInfo<Plan>(list);
-
-        /*System.out.println("总数量：" + pageInfo.getTotal());
-        System.out.println("当前页查询记录：" + pageInfo.getList().size());
-        System.out.println("当前页码：" + pageInfo.getPageNum());
-        System.out.println("每页显示数量：" + pageInfo.getPageSize());
-        System.out.println("总页：" + pageInfo.getPages());*/
 
         //封装结果
         QueryResult queryResult = new QueryResult();
@@ -196,6 +192,30 @@ public class PlanService {
             } else {
                 //自定义异常处理
                 ExceptionCast.cast(PlanCode.CMS_DELETE_FALSE);
+            }
+        }
+        //返回失败
+        return new PlanResult(PlanCode.CMS_GET_ISNULL, null);
+    }
+
+
+    /**
+     * 通过id修改计划状态
+     * @param id
+     * @return
+     */
+    @Transactional
+    public PlanResult editStatus(String id, Integer status) {
+        if (planDao.get(id) != null && status != null) {
+            Plan one = planDao.get(id);
+            one.setStatus(status);
+            int update = planDao.editStatus(one);
+            if (update > 0) {
+                //返回成功
+                return new PlanResult(CommonCode.SUCCESS, one);
+            } else {
+                //自定义异常处理
+                ExceptionCast.cast(PlanCode.CMS_EDITSTATUS_FALSE);
             }
         }
         //返回失败

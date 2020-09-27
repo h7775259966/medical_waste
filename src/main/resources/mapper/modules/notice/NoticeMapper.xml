@@ -13,7 +13,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		a.unit AS "unit",
 		a.writeTime AS "writeTime",
 		a.status AS "status",
-		a.picture AS "picture"
+		a.picture AS "picture",
+		a.createDate AS "createDate"
 	</sql>
 
 	<!--查询单条数据-->
@@ -30,6 +31,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="noticeColumns"/>
 		FROM t_notice_write a
 		WHERE a.headline = #{value}
+	</select>
+
+	<!--通过查询条件查询所有数据-->
+	<select id="findListByRequest" resultType="Notice">
+		SELECT
+		<include refid="noticeColumns"/>
+		FROM t_notice_write a
+		<where>
+			<if test="startTime != null and startTime != ''">
+				AND a.createDate &gt;=#{startTime}
+			</if>
+			<if test="endTime != null and endTime != ''">
+				AND a.createDate &lt;=#{endTime}
+			</if>
+			<if test="status != null and status != ''">
+				AND a.status = #{status}
+			</if>
+		</where>
+		ORDER BY a.createDate DESC
 	</select>
 
 	<!--条件查询所有-->
@@ -50,7 +70,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		content,
 		unit,
 		status,
-		picture
+		picture,
+		createDate
 		) VALUES (
 		#{noticeWriteId},
 		#{headline},
@@ -59,7 +80,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{content},
 		#{unit},
 		#{status},
-		#{picture}
+		#{picture},
+		#{createDate}
 		)
 	</insert>
 
@@ -73,7 +95,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		content = #{content},
 		unit = #{unit},
 		writeTime = #{writeTime},
-		status = #{status},
 		picture = #{picture}
 		WHERE noticeWriteId = #{noticeWriteId}
 	</update>

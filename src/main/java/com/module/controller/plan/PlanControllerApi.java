@@ -2,6 +2,7 @@ package com.module.controller.plan;
 
 import com.common.Response.QueryResponseResult;
 import com.common.Response.ResponseResult;
+import com.common.Response.violation.violationStandard.ViolationStandardResult;
 import com.module.entity.plan.Plan;
 import com.common.Request.plan.PlanRequest;
 import com.common.Response.plan.PlanResult;
@@ -21,7 +22,7 @@ public interface PlanControllerApi {
             //required=true是否必填，paramType="path"是http请求路径，dataType="int"数据类型
             @ApiImplicitParam(name="page",value = "页 码",required=true,paramType="path",dataType="int"),
             @ApiImplicitParam(name="size",value = "每页记录 数",required=true,paramType="path",dataType="int") })
-    public QueryResponseResult findList(int page, int size, PlanRequest planRequest) ;
+    public QueryResponseResult findList(int page, int size, PlanRequest planRequest);
 
     @ApiOperation("添加计划")
     public PlanResult add(Plan plan);
@@ -36,5 +37,11 @@ public interface PlanControllerApi {
     @ApiOperation("通过id删除计划")
     @ApiImplicitParams({@ApiImplicitParam(name="id",value = "计划id",required=true,paramType="path",dataType="String") })
     public ResponseResult delete(String id);
+
+    @ApiOperation("通过id修改计划状态")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="id",value = "计划id",required=true,paramType="path",dataType="String"),
+            @ApiImplicitParam(name="status",value = "启用状态",required=true,paramType="path",dataType="Integer")})
+    public PlanResult editStatus(String id, Integer status);
 }
 

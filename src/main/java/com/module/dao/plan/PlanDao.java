@@ -2,6 +2,7 @@ package com.module.dao.plan;
 
 import com.common.CrudDao.CrudDao;
 import com.module.entity.plan.Plan;
+import com.module.entity.violation.violationStandard.ViolationStandard;
 import org.apache.ibatis.annotations.Mapper;
 
 
@@ -13,4 +14,10 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface PlanDao extends CrudDao<Plan>{
 
+    /**
+     *  通过id修改计划状态
+     * @param plan
+     * @return
+     */
+    public int editStatus(Plan plan);
 }

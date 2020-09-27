@@ -154,8 +154,6 @@ public class ViolationExamineService {
             for (int i = 0; i <list.size(); i++) {
                 ViolationExamineAndStandard EAndS = list.get(i);
                 ViolationStandard Standard = violationStandardDao.get(EAndS.getViolationStandardId());
-                System.out.println("进入findViolationStandardListById");
-                System.out.println("通过违规检查id获取的违规标准如下："+Standard.toString());
                 StandardList.add(Standard);
             }
         }

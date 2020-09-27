@@ -18,6 +18,6 @@ public class ViolationStandard {
     private String punishmentWay;   //处罚方式
     private String administrativePenalty;   //行政处罚
     private String grade;       //违规等级 1 2 3
-    private int status;      //状态  启用 1 禁用 0
+    private int status;      //状态  启用 2 禁用 1
     private String remark;       //备注
 }

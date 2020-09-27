@@ -13,7 +13,7 @@ import java.util.Date;
 public class NoticeRequest {
 
         @ApiModelProperty("公告状态")
-        private String status;
+        private int status;
 
         @ApiModelProperty("开始时间")
         private String startTime;

@@ -21,7 +21,7 @@ public class Plan {
     private String hospitalId;   //上报医院
     private Integer finishNumber;  //完成数
     private Integer unfinishNumber;//未完成数
-    private String status;         //状态
+    private int status;         //状态: 1为未下发,2为已下发,3为已关闭
     private String remark;         //备注
     private String hospitalName;   //所属医院名称hospitalName字段仅在前端展示数据时使用
 
