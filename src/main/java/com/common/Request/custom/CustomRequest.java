@@ -21,22 +21,22 @@ public class CustomRequest {
     private String trashType;
 
     @ApiModelProperty("部门")
-    private String departmentName;
+    private String departmentId;
 
     @ApiModelProperty("科室")
-    private String officeName;
+    private String officeId;
 
     @ApiModelProperty("医院名称")
-    private String hospitalName;
+    private String hospitalId;
 
     @ApiModelProperty("区名称")
-    private String zoneName;
+    private String zoneId;
 
     @ApiModelProperty("城市名称")
-    private String cityName;
+    private String cityId;
 
     @ApiModelProperty("省名称")
-    private String provinceName;
+    private String provinceId;
 
     @ApiModelProperty("医院体制")
     private String regime;

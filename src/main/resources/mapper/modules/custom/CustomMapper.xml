@@ -29,23 +29,23 @@
             <if test="trashType != null and trashType != ''">
                 AND b.trashType = #{trashType}
             </if>
-            <if test="officeName != null and officeName != ''">
-                AND c.officeName = #{officeName}
+            <if test="officeId != null and officeId != ''">
+                AND c.officeId = #{officeId}
             </if>
-            <if test="departmentName != null and departmentName != ''">
-                AND d.departmentName = #{departmentName}
+            <if test="departmentId != null and departmentId != ''">
+                AND d.departmentId = #{departmentId}
             </if>
-            <if test="hospitalName != null and hospitalName != ''">
-                AND e.hospitalName = #{hospitalName}
+            <if test="hospitalId != null and hospitalId != ''">
+                AND e.hospitalId = #{hospitalId}
             </if>
-            <if test="zoneName != null and zoneName != ''">
-                AND f.zoneName = #{zoneName}
+            <if test="zoneId != null and zoneId != ''">
+                AND f.zoneId = #{zoneId}
             </if>
-            <if test="cityName != null and cityName != ''">
-                AND g.cityName = #{cityName}
+            <if test="cityId != null and cityId != ''">
+                AND g.cityId = #{cityId}
             </if>
-            <if test="provinceName != null and provinceName != ''">
-                AND h.provinceName = #{provinceName}
+            <if test="provinceId != null and provinceId != ''">
+                AND h.provinceId = #{provinceId}
             </if>
             <if test="regime != null and regime != ''">
                 AND e.regime = #{regime}
