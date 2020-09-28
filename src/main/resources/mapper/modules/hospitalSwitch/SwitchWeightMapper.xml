@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.dao.hospitalSwitch.SwitchWeightDao">
+
+    <sql id="SwitchWarnColumns">
+        a.hospitalId AS "hospitalId",
+        a.warnInWeight AS "warnInWeight",
+        a.warnOutWeight AS "warnOutWeight",
+        a.createDate AS "createDate"
+    </sql>
+
+    <!--查询单条数据-->
+    <select id="get" resultType="SwitchWeight">
+        SELECT
+        <include refid="SwitchWarnColumns"/>
+        FROM switch_weight a
+        WHERE a.hospitalId = #{id}
+    </select>
+
+    <!--查询所有-->
+    <select id="findList" resultType="SwitchWeight">
+        SELECT
+        <include refid="SwitchWarnColumns"/>
+        FROM switch_weight a ORDER BY a.createDate DESC
+    </select>
+
+    <!--插入-->
+    <insert id="insert">
+        INSERT INTO switch_weight(
+        hospitalId,
+        warnInWeight,
+        warnOutWeight,
+        createDate
+        ) VALUES (
+        #{hospitalId},
+        #{warnInWeight},
+        #{warnOutWeight},
+        #{createDate}
+        )
+    </insert>
+
+    <!--修改-->
+    <update id="update">
+        UPDATE switch_weight SET
+        warnInWeight = #{warnInWeight},
+        warnOutWeight = #{warnOutWeight}
+        WHERE hospitalId = #{hospitalId}
+    </update>
+
+    <!--物理删除-->
+    <update id="delete">
+        DELETE FROM switch_weight
+        WHERE hospitalId = #{id}
+    </update>
+
+</mapper>

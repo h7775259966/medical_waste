@@ -95,11 +95,7 @@
 			<version>3.3.3</version>
 		</dependency>
 
-		<dependency>
-			<groupId>com.google.zxing</groupId>
-			<artifactId>zxing-parent</artifactId>
-			<version>3.3.0</version>
-		</dependency>
+
 		<dependency>
 			<groupId>com.google.zxing</groupId>
 			<artifactId>javase</artifactId>
