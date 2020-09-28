@@ -21,7 +21,7 @@ public class Notice {
     private String content;    //公告内容
     private String unit;       //发布机构
     private Date writeTime;    //发布时间
-    private int status;     //发布状态 1为未发布,2为已发布
+    private int status;     //发布状态:1为未发布,2为已发布
     private String picture;    //图片地址
     private Date createDate;    //创建时间
 
