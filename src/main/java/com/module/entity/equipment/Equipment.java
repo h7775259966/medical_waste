@@ -27,4 +27,6 @@ public class Equipment {
     private String remarks;           //备注
     private Date createDate;        //创建时间
 
+    private String hospitalName;        //医院名称,用于前端展示使用
+
 }

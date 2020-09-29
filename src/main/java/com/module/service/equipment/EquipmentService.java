@@ -9,10 +9,14 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.common.Exception.ExceptionCast;
 import com.module.dao.equipment.EquipmentDao;
+import com.module.dao.hospital.hospital.HospitalDao;
 import com.module.entity.equipment.Equipment;
 import com.common.Request.equipment.EquipmentRequest;
 import com.common.Response.equipment.EquipmentCode;
 import com.common.Response.equipment.EquipmentResult;
+import com.module.entity.hospital.department.Department;
+import com.module.entity.hospital.hospital.Hospital;
+import com.module.entity.hospital.office.Office;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,6 +38,8 @@ public class EquipmentService {
     @Autowired
     private EquipmentDao equipmentDao;
 
+    @Autowired
+    private HospitalDao hospitalDao;
 
     public QueryResponseResult findList(int page, int size, EquipmentRequest equipmentRequest) {
         //为防止后面报空指针，先进行查询条件的非空判断
@@ -50,6 +56,18 @@ public class EquipmentService {
             //分页处理
             PageHelper.startPage(page,size);
             List<Equipment> list = equipmentDao.findListByRequest(equipmentRequest);
+            //通过医院id获取医院名称后一起传给前端进行展示
+            if(list.size()>0){
+                for (int i = 0; i <list.size(); i++) {
+                    Equipment equipment = list.get(i);
+                    if (hospitalDao.get(equipment.getHospitalId())!= null) {
+                        Hospital hospital = hospitalDao.get(equipment.getHospitalId());
+                        equipment.setHospitalName(hospital.getHospitalName());
+                    }else{
+                        equipment.setHospitalName("");
+                    }
+                }
+            }
             PageInfo<Equipment> pageInfo = new PageInfo<Equipment>(list);
             //封装结果
             QueryResult queryResult = new QueryResult();
@@ -81,6 +99,12 @@ public class EquipmentService {
             one.setCreateDate(equipment.getCreateDate());
             int insert = equipmentDao.insert(one);
             if (insert > 0) {
+                if (hospitalDao.get(equipment.getHospitalId())!= null) {
+                    Hospital hospital = hospitalDao.get(equipment.getHospitalId());
+                    one.setHospitalName(hospital.getHospitalName());
+                }else{
+                    one.setHospitalName("");
+                }
                 //返回成功
                 return new EquipmentResult(CommonCode.SUCCESS, one);
             } else {
@@ -102,6 +126,12 @@ public class EquipmentService {
     public EquipmentResult findById(String id) {
         if (equipmentDao.get(id) != null) {
             Equipment equipment = equipmentDao.get(id);
+            if (hospitalDao.get(equipment.getHospitalId())!= null) {
+                Hospital hospital = hospitalDao.get(equipment.getHospitalId());
+                equipment.setHospitalName(hospital.getHospitalName());
+            }else{
+                equipment.setHospitalName("");
+            }
             //返回成功
             return new EquipmentResult(CommonCode.SUCCESS, equipment);
         }
@@ -130,6 +160,12 @@ public class EquipmentService {
             one.setCreateDate(equipment.getCreateDate());
             int update = equipmentDao.update(one);
             if (update > 0) {
+                if (hospitalDao.get(equipment.getHospitalId())!= null) {
+                    Hospital hospital = hospitalDao.get(equipment.getHospitalId());
+                    one.setHospitalName(hospital.getHospitalName());
+                }else{
+                    one.setHospitalName("");
+                }
                 //返回成功
                 return new EquipmentResult(CommonCode.SUCCESS, one);
             } else {

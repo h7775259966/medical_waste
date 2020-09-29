@@ -13,6 +13,7 @@ import com.module.entity.hospital.hospital.Hospital;
 import com.common.Request.hospital.hospital.HospitalRequest;
 import com.common.Response.hospital.hospital.HospitalCode;
 import com.common.Response.hospital.hospital.HospitalResult;
+import com.module.service.hospitalSwitch.HospitalSwitchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +32,9 @@ public class HospitalService {
 
 	@Autowired
 	private HospitalDao hospitalDao;
+
+    @Autowired
+    private HospitalSwitchService hospitalSwitchService;
 
     public QueryResponseResult findList(int page, int size, HospitalRequest hospitalRequest) {
         //为防止后面报空指针，先进行查询条件的非空判断
@@ -176,6 +180,7 @@ public class HospitalService {
         if (hospitalDao.get(id) != null) {
             int delete = hospitalDao.delete(id);
             if (delete > 0) {
+                hospitalSwitchService.deletAllSwitchById(id);
                 //返回成功
                 return new ResponseResult(CommonCode.SUCCESS);
             } else {
