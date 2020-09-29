@@ -9,7 +9,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.common.Exception.ExceptionCast;
 import com.module.dao.warn.warnOutOvertime.WarnOutOvertimeDao;
-import com.module.entity.warn.warnOutOvertime.WarnOutOvertime;
+import com.module.entity.warn.WarnOutOvertime;
 import com.common.Request.warn.warnOutOvertime.WarnOutOvertimeRequest;
 import com.common.Response.warn.warnOutOvertime.WarnOutOvertimeCode;
 import com.common.Response.warn.warnOutOvertime.WarnOutOvertimeResult;

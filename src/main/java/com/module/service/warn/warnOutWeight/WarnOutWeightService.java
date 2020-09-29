@@ -9,7 +9,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.common.Exception.ExceptionCast;
 import com.module.dao.warn.warnOutWeight.WarnOutWeightDao;
-import com.module.entity.warn.warnOutWeight.WarnOutWeight;
+import com.module.entity.warn.WarnOutWeight;
 import com.common.Request.warn.warnOutWeight.WarnOutWeightRequest;
 import com.common.Response.warn.warnOutWeight.WarnOutWeightCode;
 import com.common.Response.warn.warnOutWeight.WarnOutWeightResult;

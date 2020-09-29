@@ -1,7 +1,7 @@
 package com.module.dao.warn.warnNoOut;
 
 import com.common.CrudDao.CrudDao;
-import com.module.entity.warn.warnNoOut.WarnNoOut;
+import com.module.entity.warn.WarnNoOut;
 import org.apache.ibatis.annotations.Mapper;
 
 

@@ -1,7 +1,7 @@
 package com.module.dao.warn.warnDamaged;
 
 import com.common.CrudDao.CrudDao;
-import com.module.entity.warn.warnDamaged.WarnDamaged;
+import com.module.entity.warn.WarnDamaged;
 import org.apache.ibatis.annotations.Mapper;
 
 

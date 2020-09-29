@@ -2,7 +2,7 @@ package com.common.Response.warn.warnNoOut;
 
 import com.common.Response.ResponseResult;
 import com.common.Response.ResultCode;
-import com.module.entity.warn.warnNoOut.WarnNoOut;
+import com.module.entity.warn.WarnNoOut;
 import lombok.Data;
 
 /**

@@ -2,7 +2,7 @@ package com.common.Response.warn.warnOutOvertime;
 
 import com.common.Response.ResponseResult;
 import com.common.Response.ResultCode;
-import com.module.entity.warn.warnOutOvertime.WarnOutOvertime;
+import com.module.entity.warn.WarnOutOvertime;
 import lombok.Data;
 
 /**

@@ -75,6 +75,7 @@ public class EquipmentService {
             one.setEquipmentNum(equipment.getEquipmentNum());
             one.setEquipmentSIM(equipment.getEquipmentSIM());
             one.setEquipmentFirm(equipment.getEquipmentFirm());
+            one.setHospitalId(equipment.getHospitalId());
             one.setRemarks(equipment.getRemarks());
             one.setStatus(equipment.getStatus());
             one.setCreateDate(equipment.getCreateDate());
@@ -123,6 +124,7 @@ public class EquipmentService {
             one.setEquipmentNum(equipment.getEquipmentNum());
             one.setEquipmentSIM(equipment.getEquipmentSIM());
             one.setEquipmentFirm(equipment.getEquipmentFirm());
+            one.setHospitalId(equipment.getHospitalId());
             one.setRemarks(equipment.getRemarks());
             one.setStatus(equipment.getStatus());
             one.setCreateDate(equipment.getCreateDate());

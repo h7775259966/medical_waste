@@ -2,7 +2,7 @@ package com.common.Response.warn.warnOutWeight;
 
 import com.common.Response.ResponseResult;
 import com.common.Response.ResultCode;
-import com.module.entity.warn.warnOutWeight.WarnOutWeight;
+import com.module.entity.warn.WarnOutWeight;
 import lombok.Data;
 
 /**

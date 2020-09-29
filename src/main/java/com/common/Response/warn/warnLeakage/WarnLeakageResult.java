@@ -2,7 +2,7 @@ package com.common.Response.warn.warnLeakage;
 
 import com.common.Response.ResponseResult;
 import com.common.Response.ResultCode;
-import com.module.entity.warn.warnLeakage.WarnLeakage;
+import com.module.entity.warn.WarnLeakage;
 import lombok.Data;
 
 /**

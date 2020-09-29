@@ -9,7 +9,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.common.Exception.ExceptionCast;
 import com.module.dao.warn.warnLeakage.WarnLeakageDao;
-import com.module.entity.warn.warnLeakage.WarnLeakage;
+import com.module.entity.warn.WarnLeakage;
 import com.common.Request.warn.warnLeakage.WarnLeakageRequest;
 import com.common.Response.warn.warnLeakage.WarnLeakageCode;
 import com.common.Response.warn.warnLeakage.WarnLeakageResult;

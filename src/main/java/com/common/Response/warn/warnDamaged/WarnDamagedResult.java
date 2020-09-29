@@ -2,7 +2,7 @@ package com.common.Response.warn.warnDamaged;
 
 import com.common.Response.ResponseResult;
 import com.common.Response.ResultCode;
-import com.module.entity.warn.warnDamaged.WarnDamaged;
+import com.module.entity.warn.WarnDamaged;
 import lombok.Data;
 
 /**

@@ -9,7 +9,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.common.Exception.ExceptionCast;
 import com.module.dao.warn.warnNoOut.WarnNoOutDao;
-import com.module.entity.warn.warnNoOut.WarnNoOut;
+import com.module.entity.warn.WarnNoOut;
 import com.common.Request.warn.warnNoOut.WarnNoOutRequest;
 import com.common.Response.warn.warnNoOut.WarnNoOutCode;
 import com.common.Response.warn.warnNoOut.WarnNoOutResult;

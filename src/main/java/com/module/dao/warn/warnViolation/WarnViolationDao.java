@@ -1,7 +1,7 @@
 package com.module.dao.warn.warnViolation;
 
 import com.common.CrudDao.CrudDao;
-import com.module.entity.warn.warnViolation.WarnViolation;
+import com.module.entity.warn.WarnViolation;
 import org.apache.ibatis.annotations.Mapper;
 
 

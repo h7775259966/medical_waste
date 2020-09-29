@@ -1,7 +1,7 @@
 package com.module.dao.warn.warnOutOvertime;
 
 import com.common.CrudDao.CrudDao;
-import com.module.entity.warn.warnOutOvertime.WarnOutOvertime;
+import com.module.entity.warn.WarnOutOvertime;
 import org.apache.ibatis.annotations.Mapper;
 
 

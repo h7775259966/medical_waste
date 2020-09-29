@@ -2,7 +2,7 @@ package com.common.Response.warn.warnLose;
 
 import com.common.Response.ResponseResult;
 import com.common.Response.ResultCode;
-import com.module.entity.warn.warnLose.WarnLose;
+import com.module.entity.warn.WarnLose;
 import lombok.Data;
 
 /**

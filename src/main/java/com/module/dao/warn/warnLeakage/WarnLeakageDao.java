@@ -1,7 +1,7 @@
 package com.module.dao.warn.warnLeakage;
 
 import com.common.CrudDao.CrudDao;
-import com.module.entity.warn.warnLeakage.WarnLeakage;
+import com.module.entity.warn.WarnLeakage;
 import org.apache.ibatis.annotations.Mapper;
 
 

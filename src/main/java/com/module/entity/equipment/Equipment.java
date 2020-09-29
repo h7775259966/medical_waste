@@ -22,8 +22,9 @@ public class Equipment {
     private String equipmentNum;   //设备编号
     private String equipmentSIM;   //设备SIM卡号
     private String equipmentFirm;   //设备生产商
-    private int status;  //设备状态
-    private String remarks; //设备备
-    private Date createDate;  //创建时间
+    private int status;             //设备状态,1为离线,2为在线
+    private String hospitalId;       //所属医院id
+    private String remarks;           //备注
+    private Date createDate;        //创建时间
 
 }

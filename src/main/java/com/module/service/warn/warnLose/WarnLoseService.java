@@ -9,7 +9,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.common.Exception.ExceptionCast;
 import com.module.dao.warn.warnLose.WarnLoseDao;
-import com.module.entity.warn.warnLose.WarnLose;
+import com.module.entity.warn.WarnLose;
 import com.common.Request.warn.warnLose.WarnLoseRequest;
 import com.common.Response.warn.warnLose.WarnLoseCode;
 import com.common.Response.warn.warnLose.WarnLoseResult;

@@ -11,6 +11,7 @@
 		a.equipmentNum AS "equipmentNum",
 		a.equipmentSIM AS "equipmentSIM",
 		a.equipmentFirm AS "equipmentFirm",
+		a.hospitalId AS "hospitalId",
 		a.remarks AS "remarks",
 		a.status AS "status",
 		a.createDate AS "createDate"
@@ -69,6 +70,7 @@
 			equipmentNum,
 			equipmentFirm,
 			equipmentSIM,
+			hospitalId,
 			remarks,
 			status,
 			createDate
@@ -78,6 +80,7 @@
 			#{equipmentNum},
 			#{equipmentFirm},
 			#{equipmentSIM},
+			#{hospitalId},
 			#{remarks},
 			#{status},
 			#{createDate}
@@ -91,6 +94,7 @@
 			equipmentId = #{equipmentId},
 			equipmentFirm = #{equipmentFirm},
 			equipmentSIM = #{equipmentSIM},
+			hospitalId = #{hospitalId},
 			remarks = #{remarks},
 			status = #{status}
 		WHERE equipmentId = #{equipmentId}

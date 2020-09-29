@@ -2,20 +2,18 @@ package com.module.dao.custom;
 
 import com.common.CrudDao.CrudDao;
 import com.module.entity.custom.Custom;
-import com.module.entity.hospital.department.Department;
 import com.module.entity.trash.trashCollect.TrashCollect;
-import com.module.entity.warn.warnInWeight.WarnInWeight;
-import com.module.entity.warn.warnLeakage.WarnLeakage;
-import com.module.entity.warn.warnLose.WarnLose;
-import com.module.entity.warn.warnNoOut.WarnNoOut;
-import com.module.entity.warn.warnOutOvertime.WarnOutOvertime;
-import com.module.entity.warn.warnOutWeight.WarnOutWeight;
+import com.module.entity.warn.WarnInWeight;
+import com.module.entity.warn.WarnLeakage;
+import com.module.entity.warn.WarnLose;
+import com.module.entity.warn.WarnNoOut;
+import com.module.entity.warn.WarnOutOvertime;
+import com.module.entity.warn.WarnOutWeight;
 import com.module.entity.warn.warnType.WarnType;
 import com.common.Request.custom.CustomRequest;
 import com.common.Request.custom.CustomWarnRequest;
-import com.module.entity.warn.warnViolation.WarnViolation;
+import com.module.entity.warn.WarnViolation;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.poi.ss.formula.functions.T;
 
 import java.util.List;
 

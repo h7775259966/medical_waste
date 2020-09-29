@@ -1,7 +1,7 @@
 package com.module.dao.warn.warnInWeight;
 
 import com.common.CrudDao.CrudDao;
-import com.module.entity.warn.warnInWeight.WarnInWeight;
+import com.module.entity.warn.WarnInWeight;
 import org.apache.ibatis.annotations.Mapper;
 
 

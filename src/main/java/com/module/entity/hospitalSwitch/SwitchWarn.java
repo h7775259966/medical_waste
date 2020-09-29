@@ -1,6 +1,5 @@
 package com.module.entity.hospitalSwitch;
 
-import com.module.entity.warn.warnDamaged.WarnDamaged;
 import lombok.Data;
 import lombok.ToString;
 
