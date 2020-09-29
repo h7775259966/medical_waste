@@ -4,10 +4,17 @@
 <mapper namespace="com.module.dao.hospitalSwitch.SwitchEmailDao">
 
     <sql id="SwitchWarnColumns">
-        a.hospitalId AS "hospitalId",
-        a.warnTypeId AS "warnTypeId",
-        a.status AS "status",
-        a.createDate AS "createDate"
+      a.hospitalId AS "hospitalId",
+		a.warnDamaged AS "warnDamaged",
+		a.warnLose AS "warnLose",
+		a.warnLeakage AS "warnLeakage",
+		a.warnNoOut AS "warnNoOut",
+		a.warnViolation AS "warnViolation",
+		a.warnInWeight AS "warnInWeight",
+		a.warnOutWeight AS "warnOutWeight",
+		a.warnInOvertime AS "warnInOvertime",
+		a.warnInOvertime AS "warnOutOvertime",
+		a.createDate AS "createDate"
     </sql>
 
     <!--查询单条数据-->
@@ -28,23 +35,44 @@
     <!--插入-->
     <insert id="insert">
         INSERT INTO switch_email(
-        hospitalId,
-        warnTypeId,
-        status,
-        createDate
+            hospitalId,
+			warnDamaged,
+			warnLose,
+			warnLeakage,
+			warnNoOut,
+			warnViolation,
+			warnInWeight,
+			warnOutWeight,
+			warnInOvertime,
+			warnOutOvertime,
+			createDate
         ) VALUES (
-        #{hospitalId},
-        #{warnTypeId},
-        #{status},
-        #{createDate}
+            #{hospitalId},
+			#{warnDamaged},
+			#{warnLose},
+			#{warnLeakage},
+			#{warnNoOut},
+			#{warnViolation},
+			#{warnInWeight},
+			#{warnOutWeight},
+			#{warnInOvertime},
+			#{warnOutOvertime},
+			#{createDate}
         )
     </insert>
 
     <!--修改-->
     <update id="update">
         UPDATE switch_email SET
-        warnTypeId = #{warnTypeId},
-        status = #{status}
+            warnDamaged = #{warnDamaged},
+			warnLose = #{warnLose},
+			warnLeakage = #{warnLeakage},
+			warnNoOut = #{warnNoOut},
+			warnViolation = #{warnViolation},
+			warnInWeight = #{warnInWeight},
+			warnOutWeight = #{warnOutWeight},
+			warnInOvertime = #{warnInOvertime},
+			warnOutOvertime = #{warnOutOvertime}
         WHERE hospitalId = #{hospitalId}
     </update>
 

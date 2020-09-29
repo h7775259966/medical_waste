@@ -16,8 +16,15 @@ import java.util.Date;
 public class SwitchEmail {
 
     private String hospitalId;		//所属医院id
-    private String warnTypeId;		//预警类型id
-    private int status;		        //开关状态:1为关闭,2为启动
+    private int WarnDamaged;    //破损预警(开关状态:1为关闭,2为启动)
+    private int WarnLose;       //遗失预警
+    private int WarnLeakage;    //泄漏预警
+    private int WarnNoOut;    //未出预警
+    private int WarnViolation;    //违规预警
+    private int WarnInWeight;    //入库重量预警
+    private int WarnOutWeight;    //出库重量预警
+    private int WarnInOvertime;    //入库超时预警
+    private int WarnOutOvertime;    //出库超时预警
     private Date createDate;		//创建时间
 
 }
