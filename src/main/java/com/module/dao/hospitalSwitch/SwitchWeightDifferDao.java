@@ -1,6 +1,7 @@
 package com.module.dao.hospitalSwitch;
 
 import com.common.CrudDao.CrudDao;
+import com.module.entity.hospitalSwitch.SwitchWeightDiffer;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

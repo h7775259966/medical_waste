@@ -8,5 +8,14 @@ import lombok.Data;
 public class EquipmentRequest {
 
         @ApiModelProperty("设备编号")
-        private Integer equipmentNum;
+        private String equipmentNum;
+
+        @ApiModelProperty("设备名称")
+        private String equipmentName;
+
+        @ApiModelProperty("SIM卡号")
+        private String equipmentSIM;
+
+        @ApiModelProperty("设备状态")
+        private int status;
     }

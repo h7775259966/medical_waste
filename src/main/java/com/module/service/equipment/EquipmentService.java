@@ -49,17 +49,8 @@ public class EquipmentService {
             }
             //分页处理
             PageHelper.startPage(page,size);
-            //注意：如果equipmentRequest内参数不为空，则进行带值查询
-            //departmentDao.findList()为没有任何查询条件的分页查询
-            List<Equipment> list = equipmentDao.findList();
+            List<Equipment> list = equipmentDao.findListByRequest(equipmentRequest);
             PageInfo<Equipment> pageInfo = new PageInfo<Equipment>(list);
-
-        /*System.out.println("总数量：" + pageInfo.getTotal());
-        System.out.println("当前页查询记录：" + pageInfo.getList().size());
-        System.out.println("当前页码：" + pageInfo.getPageNum());
-        System.out.println("每页显示数量：" + pageInfo.getPageSize());
-        System.out.println("总页：" + pageInfo.getPages());*/
-
             //封装结果
             QueryResult queryResult = new QueryResult();
             queryResult.setList(list);//数据列表
@@ -84,8 +75,8 @@ public class EquipmentService {
             one.setEquipmentNum(equipment.getEquipmentNum());
             one.setEquipmentSIM(equipment.getEquipmentSIM());
             one.setEquipmentFirm(equipment.getEquipmentFirm());
-            one.setEquipmentRemark(equipment.getEquipmentRemark());
-            one.setEquipmentStatus(equipment.getEquipmentStatus());
+            one.setRemarks(equipment.getRemarks());
+            one.setStatus(equipment.getStatus());
             one.setCreateDate(equipment.getCreateDate());
             int insert = equipmentDao.insert(one);
             if (insert > 0) {
@@ -132,8 +123,8 @@ public class EquipmentService {
             one.setEquipmentNum(equipment.getEquipmentNum());
             one.setEquipmentSIM(equipment.getEquipmentSIM());
             one.setEquipmentFirm(equipment.getEquipmentFirm());
-            one.setEquipmentRemark(equipment.getEquipmentRemark());
-            one.setEquipmentStatus(equipment.getEquipmentStatus());
+            one.setRemarks(equipment.getRemarks());
+            one.setStatus(equipment.getStatus());
             one.setCreateDate(equipment.getCreateDate());
             int update = equipmentDao.update(one);
             if (update > 0) {
