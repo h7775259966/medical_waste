@@ -6,6 +6,7 @@
     <resultMap id="ProvinceList" type="com.module.entity.hospital.province.ProvinceList">
         <id column="provinceId" property="provinceId" jdbcType="VARCHAR"/>
         <result column="provinceName" property="provinceName" jdbcType="VARCHAR"/>
+        <result column="trashType" property="trashType" jdbcType="VARCHAR"/>
         <result column="violationWeight" property="violationWeight" jdbcType="VARCHAR"/>
         <result column="Packets" property="Packets" jdbcType="VARCHAR"/>
         <collection property="cityList"
@@ -18,6 +19,7 @@
     <resultMap id="CityList" type="com.module.entity.hospital.city.CityList">
         <id column="cityId" property="cityId" jdbcType="VARCHAR"/>
         <result column="cityName" property="cityName" jdbcType="VARCHAR"/>
+        <result column="trashType" property="trashType" jdbcType="VARCHAR"/>
         <result column="violationWeight" property="violationWeight" jdbcType="VARCHAR"/>
         <result column="Packets" property="Packets" jdbcType="VARCHAR"/>
         <collection property="zoneList"
@@ -28,6 +30,7 @@
     <resultMap id="ZoneList" type="com.module.entity.hospital.zone.ZoneList">
         <id column="zoneId" property="zoneId" jdbcType="VARCHAR"/>
         <result column="zoneName" property="zoneName" jdbcType="VARCHAR"/>
+        <result column="trashType" property="trashType" jdbcType="VARCHAR"/>
         <result column="violationWeight" property="violationWeight" jdbcType="VARCHAR"/>
         <result column="Packets" property="Packets" jdbcType="VARCHAR"/>
         <collection property="hospitalList"
@@ -38,6 +41,7 @@
     <resultMap id="HospitalList" type="com.module.entity.hospital.hospital.HospitalList">
         <id column="hospitalId" property="hospitalId" jdbcType="VARCHAR"/>
         <result column="hospitalName" property="hospitalName" jdbcType="VARCHAR"/>
+        <result column="trashType" property="trashType" jdbcType="VARCHAR"/>
         <result column="violationWeight" property="violationWeight" jdbcType="VARCHAR"/>
         <result column="Packets" property="Packets" jdbcType="VARCHAR"/>
         <collection property="trashCollectList"
@@ -49,9 +53,11 @@
         <id column="trashCollectId" property="trashCollectId" jdbcType="VARCHAR"/>
         <result column="createDate" property="createDate" jdbcType="DATE"/>
         <result column="violationWeight" property="violationWeight" jdbcType="VARCHAR"/>
+        <result column="trashType" property="trashType" jdbcType="VARCHAR"/>
         <result column="Packets" property="Packets" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <!--查询医废分级统计-->
     <select id="findRelavance" resultMap="ProvinceList">
         SELECT
         a.violationWeight,
@@ -78,6 +84,7 @@
         </where>
     </select>
 
+    <!--总和-->
     <select id="findSum" resultType="int">
         SELECT
         sum(a.violationWeight)
