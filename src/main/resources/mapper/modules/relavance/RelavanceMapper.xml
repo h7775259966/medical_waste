@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.module.dao.relevance.RelevanceDao">
+    <resultMap id="ProvinceList" type="com.module.entity.hospital.province.ProvinceList">
+        <id column="provinceId" property="provinceId" jdbcType="VARCHAR"/>
+        <result column="provinceName" property="provinceName" jdbcType="VARCHAR"/>
+        <result column="violationWeight" property="violationWeight" jdbcType="VARCHAR"/>
+        <result column="Packets" property="Packets" jdbcType="VARCHAR"/>
+        <collection property="cityList"
+                    javaType="List"
+                    ofType="com.module.entity.hospital.province.ProvinceList"
+                    resultMap="CityList" >
+        </collection>
+    </resultMap>
+
+    <resultMap id="CityList" type="com.module.entity.hospital.city.CityList">
+        <id column="cityId" property="cityId" jdbcType="VARCHAR"/>
+        <result column="cityName" property="cityName" jdbcType="VARCHAR"/>
+        <result column="violationWeight" property="violationWeight" jdbcType="VARCHAR"/>
+        <result column="Packets" property="Packets" jdbcType="VARCHAR"/>
+        <collection property="zoneList"
+                    javaType="List" ofType="com.module.entity.hospital.city.CityList"
+                    resultMap="ZoneList" />
+    </resultMap>
+
+    <resultMap id="ZoneList" type="com.module.entity.hospital.zone.ZoneList">
+        <id column="zoneId" property="zoneId" jdbcType="VARCHAR"/>
+        <result column="zoneName" property="zoneName" jdbcType="VARCHAR"/>
+        <result column="violationWeight" property="violationWeight" jdbcType="VARCHAR"/>
+        <result column="Packets" property="Packets" jdbcType="VARCHAR"/>
+        <collection property="hospitalList"
+                    javaType="List" ofType="com.module.entity.hospital.zone.ZoneList"
+                    resultMap="HospitalList" />
+    </resultMap>
+
+    <resultMap id="HospitalList" type="com.module.entity.hospital.hospital.HospitalList">
+        <id column="hospitalId" property="hospitalId" jdbcType="VARCHAR"/>
+        <result column="hospitalName" property="hospitalName" jdbcType="VARCHAR"/>
+        <result column="violationWeight" property="violationWeight" jdbcType="VARCHAR"/>
+        <result column="Packets" property="Packets" jdbcType="VARCHAR"/>
+        <collection property="trashCollectList"
+                    javaType="List" ofType="com.module.entity.hospital.zone.ZoneList"
+                    resultMap="TrashCollectList" />
+    </resultMap>
+
+    <resultMap id="TrashCollectList" type="com.module.entity.trash.trashCollect.TrashCollect">
+        <id column="trashCollectId" property="trashCollectId" jdbcType="VARCHAR"/>
+        <result column="createDate" property="createDate" jdbcType="DATE"/>
+        <result column="violationWeight" property="violationWeight" jdbcType="VARCHAR"/>
+        <result column="Packets" property="Packets" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="findRelavance" resultMap="ProvinceList">
+        SELECT
+        a.violationWeight,
+        a.Packets,
+        a.createDate,
+        b.trashType,
+        c.hospitalName,
+        d.zoneName,
+        e.cityName,
+        f.provinceName
+        FROM t_trash_collect a
+        left join t_trash_type b on a.trashId = b.trashId
+        left join t_hospital c on c.hospitalId = a.hospitalId
+        left join t_zone d on c.zoneId = d.zoneId
+        left join t_city e on c.cityId = e.cityId
+        left join t_province f on c.provinceId = f.provinceId
+        <where>
+        <if test="startTime != null and startTime != ''">
+            AND a.createDate &gt;=#{startTime}
+        </if>
+        <if test="endTime != null and endTime != ''">
+            AND a.createDate &lt;=#{endTime}
+        </if>
+        </where>
+    </select>
+
+    <select id="findSum" resultType="int">
+        SELECT
+        sum(a.violationWeight)
+        FROM t_trash_collect a
+        <where>
+            <if test="startTime != null and startTime != ''">
+                AND a.createDate &gt;=#{startTime}
+            </if>
+            <if test="endTime != null and endTime != ''">
+                AND a.createDate &lt;=#{endTime}
+            </if>
+        </where>
+    </select>
+
+    <select id="findSumPackets" resultType="int">
+        SELECT
+        sum(a.Packets)
+        FROM t_trash_collect a
+        <where>
+            <if test="startTime != null and startTime != ''">
+                AND a.createDate &gt;=#{startTime}
+            </if>
+            <if test="endTime != null and endTime != ''">
+                AND a.createDate &lt;=#{endTime}
+            </if>
+        </where>
+    </select>
+</mapper>

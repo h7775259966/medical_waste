@@ -17,7 +17,8 @@
 		a.collectId AS "collectId",
 		a.collectTime AS "collectTime",
 		a.collectNumber AS "collectNumber",
-		a.violationWeight AS "violationWeight"
+		a.violationWeight AS "violationWeight",
+		a.hospitalId AS "hospitalId"
 	</sql>
 
     <!--查询单条数据-->
@@ -85,7 +86,8 @@
 			collectId,
 			collectTime,
 			collectNumber,
-			violationWeight
+			violationWeight,
+			hospitalId
 		) VALUES (
 			#{trashCollectId},
 			#{createDate},
@@ -99,7 +101,8 @@
 			#{collectId},
 			#{collectTime},
 			#{collectNumber},
-			#{violationWeight}
+			#{violationWeight},
+			#{hospitalId}
 		)
 	</insert>
 
@@ -118,7 +121,8 @@
 			collectId = #{collectId},
 			collectTime = #{collectTime},
 			collectNumber = #{collectNumber},
-			violationWeight = #{violationWeight}
+			violationWeight = #{violationWeight},
+			hospitalId = #{hospitalId}
 		WHERE trashCollectId = #{trashCollectId}
 	</update>
 

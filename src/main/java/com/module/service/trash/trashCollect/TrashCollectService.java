@@ -110,6 +110,7 @@ public class TrashCollectService {
             one.setCollectId(trashCollect.getCollectId());
             one.setCollectNumber(trashCollect.getCollectNumber());
             one.setViolationWeight(trashCollect.getViolationWeight());
+            one.setHospitalId(trashCollect.getHospitalId());
             int insert = trashCollectDao.insert(one);
             if (insert > 0) {
                 //返回成功
@@ -162,6 +163,7 @@ public class TrashCollectService {
             one.setCollectId(trashCollect.getCollectId());
             one.setCollectNumber(trashCollect.getCollectNumber());
             one.setViolationWeight(trashCollect.getViolationWeight());
+            one.setHospitalId(trashCollect.getHospitalId());
             int update = trashCollectDao.update(one);
             if (update > 0) {
                 //返回成功
