@@ -17,7 +17,7 @@ public class WarnInOvertime {
 
     private String warnInOvertimeId;   //入库超时预警id
     private String monitorId;		//监测点id
-    private String outTimeLimit;	//存放超时时限
+    private String outTimeLimit;	//超时时限
 
     private String trashCollectId;  //医废收集id
     private int status;             //流程状态
