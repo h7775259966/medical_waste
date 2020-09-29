@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * 区级单位关联医废收集级查询表
  * Created by huangbotao on 2020/9/28;
  */
 

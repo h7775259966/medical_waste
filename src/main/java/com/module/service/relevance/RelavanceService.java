@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * 医院医废重量和包数
+ * 医院医废分级统计重量和包数
  * Created by huangbotao on 2020/9/28;
  */
 
@@ -27,6 +27,14 @@ public class RelavanceService {
     @Autowired
     private RelevanceDao relevanceDao;
 
+
+    /**
+     * 医废分级统计
+     * @param page
+     * @param size
+     * @param relavanceRequest
+     * @return
+     */
     public QueryResponseResult findRelavance(int page, int size, RelavanceRequest relavanceRequest) {
         //为防止后面报空指针，先进行查询条件的非空判断
         if (relavanceRequest == null) {
@@ -52,6 +60,14 @@ public class RelavanceService {
     }
 
 
+    /**
+     *
+     * @param page
+     * @param size
+     * @param relavanceRequest
+     * @return
+     * 医废分级统计医院医废重量
+     */
     public QueryResponseResult findSum(int page, int size, RelavanceRequest relavanceRequest) {
         //为防止后面报空指针，先进行查询条件的非空判断
         if (relavanceRequest == null) {
@@ -75,6 +91,15 @@ public class RelavanceService {
         return queryResponseResult;
 
     }
+
+    /**
+     *
+     * @param page
+     * @param size
+     * @param relavanceRequest
+     * @return
+     * 医废分级统计医院医废包数
+     */
 
     public QueryResponseResult findSumPackets(int page, int size, RelavanceRequest relavanceRequest) {
         //为防止后面报空指针，先进行查询条件的非空判断
