@@ -3,9 +3,9 @@ package com.module.controller.warn;
 import com.common.Response.QueryResponseResult;
 import com.common.Response.ResponseResult;
 import com.module.entity.warn.WarnOutOvertime;
-import com.common.Request.warn.warnOutOvertime.WarnOutOvertimeRequest;
-import com.common.Response.warn.warnOutOvertime.WarnOutOvertimeResult;
-import com.module.service.warn.warnOutOvertime.WarnOutOvertimeService;
+import com.common.Request.warn.WarnOutOvertimeRequest;
+import com.common.Response.warn.WarnOutOvertimeResult;
+import com.module.service.warn.WarnOutOvertimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

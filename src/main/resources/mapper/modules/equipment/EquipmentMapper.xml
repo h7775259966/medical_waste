@@ -91,7 +91,7 @@
     <update id="update">
 		UPDATE t_equipment SET 	
 			equipmentName = #{equipmentName},
-			equipmentId = #{equipmentId},
+			equipmentNum = #{equipmentNum},
 			equipmentFirm = #{equipmentFirm},
 			equipmentSIM = #{equipmentSIM},
 			hospitalId = #{hospitalId},

@@ -3,9 +3,9 @@ package com.module.controller.warn;
 import com.common.Response.QueryResponseResult;
 import com.common.Response.ResponseResult;
 import com.module.entity.warn.WarnLeakage;
-import com.common.Request.warn.warnLeakage.WarnLeakageRequest;
-import com.common.Response.warn.warnLeakage.WarnLeakageResult;
-import com.module.service.warn.warnLeakage.WarnLeakageService;
+import com.common.Request.warn.WarnLeakageRequest;
+import com.common.Response.warn.WarnLeakageResult;
+import com.module.service.warn.WarnLeakageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

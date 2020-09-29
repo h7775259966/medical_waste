@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.dao.warn.WarnInOvertimeDao">
+
+    
+	<sql id="warnOutOvertimeColumns">
+		a.warnInOvertimeId AS "warnInOvertimeId",
+		a.monitorId AS "monitorId",
+		a.outTimeLimit AS "outTimeLimit",
+		a.trashCollectId AS "trashCollectId",
+		a.status AS "status",
+		a.remarks AS "remarks",
+		a.createDate AS "createDate",
+		a.warnTime AS "warnTime"
+	</sql>
+
+	<!--查询单条数据-->
+	<select id="get" resultType="warnOutOvertime">
+		SELECT 
+			<include refid="warnOutOvertimeColumns"/>
+		FROM t_warn_inOvertime a
+		WHERE a.warnInOvertimeId = #{id}
+	</select>
+
+	<!--查询所有-->
+	<select id="findList" resultType="warnOutOvertime">
+		SELECT 
+			<include refid="warnOutOvertimeColumns"/>
+		FROM t_warn_inOvertime a	ORDER BY a.createDate DESC
+	</select>
+
+	<!--插入-->
+	<insert id="insert">
+		INSERT INTO t_warn_inOvertime(
+			warnInOvertimeId,
+			monitorId,
+			outTimeLimit,
+			trashCollectId,
+			status,
+			remarks,
+			warnTime,
+			createDate
+		) VALUES (
+			#{warnInOvertimeId},
+			#{monitorId},
+			#{outTimeLimit},
+			#{trashCollectId},
+			#{status},
+			#{remarks},
+			#{warnTime},
+			#{createDate}
+		)
+	</insert>
+
+	<!--修改-->
+	<update id="update">
+		UPDATE t_warn_inOvertime SET 	
+			monitorId = #{monitorId},
+			outTimeLimit = #{outTimeLimit},
+			trashCollectId = #{trashCollectId},
+			status = #{status},
+			remarks = #{remarks},
+			warnTime = #{warnTime}
+		WHERE warnInOvertimeId = #{warnInOvertimeId}
+	</update>
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM t_warn_inOvertime
+		WHERE warnInOvertimeId = #{id}
+	</update>
+
+</mapper>

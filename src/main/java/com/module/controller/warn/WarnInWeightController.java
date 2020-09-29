@@ -3,9 +3,9 @@ package com.module.controller.warn;
 import com.common.Response.QueryResponseResult;
 import com.common.Response.ResponseResult;
 import com.module.entity.warn.WarnInWeight;
-import com.common.Request.warn.warnInWeight.WarnInWeightRequest;
-import com.common.Response.warn.warnInWeight.WarnInWeightResult;
-import com.module.service.warn.warnInWeight.WarnInWeightService;
+import com.common.Request.warn.WarnInWeightRequest;
+import com.common.Response.warn.WarnInWeightResult;
+import com.module.service.warn.WarnInWeightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

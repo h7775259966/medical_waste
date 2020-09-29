@@ -4,6 +4,7 @@ import com.common.Response.CommonCode;
 import com.common.Response.QueryResponseResult;
 import com.common.Response.QueryResult;
 import com.common.Response.ResponseResult;
+import com.common.Utils.CryptoUtil;
 import com.common.Utils.IdGen;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

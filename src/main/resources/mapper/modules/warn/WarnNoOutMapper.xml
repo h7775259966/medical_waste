@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.dao.warn.WarnNoOutDao">
+
+    
+	<sql id="warnNoOutColumns">
+		a.warnNoOutId AS "warnNoOutId",
+		a.departmentId AS "departmentId",
+		a.officeId AS "officeId",
+		a.warnTimeLimit AS "warnTimeLimit",
+		a.status AS "status",
+		a.noOutTime AS "noOutTime",
+		a.warnTime AS "warnTime",
+		a.createDate AS "createDate",
+		a.remarks AS "remarks"
+	</sql>
+
+	<!--查询单条数据-->
+	<select id="get" resultType="warnNoOut">
+		SELECT 
+			<include refid="warnNoOutColumns"/>
+		FROM t_warn_noOut a
+		WHERE a.warnNoOutId = #{id}
+	</select>
+
+	<!--查询所有-->
+	<select id="findList" resultType="warnNoOut">
+		SELECT 
+			<include refid="warnNoOutColumns"/>
+		FROM t_warn_noOut a	ORDER BY a.createDate DESC
+	</select>
+
+	<!--插入-->
+	<insert id="insert">
+		INSERT INTO t_warn_noOut(
+			warnNoOutId,
+			departmentId,
+			officeId,
+			warnTimeLimit,
+			status,
+			noOutTime,
+			warnTime,
+			createDate,
+			remarks
+		) VALUES (
+			#{warnNoOutId},
+			#{departmentId},
+			#{officeId},
+			#{warnTimeLimit},
+			#{status},
+			#{noOutTime},
+			#{warnTime},
+			#{createDate},
+			#{remarks}
+		)
+	</insert>
+
+	<!--修改-->
+	<update id="update">
+		UPDATE t_warn_noOut SET 	
+			departmentId = #{departmentId},
+			officeId = #{officeId},
+			warnTimeLimit = #{warnTimeLimit},
+			status = #{status},
+			noOutTime = #{noOutTime},
+			warnTime = #{warnTime},
+			remarks = #{remarks}
+		WHERE warnNoOutId = #{warnNoOutId}
+	</update>
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM t_warn_noOut
+		WHERE warnNoOutId = #{id}
+	</update>
+
+</mapper>

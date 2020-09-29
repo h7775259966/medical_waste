@@ -3,9 +3,9 @@ package com.module.controller.warn;
 import com.common.Response.QueryResponseResult;
 import com.common.Response.ResponseResult;
 import com.module.entity.warn.WarnDamaged;
-import com.common.Request.warn.warnDamaged.WarnDamagedRequest;
-import com.common.Response.warn.warnDamaged.WarnDamagedResult;
-import com.module.service.warn.warnDamaged.WarnDamagedService;
+import com.common.Request.warn.WarnDamagedRequest;
+import com.common.Response.warn.WarnDamagedResult;
+import com.module.service.warn.WarnDamagedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
