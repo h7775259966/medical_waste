@@ -46,6 +46,9 @@
 		<include refid="equipmentColumns"/>
 		FROM t_equipment a
 		<where>
+			<if test="hospitalId != null and hospitalId != ''">
+				AND a.hospitalId = #{hospitalId}
+			</if>
 			<if test="equipmentNum != null and equipmentNum != ''">
 				AND a.equipmentNum = #{equipmentNum}
 			</if>

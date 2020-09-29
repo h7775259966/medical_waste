@@ -1,21 +1,14 @@
 package com.module.service.hospitalSwitch;
 
-import ch.qos.logback.classic.turbo.TurboFilter;
-import com.common.Exception.ExceptionCast;
 import com.common.Response.CommonCode;
-import com.common.Response.hospital.hospital.HospitalCode;
-import com.common.Response.hospital.hospital.HospitalResult;
 import com.common.Response.hospitalSwitch.HospitalSwitchCode;
 import com.common.Response.hospitalSwitch.HospitalSwitchResult;
 import com.module.dao.hospital.hospital.HospitalDao;
 import com.module.dao.hospitalSwitch.*;
-import com.module.entity.hospital.hospital.Hospital;
 import com.module.entity.hospitalSwitch.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.xml.transform.Result;
 import java.util.Date;
 
 /**

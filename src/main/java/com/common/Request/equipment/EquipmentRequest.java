@@ -7,6 +7,9 @@ import lombok.Data;
 @Data
 public class EquipmentRequest {
 
+        @ApiModelProperty("医院id")
+        private String hospitalId;
+
         @ApiModelProperty("设备编号")
         private String equipmentNum;
 
