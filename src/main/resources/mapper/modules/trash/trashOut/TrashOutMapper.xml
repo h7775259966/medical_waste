@@ -35,15 +35,7 @@
     <select id="findList" resultType="TrashOut">
         SELECT
         <include refid="trashOutColumns"/>
-        FROM t_trash_out a ORDER BY a.createDate DESC
-    </select>
-
-
-	<!--条件查询1-->
-	<select id="search" resultType="TrashOut">
-		SELECT
-		<include refid="trashOutColumns"/>
-		FROM t_trash_out a
+        FROM t_trash_out a
 		<where>
 			<if test="status != null and status != ''">
 				AND a.status = #{status}
@@ -55,7 +47,9 @@
 				AND a.createDate &lt;=#{endTime}
 			</if>
 		</where>
-	</select>
+        ORDER BY a.createDate DESC
+    </select>
+
 
 
     <!--插入-->

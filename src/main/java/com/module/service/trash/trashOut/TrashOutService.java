@@ -47,35 +47,7 @@ public class TrashOutService {
         PageHelper.startPage(page,size);
         //注意：如果equipmentRequest内参数不为空，则进行带值查询
         //departmentDao.findList()为没有任何查询条件的分页查询
-        List<TrashOut> list = trashOutDao.findList();
-        PageInfo<TrashOut> pageInfo = new PageInfo<TrashOut>(list);
-
-        //封装结果
-        QueryResult queryResult = new QueryResult();
-        queryResult.setList(list);//数据列表
-        queryResult.setTotal(pageInfo.getTotal());//数据总记录数
-        QueryResponseResult queryResponseResult = new QueryResponseResult(CommonCode.SUCCESS, queryResult);
-        return queryResponseResult;
-
-    }
-
-    public QueryResponseResult search(int page, int size, TrashOutRequest trashOutRequest) {
-        //为防止后面报空指针，先进行查询条件的非空判断
-        if (trashOutRequest == null) {
-            trashOutRequest = new TrashOutRequest();
-        }
-        //分页参数处理
-        if (page <= 0) {
-            page = 1;
-        }
-        page = page - 1;
-        if (size <= 0) {
-            size = 10;
-        }
-        //分页处理
-        PageHelper.startPage(page,size);
-
-        List<TrashOut> list = trashOutDao.search(trashOutRequest);
+        List<TrashOut> list = trashOutDao.findList(trashOutRequest);
         PageInfo<TrashOut> pageInfo = new PageInfo<TrashOut>(list);
 
         //封装结果

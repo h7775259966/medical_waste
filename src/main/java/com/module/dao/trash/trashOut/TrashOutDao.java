@@ -17,6 +17,6 @@ import java.util.List;
 public interface TrashOutDao extends CrudDao<TrashOut> {
 
 
-    public List<TrashOut> search(TrashOutRequest TrashOutRequest);
+    public List<TrashOut> findList(TrashOutRequest TrashOutRequest);
 
 }
