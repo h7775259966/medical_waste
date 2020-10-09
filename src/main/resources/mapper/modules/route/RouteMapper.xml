@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.dao.route.RouteDao">
+
+
+    <sql id="routeColumns">
+		a.lineConfigId AS "lineConfigId",
+		a.collectId AS "collectId",
+		a.createDate AS "createDate",
+		a.routeName AS "routeName",
+		a.equipmentNum AS "equipmentNum",
+		a.config AS "config"
+	</sql>
+
+    <!--查询单条数据-->
+    <select id="get" resultType="Route">
+        SELECT
+        <include refid="routeColumns"/>
+        FROM t_line_config a
+        WHERE a.lineConfigId = #{lineConfigId}
+    </select>
+
+    <!--根据名称查询-->
+    <select id="getByName" resultType="Route">
+        SELECT
+        <include refid="routeColumns"/>
+        FROM t_line_config a
+        WHERE a.routeName = #{value}
+    </select>
+
+    <!--查询所有-->
+    <select id="findList" resultType="Route">
+        SELECT
+        <include refid="routeColumns"/>
+        FROM t_line_config a ORDER BY a.createDate DESC
+    </select>
+
+    <!--插入-->
+    <insert id="insert">
+		INSERT INTO t_line_config(
+			lineConfigId,
+			collectId,
+			createDate,
+			routeName,
+			equipmentNum,
+			config
+		) VALUES (
+			#{lineConfigId},
+			#{collectId},
+			#{createDate},
+			#{routeName},
+			#{equipmentNum},
+			#{config}
+		)
+	</insert>
+
+    <!--修改-->
+    <update id="update">
+		UPDATE t_line_config SET
+			collectId = #{collectId},
+			routeName = #{routeName},
+			equipmentNum = #{equipmentNum},
+			config = #{config}
+		WHERE lineConfigId = #{lineConfigId}
+	</update>
+
+    <!--物理删除-->
+    <update id="delete">
+		DELETE FROM t_line_config
+		WHERE lineConfigId = #{lineConfigId}
+	</update>
+
+</mapper>

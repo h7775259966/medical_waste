@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.module.dao.route.RouteAndOfficeDao">
+
+
+    <sql id="routeColumns">
+		a.id AS "id",
+		a.officeName AS "officeName",
+		a.officeId AS "officeId",
+		a.Xaxis AS "Xaxis",
+		a.Yaxis AS "Yaxis",
+		a.routeId AS "routeId"
+	</sql>
+
+    <!--查询单条数据-->
+    <select id="get" resultType="RouteAndOffice">
+        SELECT
+        <include refid="routeColumns"/>
+        FROM t_route_and_office a
+        WHERE a.id = #{id}
+    </select>
+
+    <!--根据routeId查询所有数据-->
+    <select id="getByRouteId" resultType="RouteAndOffice">
+        SELECT
+        <include refid="routeColumns"/>
+        FROM t_route_and_office a
+        WHERE a.routeId = #{value}
+    </select>
+
+    <!--查询所有-->
+    <select id="findList" resultType="RouteAndOffice">
+        SELECT
+        <include refid="routeColumns"/>
+        FROM t_route_and_office a ORDER BY a.createDate DESC
+    </select>
+
+    <!--插入-->
+    <insert id="insert">
+		INSERT INTO t_route_and_office(
+			id,
+			officeName,
+			officeId,
+			Xaxis,
+			Yaxis,
+			routeId
+		) VALUES (
+			#{id},
+			#{officeName},
+			#{officeId},
+			#{Xaxis},
+			#{Yaxis},
+			#{routeId}
+		)
+	</insert>
+
+    <!--修改-->
+    <update id="update">
+		UPDATE t_route_and_office SET
+			officeName = #{officeName},
+			officeId = #{officeId},
+			Xaxis = #{Xaxis},
+			Yaxis = #{Yaxis},
+			routeId = #{routeId}
+		WHERE id = #{id}
+	</update>
+
+    <!--物理删除-->
+    <update id="delete">
+		DELETE FROM t_route_and_office
+		WHERE id = #{id}
+	</update>
+
+    <!--根据routeId删除所有中间表数据-->
+    <update id="deleteByRouteId">
+		DELETE FROM t_route_and_office
+		WHERE officeId = #{officeId}
+	</update>
+
+</mapper>
