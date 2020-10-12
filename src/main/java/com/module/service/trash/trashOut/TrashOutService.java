@@ -73,7 +73,7 @@ public class TrashOutService {
         one.setTrashOutId(IdGen.uuid());
         one.setCreateDate(trashOut.getCreateDate());
         one.setCollectTime(trashOut.getCollectTime());
-        one.setStatus(trashOut.getStatus());
+        one.setStatus(1);//1：未出库
         one.setCollectWeight(trashOut.getCollectWeight());
         one.setPutWeight(trashOut.getPutWeight());
         one.setOutWeight(trashOut.getOutWeight());
@@ -121,7 +121,7 @@ public class TrashOutService {
             TrashOut one = trashOutDao.get(id);
             one.setCreateDate(trashOut.getCreateDate());
             one.setCollectTime(trashOut.getCollectTime());
-            one.setStatus(trashOut.getStatus());
+            //one.setStatus(trashOut.getStatus());
             one.setCollectWeight(trashOut.getCollectWeight());
             one.setPutWeight(trashOut.getPutWeight());
             one.setOutWeight(trashOut.getOutWeight());
@@ -162,7 +162,7 @@ public class TrashOutService {
 
 
     /**
-     * 通过id修改发布状态
+     * 通过id修改出库状态
      * @param id
      * @return
      */
@@ -171,12 +171,6 @@ public class TrashOutService {
         if (trashOutDao.get(id) != null && status != null) {
             TrashOut one = trashOutDao.get(id);
             one.setStatus(status);
-            if(status==2){//发布状态 1为未发布,2为已发布
-                one.setCreateDate(new Date());
-            }
-            if(status==1){
-                one.setStatus(2);
-            }
             int update = trashOutDao.editStatus(one);
             if (update > 0) {
                 //返回成功

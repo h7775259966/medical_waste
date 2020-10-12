@@ -81,7 +81,6 @@
 			trashOutId = #{trashOutId},
 			createDate = #{createDate},
 			collectTime = #{collectTime},
-			status = #{status},
 			collectWeight = #{collectWeight},
 			putWeight = #{putWeight},
 			outWeight = #{outWeight},
@@ -98,8 +97,7 @@
 
 	<update id="editStatus">
 		UPDATE t_trash_out SET
-		status = #{status},
-		createDate = #{createDate}
+		status = #{status}
 		WHERE trashOutId = #{trashOutId}
 	</update>
 

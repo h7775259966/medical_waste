@@ -46,7 +46,7 @@ public class TrashOutController implements TrashOutControllerApi {
     }
 
     /**
-     * 通过id查询医废收集
+     * 通过id查询医废出库
      * @param id
      * @return
      */
@@ -57,10 +57,8 @@ public class TrashOutController implements TrashOutControllerApi {
         return trashOutService.findById(id);
     }
 
-
-
     /**
-     * 添加医废收集
+     * 添加医废出库
      * @param trashOut
      * @return
      */
@@ -72,7 +70,7 @@ public class TrashOutController implements TrashOutControllerApi {
     }
 
     /**
-     * 通过id修改医废收集
+     * 通过id修改医废出库
      * @param id
      * @param trashOut
      * @return
@@ -85,7 +83,7 @@ public class TrashOutController implements TrashOutControllerApi {
     }
 
     /**
-     * 通过id删除医废收集
+     * 通过id删除医废出库
      * @param id
      * @return
      */
@@ -95,8 +93,6 @@ public class TrashOutController implements TrashOutControllerApi {
 
         return trashOutService.delete(id);
     }
-
-
 
     /**
      * 通过id修改发布状态

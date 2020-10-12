@@ -1,8 +1,6 @@
 package com.module.controller.hospitalSwitch;
 
-import com.common.Response.hospital.hospital.HospitalResult;
 import com.common.Response.hospitalSwitch.HospitalSwitchResult;
-import com.module.entity.hospital.hospital.Hospital;
 import com.module.entity.hospitalSwitch.HospitalSwitch;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

@@ -14,7 +14,7 @@ public class TrashOut {
             private String trashOutId;  //医废出库id
             private Date createDate;  //创建时间
             private Date collectTime; //收集时间
-            private Integer status;  //出库状态   1已出库 2未出库
+            private Integer status;  //出库状态:1为未出库,2为出库完成
             private String collectWeight; //收集重量
             private String putWeight; //已入库重量
             private String outWeight; //出库重量

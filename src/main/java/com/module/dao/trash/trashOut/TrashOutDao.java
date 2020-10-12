@@ -21,7 +21,7 @@ public interface TrashOutDao extends CrudDao<TrashOut> {
     public List<TrashOut> findList(TrashOutRequest TrashOutRequest);
 
     /**
-     *  通过id修改发布状态
+     *  通过id修改出库状态
      * @param trashOut
      * @return
      */
