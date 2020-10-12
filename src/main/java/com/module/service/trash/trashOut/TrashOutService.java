@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -158,5 +159,39 @@ public class TrashOutService {
         //返回失败
         return new TrashOutResult(TrashOutCode.CMS_GET_ISNULL, null);
     }
+
+
+    /**
+     * 通过id修改发布状态
+     * @param id
+     * @return
+     */
+    @Transactional
+    public TrashOutResult editStatus(String id, Integer status) {
+        if (trashOutDao.get(id) != null && status != null) {
+            TrashOut one = trashOutDao.get(id);
+            one.setStatus(status);
+            if(status==2){//发布状态 1为未发布,2为已发布
+                one.setCreateDate(new Date());
+            }
+            if(status==1){
+                one.setStatus(2);
+            }
+            int update = trashOutDao.editStatus(one);
+            if (update > 0) {
+                //返回成功
+                return new TrashOutResult(CommonCode.SUCCESS, one);
+            } else {
+                //自定义异常处理
+                ExceptionCast.cast(TrashOutCode.CMS_EDITSTATUS_FALSE);
+            }
+        }
+        //返回失败
+        return new TrashOutResult(TrashOutCode.CMS_GET_ISNULL, null);
+    }
+
+
+
+
 }
 

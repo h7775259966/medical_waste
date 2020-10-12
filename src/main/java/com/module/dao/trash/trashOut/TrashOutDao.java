@@ -2,6 +2,7 @@ package com.module.dao.trash.trashOut;
 
 import com.common.CrudDao.CrudDao;
 import com.module.entity.hospital.department.Department;
+import com.module.entity.notice.Notice;
 import com.module.entity.trash.trashOut.TrashOut;
 import com.common.Request.hospital.department.DepartmentRequest;
 import com.common.Request.trash.trashOut.TrashOutRequest;
@@ -18,5 +19,12 @@ public interface TrashOutDao extends CrudDao<TrashOut> {
 
 
     public List<TrashOut> findList(TrashOutRequest TrashOutRequest);
+
+    /**
+     *  通过id修改发布状态
+     * @param trashOut
+     * @return
+     */
+    public int editStatus(TrashOut trashOut);
 
 }

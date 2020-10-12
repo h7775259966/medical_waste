@@ -12,7 +12,8 @@ public enum TrashOutCode implements ResultCode {
     CMS_GET_ISNULL(false,24002,"操作失败,出库操作id不存在！"),
     CMS_NAME_REPETITION(false,24003,"出库操作名称已存在,无法新增！"),
     CMS_UPDATE_FALSE(false,24004,"修改出库操作失败！"),
-    CMS_DELETE_FALSE(false,24005,"删除出库操作失败！");
+    CMS_DELETE_FALSE(false,24005,"删除出库操作失败！"),
+    CMS_EDITSTATUS_FALSE(false,24006,"修改出库状态失败！");
 
     //操作代码
     boolean success;

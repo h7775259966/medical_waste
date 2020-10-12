@@ -95,4 +95,13 @@
 		WHERE trashOutId = #{id}
 	</update>
 
+
+	<update id="editStatus">
+		UPDATE t_trash_out SET
+		status = #{status},
+		createDate = #{createDate}
+		WHERE trashOutId = #{trashOutId}
+	</update>
+
+
 </mapper>

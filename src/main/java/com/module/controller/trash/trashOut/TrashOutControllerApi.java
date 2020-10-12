@@ -44,4 +44,14 @@ public interface TrashOutControllerApi {
     @ApiOperation("通过id删除出库操作")
     @ApiImplicitParams({@ApiImplicitParam(name="id",value = "出库操作id",required=true,paramType="path",dataType="String") })
     public ResponseResult delete(String id);
+
+
+
+    @ApiOperation("通过id修改发布状态")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="id",value = "公告id",required=true,paramType="path",dataType="String"),
+            @ApiImplicitParam(name="status",value = "发布状态",required=true,paramType="path",dataType="Integer")})
+    public TrashOutResult editStatus(String id, Integer status);
+
+
 }

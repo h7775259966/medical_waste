@@ -95,4 +95,21 @@ public class TrashOutController implements TrashOutControllerApi {
 
         return trashOutService.delete(id);
     }
+
+
+
+    /**
+     * 通过id修改发布状态
+     * @param id
+     * @param status
+     * @return
+     */
+    @Override
+    @PutMapping(value="/editStatus/{id}/{status}")
+    public TrashOutResult editStatus(@PathVariable("id") String id, @PathVariable("status") Integer status) {
+
+        return trashOutService.editStatus(id,status);
+    }
+
+
 }
