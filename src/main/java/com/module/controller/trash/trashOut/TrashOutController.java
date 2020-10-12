@@ -38,13 +38,6 @@ public class TrashOutController implements TrashOutControllerApi {
         return trashOutService.findList(page,size, trashOutRequest);
     }
 
-    @Override
-    @GetMapping("/search/{page}/{size}")
-    public QueryResponseResult search(@PathVariable("page") int page, @PathVariable("size")int size, TrashOutRequest trashOutRequest) {
-
-        return trashOutService.findList(page,size, trashOutRequest);
-    }
-
     /**
      * 通过id查询医废出库
      * @param id
